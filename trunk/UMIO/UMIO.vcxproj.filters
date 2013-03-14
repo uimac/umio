@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\src\UMIO.cpp" />
+    <ClCompile Include="..\src\UMObject.cpp" />
+    <ClCompile Include="..\src\UMMain.cpp" />
+    <ClCompile Include="..\src\UMPython.cpp" />
+    <ClCompile Include="..\src\UMFbx2013.cpp">
+      <Filter>fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\UMFbx.cpp">
+      <Filter>fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\UMFbx2011.cpp">
+      <Filter>fbx</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\UMIO.h" />
+    <ClInclude Include="..\src\UMIOSetting.h" />
+    <ClInclude Include="..\src\UMObject.h" />
+    <ClInclude Include="..\src\UMListTypes.h" />
+    <ClInclude Include="..\src\UMBlendShapeBos.h">
+      <Filter>bos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\UMBlendShapeChannelBos.h">
+      <Filter>bos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\UMCameraBos.h">
+      <Filter>bos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\UMClusterBos.h">
+      <Filter>bos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\UMDeformerBos.h">
+      <Filter>bos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\UMMaterialBos.h">
+      <Filter>bos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\UMNodeBos.h">
+      <Filter>bos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\UMMeshBos.h">
+      <Filter>bos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\UMObjectBos.h">
+      <Filter>bos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\UMPoseBos.h">
+      <Filter>bos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\UMSkeletonBos.h">
+      <Filter>bos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\UMShapeBos.h">
+      <Filter>bos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\UMSkinBos.h">
+      <Filter>bos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\UMTextureBos.h">
+      <Filter>bos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\UMIOSettingBos.h">
+      <Filter>bos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\UMAnimation.h" />
+    <ClInclude Include="..\src\UMFbx.h">
+      <Filter>fbx</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="bos">
+      <UniqueIdentifier>{276ba081-d931-4112-a484-e9bb598fc97d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="fbx">
+      <UniqueIdentifier>{696cfaad-b1e4-4fd6-a2ed-5e32bde68396}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
