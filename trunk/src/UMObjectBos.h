@@ -1,6 +1,6 @@
 /**
  *
- * UMObjectBos.h
+ * @file UMObjectBos.h
  *
  * @author tori31001 at gmail.com
  *

@@ -1,6 +1,6 @@
 /**
  *
- * UMIOSetting.h
+ * @file UMIOSetting.h
  *
  * @author tori31001 at gmail.com
  *
@@ -21,7 +21,7 @@
 	#include <boost/serialization/array.hpp>
 #endif
 
-namespace UM
+namespace umio
 {
 
 class UMIOSetting
@@ -183,4 +183,4 @@ private:
 	UMImpSettingMap bl_imp_prop_map_;
 };
 
-} // namespace UM
+} // namespace umio

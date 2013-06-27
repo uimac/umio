@@ -1,6 +1,6 @@
 /**
  *
- * UMDeformerBos.h
+ * @file UMDeformerBos.h
  *
  * @author tori31001 at gmail.com
  *

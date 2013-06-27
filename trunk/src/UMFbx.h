@@ -17,7 +17,7 @@
 
 #include <string>
 
-namespace UM
+namespace umio
 {
 
 class UMFbx
@@ -39,4 +39,4 @@ public:
 };
 
 
-} // namespace UM
+} // namespace umio

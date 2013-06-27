@@ -1,6 +1,6 @@
 /**
  *
- * UMSkeletonBos.h
+ * @file UMSkeletonBos.h
  *
  * @author tori31001 at gmail.com
  *

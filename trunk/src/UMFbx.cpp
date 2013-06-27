@@ -14,13 +14,13 @@
 #include "UMFbx.h"
 #include "UMObject.h"
 
-namespace UM
+namespace umio
 {
 
 UMObjectPtr UMFbx::load(std::string path, const UMIOSetting& setting) { return UMObjectPtr(); }
 
 bool UMFbx::save(std::string path, UMObjectPtr object, const UMIOSetting& setting) { return false; }
 
-} // namespace UM
+} // namespace umio
 
 #endif // !defined (WITH_FBX2011) && !defined (WITH_FBX2013)

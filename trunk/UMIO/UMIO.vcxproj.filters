@@ -69,6 +69,8 @@
     <ClInclude Include="..\src\UMFbx.h">
       <Filter>fbx</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\UMMatrix.h" />
+    <ClInclude Include="..\src\UMVector.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bos">

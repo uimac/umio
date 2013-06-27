@@ -120,20 +120,20 @@ int main(int argc, char **argv)
 		is_convert_bos_to_fbx = true;
 	}
 	
-	UM::UMIO io;
-	UM::UMIOSetting setting;
+	umio::UMIO io;
+	umio::UMIOSetting setting;
 
 	if (is_convert_bos_to_fbx)
 	{
 		// convert bos to fbx or other format 
-		setting.set_bl_imp_bool_prop(UM::UMIOSetting::eUMImpFBX, false);
-		setting.set_bl_exp_bool_prop(UM::UMIOSetting::eUMExpFBX, true);
+		setting.set_bl_imp_bool_prop(umio::UMIOSetting::eUMImpFBX, false);
+		setting.set_bl_exp_bool_prop(umio::UMIOSetting::eUMExpFBX, true);
 	}
 	else
 	{
 		// convert fbx or other format to bos
-		setting.set_bl_imp_bool_prop(UM::UMIOSetting::eUMImpFBX, true);
-		setting.set_bl_exp_bool_prop(UM::UMIOSetting::eUMExpFBX, false);
+		setting.set_bl_imp_bool_prop(umio::UMIOSetting::eUMImpFBX, true);
+		setting.set_bl_exp_bool_prop(umio::UMIOSetting::eUMExpFBX, false);
 	}
 
 	// if exists iosettingfile, use it
@@ -143,7 +143,7 @@ int main(int argc, char **argv)
 	}
 	
 	// convert
-	if (UM::UMObjectPtr obj = io.load(srcpath_str, setting))
+	if (umio::UMObjectPtr obj = io.load(srcpath_str, setting))
 	{
 		if (io.save(dstpath_str, obj, setting))
 		{

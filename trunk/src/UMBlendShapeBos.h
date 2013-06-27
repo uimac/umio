@@ -1,6 +1,6 @@
 /**
  *
- * UMBlendShapeBos.h
+ * @file UMBlendShapeBos.h
  *
  * @author tori31001 at gmail.com
  *

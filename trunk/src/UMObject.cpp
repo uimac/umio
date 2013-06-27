@@ -1,6 +1,6 @@
 /**
  *
- * UMObject.cpp
+ * @file UMObject.cpp
  *
  * @author tori31001 at gmail.com
  *
@@ -11,7 +11,7 @@
  */
 #include "UMObject.h"
 
-namespace UM
+namespace umio
 {
 
 bool UMObject::re_bind_all_nodes(UMObjectPtr object)
@@ -171,4 +171,4 @@ bool UMObject::re_bind_all_nodes(UMObjectPtr object)
 	return true;
 }
 
-} // namespace UM
+} // namespace umio
