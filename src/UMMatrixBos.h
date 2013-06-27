@@ -1,6 +1,6 @@
 /**
  *
- * @file UMPoseBos.h
+ * @file UMNodeBos.h
  *
  * @author tori31001 at gmail.com
  *
@@ -14,10 +14,22 @@
 	template<class Archive>
 	void serialize(Archive& ar, const unsigned int version)
 	{
-		ar & bind_pose_;
-		ar & rest_pose_;
-		ar & node_id_list_;
-		ar & matrix_is_local_list_;
-		ar & matrix_list_;
+		ar & m[0][0];
+		ar & m[0][1];
+		ar & m[0][2];
+		ar & m[0][3];
+		ar & m[1][0];
+		ar & m[1][1];
+		ar & m[1][2];
+		ar & m[1][3];
+		ar & m[2][0];
+		ar & m[2][1];
+		ar & m[2][2];
+		ar & m[2][3];
+		ar & m[3][0];
+		ar & m[3][1];
+		ar & m[3][2];
+		ar & m[3][3];
 	}
 #endif //WITH_BOOST_SERIALIZATION
+	

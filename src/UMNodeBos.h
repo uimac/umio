@@ -1,6 +1,6 @@
 /**
  *
- * UMNodeBos.h
+ * @file UMNodeBos.h
  *
  * @author tori31001 at gmail.com
  *

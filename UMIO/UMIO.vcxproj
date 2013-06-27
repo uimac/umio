@@ -170,7 +170,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseExecutableConverter|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -590,7 +590,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>$(SolutionDir)src;$(BOOST_ROOT)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>BOOST_PYTHON_STATIC_LIB;WITH_BOOST_SERIALIZATION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;BOOST_PYTHON_STATIC_LIB;WITH_BOOST_SERIALIZATION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -949,6 +949,7 @@
     <ClInclude Include="..\src\UMIOSetting.h" />
     <ClInclude Include="..\src\UMIOSettingBos.h" />
     <ClInclude Include="..\src\UMMaterialBos.h" />
+    <ClInclude Include="..\src\UMMatrix.h" />
     <ClInclude Include="..\src\UMMeshBos.h" />
     <ClInclude Include="..\src\UMNodeBos.h" />
     <ClInclude Include="..\src\UMObject.h" />
@@ -959,6 +960,7 @@
     <ClInclude Include="..\src\UMSkeletonBos.h" />
     <ClInclude Include="..\src\UMSkinBos.h" />
     <ClInclude Include="..\src\UMTextureBos.h" />
+    <ClInclude Include="..\src\UMVector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\UMFbx.cpp" />

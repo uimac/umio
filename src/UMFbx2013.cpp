@@ -41,7 +41,7 @@
 	#define printfm(fmt, ...)
 #endif//WITH_PYTHON
 
-namespace UM
+namespace umio
 {
 	
 /**
@@ -200,8 +200,8 @@ public:
 	bool assign_one_node(UMObjectPtr object, UMNode* dst_node, FbxNode* node);
 		
 	// internal use
-	inline const IntList& skeleton_id_list() const { return skeleton_id_list_; }
-	inline IntList& mutable_skeleton_id_list() { return skeleton_id_list_; }
+	const IntList& skeleton_id_list() const { return skeleton_id_list_; }
+	IntList& mutable_skeleton_id_list() { return skeleton_id_list_; }
 protected:
 	
 	// internal use
@@ -369,11 +369,11 @@ protected:
 /**
  * convert FbxAMatrix to DoubleListVec
  */
-static void matrix_to_array44d(Array44d& dst, const FbxAMatrix& src_matrix)
+static void matrix_to_UMMat44d(UMMat44d& dst, const FbxAMatrix& src_matrix)
 {
 	for (int i = 0; i < 4; ++i)
 	{
-		Array4d row;
+		UMVec4d row;
 		for (int k = 0; k < 4; ++k)
 		{
 			row[k] = src_matrix.Get(i, k);
@@ -385,11 +385,11 @@ static void matrix_to_array44d(Array44d& dst, const FbxAMatrix& src_matrix)
 /**
  * convert FbxMatrix to DoubleListVec
  */
-static void matrix_to_array44d(Array44d& dst, const FbxMatrix& src_matrix)
+static void matrix_to_UMMat44d(UMMat44d& dst, const FbxMatrix& src_matrix)
 {
 	for (int i = 0; i < 4; ++i)
 	{
-		Array4d row;
+		UMVec4d row;
 		for (int k = 0; k < 4; ++k)
 		{
 			row[k] = src_matrix.Get(i, k);
@@ -984,7 +984,7 @@ bool UMFbxLoadImpl::assign_normals(
 	{
 		FbxLayerElement::EMappingMode mode = fbx_normals->GetMappingMode();
 		FbxLayerElement::EReferenceMode ref_mode = fbx_normals->GetReferenceMode();
-		UM::DoubleList normal;
+		umio::DoubleList normal;
 		normal.resize(3);
 
 		FbxVector4 n;
@@ -1053,7 +1053,7 @@ bool UMFbxLoadImpl::assign_uvs(
 	{
 		FbxLayerElement::EMappingMode mode = fbx_uv->GetMappingMode();
 		FbxLayerElement::EReferenceMode ref_mode = fbx_uv->GetReferenceMode();
-		UM::DoubleList uv;
+		umio::DoubleList uv;
 		uv.resize(2);
 
 		FbxVector2 v;
@@ -1124,7 +1124,7 @@ bool UMFbxLoadImpl::assign_vertex_colors(
 	{
 		FbxLayerElement::EMappingMode mode = fbx_vertex_color->GetMappingMode();
 		FbxLayerElement::EReferenceMode ref_mode = fbx_vertex_color->GetReferenceMode();
-		UM::DoubleList vertex_color;
+		umio::DoubleList vertex_color;
 		vertex_color.resize(4);
 
 		FbxColor v;
@@ -1215,7 +1215,7 @@ bool UMFbxLoadImpl::assign_mesh(UMObjectPtr object, FbxNode* node)
 		// vertex
 		for (int i = 0; i < control_point_count; ++i)
 		{
-			UM::DoubleList vertex;
+			umio::DoubleList vertex;
 			vertex.push_back(control_points[i][0]);
 			vertex.push_back(control_points[i][1]);
 			vertex.push_back(control_points[i][2]);
@@ -1225,7 +1225,7 @@ bool UMFbxLoadImpl::assign_mesh(UMObjectPtr object, FbxNode* node)
 		// polygon
 		for (int i = 0; i < polygon_count; ++i)
 		{
-			UM::IntList vertex_index;
+			umio::IntList vertex_index;
 			
 			for (int n = 0, nsize = fbx_mesh->GetLayerCount(); n < nsize; ++n)
 			{
@@ -1616,12 +1616,12 @@ bool UMFbxLoadImpl::assign_one_node(UMObjectPtr object, UMNode* dst_node, FbxNod
 	if (scene && scene->GetEvaluator())
 	{
 		// set local tranform
-		matrix_to_array44d(
+		matrix_to_UMMat44d(
 			dst_node->mutable_local_transform(),
 			scene->GetEvaluator()->GetNodeLocalTransform(node));
 
 		// set global transform
-		matrix_to_array44d(
+		matrix_to_UMMat44d(
 			dst_node->mutable_global_transform(),
 			scene->GetEvaluator()->GetNodeGlobalTransform(node));
 	}
@@ -1706,8 +1706,8 @@ bool UMFbxLoadImpl::assing_all_poses(UMObjectPtr object)
 				}
 				
 				// matrix
-				Array44d mat;
-				matrix_to_array44d(mat, fbx_pose->GetMatrix(k));
+				UMMat44d mat;
+				matrix_to_UMMat44d(mat, fbx_pose->GetMatrix(k));
 				pose.mutable_matrix_list().push_back(mat);
 
 				// is local
@@ -3279,6 +3279,6 @@ bool UMFbx::save(std::string path, UMObjectPtr object, const UMIOSetting& settin
 	return impl.save(path, object, setting);
 }
 
-} // namespace UM
+} // namespace umio
 
 #endif //WITH_FBX2013

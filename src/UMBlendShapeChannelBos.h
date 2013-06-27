@@ -1,6 +1,6 @@
 /**
  *
- * UMBlendShapeChannel.h
+ * @file UMBlendShapeChannel.h
  *
  * @author tori31001 at gmail.com
  *

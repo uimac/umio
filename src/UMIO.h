@@ -1,6 +1,6 @@
 /**
  *
- * UMFbx.h
+ * @file UMFbx.h
  *
  * @author tori31001 at gmail.com
  *
@@ -16,7 +16,8 @@
 
 #include <string>
 
-namespace UM
+/// unreal misterious io
+namespace umio
 {
 
 class UMIO
@@ -48,4 +49,4 @@ public:
 };
 
 
-} // namespace UM
+} // namespace umio

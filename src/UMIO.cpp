@@ -1,6 +1,6 @@
 /**
  *
- * UMIO.h
+ * @file UMIO.h
  *
  * @author tori31001 at gmail.com
  *
@@ -11,7 +11,10 @@
  */
 #include "UMIO.h"
 #include "UMObject.h"
+
+#ifdef WITH_FBX
 #include "UMFbx.h"
+#endif
 
 #include <string>
 #include <map>
@@ -24,7 +27,7 @@
 #include <boost/archive/binary_iarchive.hpp>
 #endif
 
-namespace UM
+namespace umio
 {
 
 /**
@@ -45,12 +48,14 @@ UMObjectPtr UMIO::load(std::string path, const UMIOSetting& setting)
 		}
 	}
 	
+#ifdef WITH_FBX
 	// load by fbx sdk
 	if (is_fbx_load)
 	{
 		UMFbx fbx;
 		return fbx.load(path, setting);
 	}
+#endif
 	
 #ifdef WITH_BOOST_SERIALIZATION
 	// load bos
@@ -59,7 +64,7 @@ UMObjectPtr UMIO::load(std::string path, const UMIOSetting& setting)
 		std::ifstream file(path, std::ios::in | std::ios::binary);
 		boost::archive::binary_iarchive ia(file);
 		
-		UM::UMObjectPtr obj = UM::UMObject::create_object();
+		umio::UMObjectPtr obj = umio::UMObject::create_object();
 		
 		ia >> (*obj);
 		
@@ -97,12 +102,14 @@ bool UMIO::save(std::string path, UMObjectPtr object, const UMIOSetting& setting
 		}
 	}
 	
+#ifdef WITH_FBX
 	// save by fbx sdk
 	if (is_fbx_save)
 	{
 		UMFbx fbx;
 		return fbx.save(path, object, setting);
 	}
+#endif
 	
 #ifdef WITH_BOOST_SERIALIZATION
 	// save bos
@@ -180,4 +187,4 @@ bool UMIO::save_setting(std::string path, const UMIOSetting& setting)
 	return false;
 }
 
-} // namespace UM
+} // namespace umio

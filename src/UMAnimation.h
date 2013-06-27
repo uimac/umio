@@ -1,6 +1,6 @@
 /**
  *
- * UMAnimation.h
+ * @file UMAnimation.h
  *
  * @author tori31001 at gmail.com
  *
@@ -14,6 +14,7 @@
 #include <map>
 #include <vector>
 #include <list>
+#include <memory>
 
 #ifdef WITH_PYTHON
 	#include <boost/shared_ptr.hpp>
@@ -21,7 +22,7 @@
 
 #include "UMObject.h"
 
-namespace UM
+namespace umio
 {
 
 typedef unsigned long long UMTime;
@@ -137,28 +138,28 @@ public:
 	typedef std::map<int, float> DataMap;
 	
 	// getter
-	inline UMTime time() const { return time_; }
-	inline const DataMap& data_map() const { return data_map_; }
-	inline float value() const { return value_; }
-	inline int interpolation_type() const { return interpolation_type_; }
-	inline int tangent_mode() const { return tangent_mode_; }
-	inline int weighted_mode() const { return weighted_mode_; }
-	inline int velocity_mode() const { return velocity_mode_; }
-	inline int constant_mode() const { return constant_mode_; }
-	inline int tangent_visibility() const { return tangent_visibility_; }
-	inline bool is_break() const { return is_break_; }
+	UMTime time() const { return time_; }
+	const DataMap& data_map() const { return data_map_; }
+	float value() const { return value_; }
+	int interpolation_type() const { return interpolation_type_; }
+	int tangent_mode() const { return tangent_mode_; }
+	int weighted_mode() const { return weighted_mode_; }
+	int velocity_mode() const { return velocity_mode_; }
+	int constant_mode() const { return constant_mode_; }
+	int tangent_visibility() const { return tangent_visibility_; }
+	bool is_break() const { return is_break_; }
 
 	// setter
-	inline void set_time(UMTime time) { time_ = time; }
-	inline DataMap& mutable_data_map() { return data_map_; }
-	inline void set_value(float value) { value_ = value; }
-	inline void set_interpolation_type(int type) { interpolation_type_ = type; }
-	inline void set_tangent_mode(int mode) { tangent_mode_ = mode; }
-	inline void set_weighted_mode(int mode) { weighted_mode_ = mode; }
-	inline void set_velocity_mode(int mode) { velocity_mode_ = mode; }
-	inline void set_constant_mode(int mode) { constant_mode_ = mode; }
-	inline void set_tangent_visibility(int mode) { tangent_visibility_ = mode; }
-	inline void set_break(bool b) { is_break_ = b; }
+	void set_time(UMTime time) { time_ = time; }
+	DataMap& mutable_data_map() { return data_map_; }
+	void set_value(float value) { value_ = value; }
+	void set_interpolation_type(int type) { interpolation_type_ = type; }
+	void set_tangent_mode(int mode) { tangent_mode_ = mode; }
+	void set_weighted_mode(int mode) { weighted_mode_ = mode; }
+	void set_velocity_mode(int mode) { velocity_mode_ = mode; }
+	void set_constant_mode(int mode) { constant_mode_ = mode; }
+	void set_tangent_visibility(int mode) { tangent_visibility_ = mode; }
+	void set_break(bool b) { is_break_ = b; }
 
 private:
 	UMTime time_;
@@ -194,10 +195,10 @@ public:
 	UMAnimationCurve() {}
 
 	// getter
-	inline const UMAnimationCurveKey::KeyMap& key_map() const { return key_map_; }
+	const UMAnimationCurveKey::KeyMap& key_map() const { return key_map_; }
 	
 	// setter
-	inline UMAnimationCurveKey::KeyMap& mutable_key_map() { return key_map_; }
+	UMAnimationCurveKey::KeyMap& mutable_key_map() { return key_map_; }
 	
 	//// standard curve node names
 	//static std::string CurveNodeTransform;
@@ -241,10 +242,10 @@ public:
 	~UMAnimationCurveStack() {}
 
 	// getter
-	inline const UMAnimationCurve::CurveMap& curve_map() const { return curve_map_; }
+	const UMAnimationCurve::CurveMap& curve_map() const { return curve_map_; }
 
 	// setter
-	inline UMAnimationCurve::CurveMap& mutable_curve_map() { return curve_map_; }
+	UMAnimationCurve::CurveMap& mutable_curve_map() { return curve_map_; }
 
 private:
 	UMAnimationCurve::CurveMap curve_map_;
@@ -283,33 +284,33 @@ public:
 	~UMAnimationLayer() {}
 
 	// getter
-	inline double weight() const { return weight_; }
-	inline bool mute() const { return mute_; }
-	inline bool solo() const { return solo_; }
-	inline bool lock() const { return lock_; }
-	inline const Array4d& color() const { return color_; }
-	inline int blend_mode() const { return blend_mode_; }
-	inline int rotation_accumulation_mode() const { return rotation_accumulation_mode_; }
-	inline int scale_accumulation_mode() const { return scale_accumulation_mode_; }
-	inline const UMAnimationCurveStack::IDToCurveStackMap& curve_stack_map() const { return curve_stack_map_; }
+	double weight() const { return weight_; }
+	bool mute() const { return mute_; }
+	bool solo() const { return solo_; }
+	bool lock() const { return lock_; }
+	const UMVec4d& color() const { return color_; }
+	int blend_mode() const { return blend_mode_; }
+	int rotation_accumulation_mode() const { return rotation_accumulation_mode_; }
+	int scale_accumulation_mode() const { return scale_accumulation_mode_; }
+	const UMAnimationCurveStack::IDToCurveStackMap& curve_stack_map() const { return curve_stack_map_; }
 
 	// setter
-	inline void set_weight(double weight) { weight_ = weight; }
-	inline void set_mute(bool mute) { mute_ = mute; }
-	inline void set_solo(bool solo) { solo_ = solo; }
-	inline void set_lock(bool lock) { lock_ = lock; }
-	inline Array4d& mutable_color() { return color_; }
-	inline void set_blend_mode(int mode) { blend_mode_ = mode; }
-	inline void set_rotation_accumulation_mode(int mode) { rotation_accumulation_mode_ = mode; }
-	inline void set_scale_accumulation_mode(int mode) { scale_accumulation_mode_ = mode; }
-	inline UMAnimationCurveStack::IDToCurveStackMap& mutable_curve_stack_map() { return curve_stack_map_; }
+	void set_weight(double weight) { weight_ = weight; }
+	void set_mute(bool mute) { mute_ = mute; }
+	void set_solo(bool solo) { solo_ = solo; }
+	void set_lock(bool lock) { lock_ = lock; }
+	UMVec4d& mutable_color() { return color_; }
+	void set_blend_mode(int mode) { blend_mode_ = mode; }
+	void set_rotation_accumulation_mode(int mode) { rotation_accumulation_mode_ = mode; }
+	void set_scale_accumulation_mode(int mode) { scale_accumulation_mode_ = mode; }
+	UMAnimationCurveStack::IDToCurveStackMap& mutable_curve_stack_map() { return curve_stack_map_; }
 
 private:
 	double weight_;
 	bool mute_;
 	bool solo_;
 	bool lock_;
-	Array4d color_;
+	UMVec4d color_;
 	int blend_mode_;
 	int rotation_accumulation_mode_;
 	int scale_accumulation_mode_;
@@ -333,22 +334,22 @@ public:
 	~UMAnimationStack() {}
 	
 	// getter 
-	inline const std::string& name() const { return name_; }
-	inline const std::string& description() const { return description_; }
-	inline UMTime local_start() const { return local_start_; }
-	inline UMTime local_stop() const { return local_stop_; }
-	inline UMTime reference_start() const { return reference_start_; }
-	inline UMTime reference_stop() const { return reference_stop_; }
-	inline const UMAnimationLayer::LayerList& layer_list() const { return layer_list_; }
+	const std::string& name() const { return name_; }
+	const std::string& description() const { return description_; }
+	UMTime local_start() const { return local_start_; }
+	UMTime local_stop() const { return local_stop_; }
+	UMTime reference_start() const { return reference_start_; }
+	UMTime reference_stop() const { return reference_stop_; }
+	const UMAnimationLayer::LayerList& layer_list() const { return layer_list_; }
 
 	// setter
-	inline void set_name(const std::string& name) { name_ = name; }
-	inline void set_description(const std::string & desc) { description_ = desc; }
-	inline void set_local_start(UMTime start) { local_start_ = start; }
-	inline void set_local_stop(UMTime stop) { local_start_ = stop; }
-	inline void set_reference_start(UMTime start) { reference_start_ = start; }
-	inline void set_reference_stop(UMTime stop) { reference_stop_ = stop; }
-	inline UMAnimationLayer::LayerList& mutable_layer_list() { return layer_list_; }
+	void set_name(const std::string& name) { name_ = name; }
+	void set_description(const std::string & desc) { description_ = desc; }
+	void set_local_start(UMTime start) { local_start_ = start; }
+	void set_local_stop(UMTime stop) { local_start_ = stop; }
+	void set_reference_start(UMTime start) { reference_start_ = start; }
+	void set_reference_stop(UMTime stop) { reference_stop_ = stop; }
+	UMAnimationLayer::LayerList& mutable_layer_list() { return layer_list_; }
 
 private:
 	std::string name_;
@@ -370,13 +371,13 @@ public:
 	virtual ~UMAnimation() {}
 	
 	// getter
-	inline const UMAnimationStack::AnimationStackList& animation_stack_list() const { return animation_stack_list_; }
+	const UMAnimationStack::AnimationStackList& animation_stack_list() const { return animation_stack_list_; }
 
 	// setter
-	inline UMAnimationStack::AnimationStackList& mutable_animation_stack_list() { return animation_stack_list_; }
+	UMAnimationStack::AnimationStackList& mutable_animation_stack_list() { return animation_stack_list_; }
 
 private:
 	UMAnimationStack::AnimationStackList animation_stack_list_;
 };
 
-} // namespace UM
+} // namespace umio

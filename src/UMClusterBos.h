@@ -1,6 +1,6 @@
 /**
  *
- * UMClusterBos.h
+ * @file UMClusterBos.h
  *
  * @author tori31001 at gmail.com
  *

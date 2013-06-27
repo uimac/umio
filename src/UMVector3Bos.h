@@ -1,6 +1,6 @@
 /**
  *
- * @file UMPoseBos.h
+ * @file UMVector3Bos.h
  *
  * @author tori31001 at gmail.com
  *
@@ -14,10 +14,9 @@
 	template<class Archive>
 	void serialize(Archive& ar, const unsigned int version)
 	{
-		ar & bind_pose_;
-		ar & rest_pose_;
-		ar & node_id_list_;
-		ar & matrix_is_local_list_;
-		ar & matrix_list_;
+		ar & x;
+		ar & y;
+		ar & z;
 	}
 #endif //WITH_BOOST_SERIALIZATION
+	

@@ -1,6 +1,6 @@
 /**
  *
- * UMIOSettingBos.h
+ * @file UMIOSettingBos.h
  *
  * @author tori31001 at gmail.com
  *

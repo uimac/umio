@@ -1,6 +1,6 @@
 /**
  *
- * UMTextureBos.h
+ * @file UMTextureBos.h
  *
  * @author tori31001 at gmail.com
  *

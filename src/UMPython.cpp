@@ -1,6 +1,6 @@
 ﻿/**
  *
- * main.cpp
+ * @file main.cpp
  *
  * @author tori31001 at gmail.com
  *
@@ -33,7 +33,7 @@
 #include <boost/python/overloads.hpp>
 #include <boost/format.hpp>
 
-namespace UM
+namespace umio
 {
 
 // refered to http://d.hatena.ne.jp/moriyoshi/20091214/1260779899
@@ -123,54 +123,54 @@ BOOST_PYTHON_MODULE(UM)
 	using namespace boost::python;
 	
 	//
-	to_python_converter<UM::IntList, vector_to_pylist_converter<UM::IntList> >();
-	to_python_converter<UM::DoubleList, vector_to_pylist_converter<UM::DoubleList> >();
-	to_python_converter<UM::IntListVec, vector_to_pylist_converter<UM::IntListVec> >();
-	to_python_converter<UM::DoubleListVec, vector_to_pylist_converter<UM::DoubleListVec > >();
-	to_python_converter<UM::LayeredDoubleListVec, vector_to_pylist_converter<UM::LayeredDoubleListVec > >();
-	to_python_converter<UM::Array4d, vector_to_pylist_converter<UM::Array4d> >();
-	to_python_converter<UM::Array44d, vector_to_pylist_converter<UM::Array44d> >();
-	to_python_converter<UM::Array44dList, vector_to_pylist_converter<UM::Array44dList> >();
+	to_python_converter<umio::IntList, vector_to_pylist_converter<umio::IntList> >();
+	to_python_converter<umio::DoubleList, vector_to_pylist_converter<umio::DoubleList> >();
+	to_python_converter<umio::IntListVec, vector_to_pylist_converter<umio::IntListVec> >();
+	to_python_converter<umio::DoubleListVec, vector_to_pylist_converter<umio::DoubleListVec > >();
+	to_python_converter<umio::LayeredDoubleListVec, vector_to_pylist_converter<umio::LayeredDoubleListVec > >();
+	to_python_converter<umio::UMVec4d, vector_to_pylist_converter<umio::UMVec4d> >();
+	to_python_converter<umio::UMMat44d, vector_to_pylist_converter<umio::UMMat44d> >();
+	to_python_converter<umio::Mat44dList, vector_to_pylist_converter<umio::Mat44dList> >();
 
 	converter::registry::push_back(
-		&vector_to_pylist_converter<UM::IntList>::convertible,
-		&vector_to_pylist_converter<UM::IntList>::construct,
-		boost::python::type_id<UM::IntList>());
+		&vector_to_pylist_converter<umio::IntList>::convertible,
+		&vector_to_pylist_converter<umio::IntList>::construct,
+		boost::python::type_id<umio::IntList>());
 	
 	converter::registry::push_back(
-		&vector_to_pylist_converter<UM::IntListVec>::convertible,
-		&vector_to_pylist_converter<UM::IntListVec>::construct,
-		boost::python::type_id<UM::IntListVec>());
+		&vector_to_pylist_converter<umio::IntListVec>::convertible,
+		&vector_to_pylist_converter<umio::IntListVec>::construct,
+		boost::python::type_id<umio::IntListVec>());
 	
 	converter::registry::push_back(
-		&vector_to_pylist_converter<UM::DoubleList>::convertible,
-		&vector_to_pylist_converter<UM::DoubleList>::construct,
-		boost::python::type_id<UM::DoubleList>());
+		&vector_to_pylist_converter<umio::DoubleList>::convertible,
+		&vector_to_pylist_converter<umio::DoubleList>::construct,
+		boost::python::type_id<umio::DoubleList>());
 	
 	converter::registry::push_back(
-		&vector_to_pylist_converter<UM::DoubleListVec>::convertible,
-		&vector_to_pylist_converter<UM::DoubleListVec>::construct,
-		boost::python::type_id<UM::DoubleListVec>());
+		&vector_to_pylist_converter<umio::DoubleListVec>::convertible,
+		&vector_to_pylist_converter<umio::DoubleListVec>::construct,
+		boost::python::type_id<umio::DoubleListVec>());
 	
 	converter::registry::push_back(
-		&vector_to_pylist_converter<UM::LayeredDoubleListVec>::convertible,
-		&vector_to_pylist_converter<UM::LayeredDoubleListVec>::construct,
-		boost::python::type_id<UM::LayeredDoubleListVec>());
+		&vector_to_pylist_converter<umio::LayeredDoubleListVec>::convertible,
+		&vector_to_pylist_converter<umio::LayeredDoubleListVec>::construct,
+		boost::python::type_id<umio::LayeredDoubleListVec>());
 	
 	converter::registry::push_back(
-		&array_to_pylist_converter<UM::Array4d>::convertible,
-		&array_to_pylist_converter<UM::Array4d>::construct,
-		boost::python::type_id<UM::Array4d>());
+		&array_to_pylist_converter<umio::UMVec4d>::convertible,
+		&array_to_pylist_converter<umio::UMVec4d>::construct,
+		boost::python::type_id<umio::UMVec4d>());
 	
 	converter::registry::push_back(
-		&array_to_pylist_converter<UM::Array44d>::convertible,
-		&array_to_pylist_converter<UM::Array44d>::construct,
-		boost::python::type_id<UM::Array44d>());
+		&array_to_pylist_converter<umio::UMMat44d>::convertible,
+		&array_to_pylist_converter<umio::UMMat44d>::construct,
+		boost::python::type_id<umio::UMMat44d>());
 	
 	converter::registry::push_back(
-		&vector_to_pylist_converter<UM::Array44dList>::convertible,
-		&vector_to_pylist_converter<UM::Array44dList>::construct,
-		boost::python::type_id<UM::Array44dList>());
+		&vector_to_pylist_converter<umio::Mat44dList>::convertible,
+		&vector_to_pylist_converter<umio::Mat44dList>::construct,
+		boost::python::type_id<umio::Mat44dList>());
 
 	{
 		scope setting_scope = class_<UMIOSetting>("UMIOSetting")
@@ -1142,6 +1142,6 @@ BOOST_PYTHON_MODULE(UM)
 		;
 }
 
-} // namespace UM
+} // namespace umio
 
 #endif //WITH_PYTHON
