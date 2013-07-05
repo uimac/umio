@@ -93,6 +93,14 @@ public:
 		}
 		return *this;
 	}
+
+	/**
+	 * assign
+	 */
+	void set(int row, int column, T value)
+	{
+		m[row][column] = value;
+	}
 	
 	/**
 	 * compare equal
