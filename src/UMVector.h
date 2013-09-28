@@ -75,6 +75,26 @@ public:
 	}
 	
 	/**
+	 * get
+	 */
+	T& operator [] (int i) { return (&x)[i]; }
+	
+	/**
+	 * get
+	 */
+	const T& operator [] (int i) const { return (&x)[i]; }
+	
+	/**
+	 * get
+	 */
+	T& at(int i) { return (&x)[i]; }
+	
+	/**
+	 * get
+	 */
+	const T& at(int i) const { return (&x)[i]; }
+
+	/**
 	 * compare equal
 	 */
 	bool operator == (const UMVector2 &v) const {
@@ -202,6 +222,26 @@ public:
 		return *this;
 	}
 	
+	/**
+	 * get
+	 */
+	T& operator [] (int i) { return (&x)[i]; }
+	
+	/**
+	 * get
+	 */
+	const T& operator [] (int i) const { return (&x)[i]; }
+	
+	/**
+	 * get
+	 */
+	T& at(int i) { return (&x)[i]; }
+	
+	/**
+	 * get
+	 */
+	const T& at(int i) const { return (&x)[i]; }
+
 	/**
 	 * compare equal
 	 */
@@ -334,6 +374,26 @@ public:
 		return *this;
 	}
 	
+	/**
+	 * get
+	 */
+	T& operator [] (int i) { return (&x)[i]; }
+	
+	/**
+	 * get
+	 */
+	const T& operator [] (int i) const { return (&x)[i]; }
+	
+	/**
+	 * get
+	 */
+	T& at(int i) { return (&x)[i]; }
+	
+	/**
+	 * get
+	 */
+	const T& at(int i) const { return (&x)[i]; }
+
 	/**
 	 * compare equal
 	 */
