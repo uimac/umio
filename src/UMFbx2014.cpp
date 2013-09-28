@@ -14,7 +14,7 @@
 /**
  * if you build with FBXSDK2014, you will need to write below to your about box.
  *
- * This software contains Autodesk® FBX® code developed by Autodesk, Inc. Copyright 2012 Autodesk, Inc. All rights, reserved. 
+ * This software contains Autodesk® FBX® code developed by Autodesk, Inc. Copyright 2013 Autodesk, Inc. All rights, reserved.
  * Such code is provided “as is” and Autodesk, Inc. disclaims any and all warranties, whether express or implied, including 
  * without limitation the implied warranties of merchantability, fitness for a particular purpose or non-infringement of third party rights.
  * In no event shall Autodesk, Inc. be liable for any direct, indirect, incidental, special, exemplary, 
