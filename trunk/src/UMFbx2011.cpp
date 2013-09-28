@@ -398,12 +398,10 @@ static void matrix_to_UMMat44d(UMMat44d& dst, const FbxAMatrix& src_matrix)
 {
 	for (int i = 0; i < 4; ++i)
 	{
-		UMVec4d row;
 		for (int k = 0; k < 4; ++k)
 		{
-			row[k] = src_matrix.Get(i, k);
+			dst.m[i][k] = src_matrix.Get(i, k);
 		}
-		dst[i] = row;
 	}
 }
 
@@ -414,12 +412,10 @@ static void matrix_to_UMMat44d(UMMat44d& dst, const FbxMatrix& src_matrix)
 {
 	for (int i = 0; i < 4; ++i)
 	{
-		UMVec4d row;
 		for (int k = 0; k < 4; ++k)
 		{
-			row[k] = src_matrix.Get(i, k);
+			dst.m[i][k] = src_matrix.Get(i, k);
 		}
-		dst[i] = row;
 	}
 }
 
@@ -2007,7 +2003,6 @@ bool UMFbxSaveImpl::export_skeleton(FbxScene* scene, UMObjectPtr object)
 				skeleton.local_scaling().at(1), 
 				skeleton.local_scaling().at(2)));
 				
-			if (!skeleton.rotation_offset().empty())
 			{
 				fbx_skeleton_node->RotationOffset.Set(FbxDouble3(
 					skeleton.rotation_offset().at(0), 
@@ -2015,7 +2010,6 @@ bool UMFbxSaveImpl::export_skeleton(FbxScene* scene, UMObjectPtr object)
 					skeleton.rotation_offset().at(2)));
 			}
 			
-			if (!skeleton.rotation_pivot().empty())
 			{
 				fbx_skeleton_node->RotationPivot.Set(FbxDouble3(
 					skeleton.rotation_pivot().at(0), 
@@ -2023,7 +2017,6 @@ bool UMFbxSaveImpl::export_skeleton(FbxScene* scene, UMObjectPtr object)
 					skeleton.rotation_pivot().at(2)));
 			}
 			
-			if (!skeleton.pre_rotation().empty())
 			{
 					/*
 				fbx_skeleton_node->RotationActive.Set(true);
@@ -2069,7 +2062,6 @@ bool UMFbxSaveImpl::export_skeleton(FbxScene* scene, UMObjectPtr object)
 //#endif
 			}
 			
-			if (!skeleton.post_rotation().empty())
 			{
 				fbx_skeleton_node->PostRotation.Set(FbxDouble3(
 					skeleton.post_rotation().at(0), 
@@ -2077,7 +2069,6 @@ bool UMFbxSaveImpl::export_skeleton(FbxScene* scene, UMObjectPtr object)
 					skeleton.post_rotation().at(2)));
 			}
 			
-			if (!skeleton.scaling_offset().empty())
 			{
 				fbx_skeleton_node->ScalingOffset.Set(FbxDouble3(
 					skeleton.scaling_offset().at(0), 
@@ -2085,7 +2076,6 @@ bool UMFbxSaveImpl::export_skeleton(FbxScene* scene, UMObjectPtr object)
 					skeleton.scaling_offset().at(2)));
 			}
 			
-			if (!skeleton.scaling_pivot().empty())
 			{
 				fbx_skeleton_node->ScalingPivot.Set(FbxDouble3(
 					skeleton.scaling_pivot().at(0), 
@@ -2093,7 +2083,6 @@ bool UMFbxSaveImpl::export_skeleton(FbxScene* scene, UMObjectPtr object)
 					skeleton.scaling_pivot().at(2)));
 			}
 			
-			if (!skeleton.geometric_translation().empty())
 			{
 				fbx_skeleton_node->GeometricTranslation.Set(FbxDouble3(
 					skeleton.geometric_translation().at(0), 
@@ -2101,7 +2090,6 @@ bool UMFbxSaveImpl::export_skeleton(FbxScene* scene, UMObjectPtr object)
 					skeleton.geometric_translation().at(2)));
 			}
 			
-			if (!skeleton.geometric_rotation().empty())
 			{
 				fbx_skeleton_node->GeometricRotation.Set(FbxDouble3(
 					skeleton.geometric_rotation().at(0), 
@@ -2109,7 +2097,6 @@ bool UMFbxSaveImpl::export_skeleton(FbxScene* scene, UMObjectPtr object)
 					skeleton.geometric_rotation().at(2)));
 			}
 			
-			if (!skeleton.geometric_scaling().empty())
 			{
 				fbx_skeleton_node->GeometricScaling.Set(FbxDouble3(
 					skeleton.geometric_scaling().at(0), 
@@ -2175,7 +2162,6 @@ bool UMFbxSaveImpl::export_materials(FbxNode* fbx_node, const UMMesh& mesh)
 			const UMMaterial& material = mesh.material_list().at(i);
 			if (FbxSurfacePhong* phong = FbxSurfacePhong::Create(manager(), material.name().c_str()))
 			{
-				if (static_cast<int>(material.diffuse().size()) >= 3)
 				{
 					FbxDouble3 diffuse(
 						material.diffuse().at(0),
@@ -2185,7 +2171,6 @@ bool UMFbxSaveImpl::export_materials(FbxNode* fbx_node, const UMMesh& mesh)
 				}
 				phong->GetDiffuseFactor().Set(material.diffuse_factor());
 
-				if (static_cast<int>(material.specular().size()) >= 3)
 				{
 					FbxDouble3 specular(
 						material.specular().at(0),
@@ -2195,7 +2180,6 @@ bool UMFbxSaveImpl::export_materials(FbxNode* fbx_node, const UMMesh& mesh)
 				}
 				phong->GetSpecularFactor().Set(material.specular_factor());
 
-				if (static_cast<int>(material.ambient().size()) >= 3)
 				{
 					FbxDouble3 ambient(
 						material.ambient().at(0),
@@ -2205,7 +2189,6 @@ bool UMFbxSaveImpl::export_materials(FbxNode* fbx_node, const UMMesh& mesh)
 				}
 				phong->GetAmbientFactor().Set(material.ambient_factor());
 
-				if (static_cast<int>(material.emissive().size()) >= 3)
 				{
 					FbxDouble3 emissive(
 						material.emissive().at(0),
@@ -2215,7 +2198,6 @@ bool UMFbxSaveImpl::export_materials(FbxNode* fbx_node, const UMMesh& mesh)
 				}
 				phong->GetEmissiveFactor().Set(material.emissive_factor());
 				
-				if (static_cast<int>(material.transparent().size()) >= 3)
 				{
 					FbxDouble3 transparent(
 						material.transparent().at(0),
@@ -2225,7 +2207,6 @@ bool UMFbxSaveImpl::export_materials(FbxNode* fbx_node, const UMMesh& mesh)
 				}
 				phong->GetTransparencyFactor().Set(material.transparency_factor());
 				
-				if (static_cast<int>(material.refrection().size()) >= 3)
 				{
 					FbxDouble3 refrection(
 						material.refrection().at(0),
@@ -2235,7 +2216,6 @@ bool UMFbxSaveImpl::export_materials(FbxNode* fbx_node, const UMMesh& mesh)
 				}
 				phong->GetReflectionFactor().Set(material.reflection_factor());
 
-				if (static_cast<int>(material.bump().size()) >= 3)
 				{
 					FbxDouble3 bump(
 						material.bump().at(0),
@@ -2702,7 +2682,6 @@ bool UMFbxSaveImpl::export_mesh(FbxScene* scene, UMObjectPtr object)
 			}
 			
 			// node
-			if (static_cast<int>(mesh.local_translation().size()) >= 3)
 			{
 				fbx_mesh_node->LclTranslation.Set(FbxDouble3(
 					mesh.local_translation().at(0), 
@@ -2710,7 +2689,6 @@ bool UMFbxSaveImpl::export_mesh(FbxScene* scene, UMObjectPtr object)
 					mesh.local_translation().at(2)));
 			}
 		
-			if (static_cast<int>(mesh.local_rotation().size()) >= 3)
 			{
 				fbx_mesh_node->LclRotation.Set(FbxDouble3(
 					mesh.local_rotation().at(0), 
@@ -2718,7 +2696,6 @@ bool UMFbxSaveImpl::export_mesh(FbxScene* scene, UMObjectPtr object)
 					mesh.local_rotation().at(2)));
 			}
 			
-			if (static_cast<int>(mesh.local_scaling().size()) >= 3)
 			{
 				fbx_mesh_node->LclScaling.Set(FbxDouble3(
 					mesh.local_scaling().at(0), 
