@@ -1,6 +1,6 @@
 /**
  *
- * UMFbx.cpp
+ * @file UMFbx.cpp
  *
  * @author tori31001 at gmail.com
  *
@@ -9,7 +9,7 @@
  * Dual licensed under the MIT or GPL Version 2 licenses. 
  *
  */
-#if  !defined (WITH_FBX2011) && !defined (WITH_FBX2013)
+#if  !defined (WITH_FBX2011) && !defined (WITH_FBX2013) && !defined(WITH_FBX2014)
 
 #include "UMFbx.h"
 #include "UMObject.h"

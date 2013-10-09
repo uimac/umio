@@ -1,6 +1,6 @@
 /**
  *
- * UMFbx.h
+ * @file UMFbx.h
  *
  * @author tori31001 at gmail.com
  * 
