@@ -36,16 +36,6 @@ public:
 	 * save 3d file
 	 */
 	bool save(std::string path, UMObjectPtr object, const UMIOSetting& setting);
-	
-	/**
-	 * load 3d file to UMObject
-	 */
-	UMObjectPtr load(std::wstring path, const UMIOSetting& setting);
-	
-	/**
-	 * save 3d file
-	 */
-	bool save(std::wstring path, UMObjectPtr object, const UMIOSetting& setting);
 
 	/**
 	 * load settings
