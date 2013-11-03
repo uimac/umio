@@ -124,7 +124,33 @@ public:
 		eUMExpText,
 		eUMExpOldFBX,
 	};
+
+	// FbxAxisSetting
+	enum EFbxAxisType
+	{
+		// from FbxAxisSystem
+		eFbxAxisMayaZUp,
+		eFbxAxisMayaYUp,
+		eFbxAxisMax,
+		eFbxAxisMotionBuilder,
+		eFbxAxisOpenGL,
+		eFbxAxisDirectX,
+		eFbxAxisLightWave,
+	};
 	
+	enum EFbxSystemUnitType
+	{
+		eFbxSystemUnitMM, // millimeters
+		eFbxSystemUnitDM, // decimeters
+		eFbxSystemUnitCM, // centimeters
+		eFbxSystemUnitM, // meters
+		eFbxSystemUnitKM, // kilometers
+		eFbxSystemUnitInch, // inches
+		eFbxSystemUnitFoot, // feet
+		eFbxSystemUnitMile, // miles
+		eFbxSystemUnitYard, // yard
+	};
+
 	UMIOSetting()
 	{
 		bl_imp_prop_map_[eUMImpFBX]				= true;
@@ -144,6 +170,8 @@ public:
 		exp_prop_map_[eExpFbxGobo]				= true;
 		exp_prop_map_[eExpFbxAnimation]			= true;
 		exp_prop_map_[eExpFbxGlobalSettings]	= true;
+		axis_type_ = eFbxAxisMayaYUp;
+		system_unit_type_ = eFbxSystemUnitCM;
 	}
 	~UMIOSetting(){}
 
@@ -157,6 +185,8 @@ public:
 	const ImpSettingMap& imp_prop_map() const { return imp_prop_map_; }
 	const UMExpSettingMap& bl_exp_prop_map() const { return bl_exp_prop_map_; }
 	const UMImpSettingMap& bl_imp_prop_map() const { return bl_imp_prop_map_; }
+	const EFbxAxisType axis_type() const { return axis_type_; }
+	const EFbxSystemUnitType system_unit_type() const { return system_unit_type_; }
 
 	// external use
 	void set_exp_bool_prop(EExpSettingType type, bool prop) {
@@ -171,6 +201,12 @@ public:
 	void set_bl_imp_bool_prop(EUMImpSettingType type, bool prop) {
 		bl_imp_prop_map_[type] = prop;
 	}
+	void set_axis_type(EFbxAxisType type) {
+		axis_type_ = type;
+	}
+	void set_system_unit_type(EFbxSystemUnitType type) {
+		system_unit_type_ = type;
+	}
 	
 private:
 
@@ -181,6 +217,8 @@ private:
 	ImpSettingMap imp_prop_map_;
 	UMExpSettingMap bl_exp_prop_map_;
 	UMImpSettingMap bl_imp_prop_map_;
+	EFbxAxisType axis_type_;
+	EFbxSystemUnitType system_unit_type_;
 };
 
 } // namespace umio

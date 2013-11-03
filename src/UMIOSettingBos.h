@@ -18,5 +18,7 @@
 		ar & imp_prop_map_;
 		ar & bl_exp_prop_map_;
 		ar & bl_imp_prop_map_;
+		ar & axis_type_;
+		ar & system_unit_type_;
 	}
 #endif //WITH_BOOST_SERIALIZATION
