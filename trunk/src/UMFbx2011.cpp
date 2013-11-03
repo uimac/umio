@@ -89,6 +89,8 @@
 #define FbxAnimEvaluator KFbxAnimEvaluator
 #define FbxDocumentInfo KFbxDocumentInfo
 #define FbxCamera KFbxCamera
+#define FbxSystemUnit KFbxSystemUnit
+#define FbxAxisSystem KFbxAxisSystem
 //#define FbxGeometryElementNormal KFbxGeometryElementNormal
 //#define FbxGeometryElement KFbxGeometryElement
 
@@ -138,6 +140,16 @@ public:
 	 * load setting
 	 */
 	void set_load_setting(FbxIOSettings& fbx_settings, const UMIOSetting& setting);
+	
+	/**
+	 * set axis type to scene
+	 */
+	void set_axis_type(FbxScene* fbx_scene, const UMIOSetting& setting);
+
+	/**
+	 * set system unit type to scene
+	 */
+	void set_system_unit_type(FbxScene* fbx_scene, const UMIOSetting& setting);
 
 	/**
 	 * UM original load options
@@ -324,6 +336,16 @@ public:
 	 */
 	void set_save_setting(FbxIOSettings& fbx_settings, const UMIOSetting& setting);
 	
+	/**
+	 * set axis type to scene
+	 */
+	void set_axis_type(FbxScene* fbx_scene, const UMIOSetting& setting);
+
+	/**
+	 * set system unit type to scene
+	 */
+	void set_system_unit_type(FbxScene* fbx_scene, const UMIOSetting& setting);
+
 	/**
 	 * UM original load options
 	 */
@@ -522,6 +544,64 @@ void UMFbxLoadImpl::set_load_setting(FbxIOSettings& fbx_settings, const UMIOSett
 		else if (type == UMIOSetting::eUMImpPatch)
 			set_load_patch(val);
 	}
+}
+
+/**
+ * set axis type
+ */
+void UMFbxLoadImpl::set_axis_type(FbxScene* fbx_scene, const UMIOSetting& setting)
+{
+	if (!fbx_scene) return;
+	const UMIOSetting::EFbxAxisType type = setting.axis_type();
+
+	FbxAxisSystem::EPreDefinedAxisSystem axis_system = FbxAxisSystem::eOpenGL;
+	if (type == UMIOSetting::eFbxAxisMayaZUp) 
+		axis_system = FbxAxisSystem::eMayaZUp;
+	else if (type == UMIOSetting::eFbxAxisMayaYUp) 
+		axis_system = FbxAxisSystem::eMayaYUp;
+	else if (type == UMIOSetting::eFbxAxisMax) 
+		axis_system = FbxAxisSystem::eMax;
+	else if (type == UMIOSetting::eFbxAxisMotionBuilder) 
+		axis_system = FbxAxisSystem::eMotionBuilder;
+	else if (type == UMIOSetting::eFbxAxisOpenGL) 
+		axis_system = FbxAxisSystem::eOpenGL;
+	else if (type == UMIOSetting::eFbxAxisDirectX) 
+		axis_system = FbxAxisSystem::eDirectX;
+	else if (type == UMIOSetting::eFbxAxisLightWave) 
+		axis_system = FbxAxisSystem::eLightwave;
+
+	FbxAxisSystem fbx_axis_system(axis_system);
+	fbx_axis_system.ConvertScene(fbx_scene);
+}
+
+/**
+ * set system unit type to scene
+ */
+void UMFbxLoadImpl::set_system_unit_type(FbxScene* fbx_scene, const UMIOSetting& setting)
+{
+	if (!fbx_scene) return;
+	const UMIOSetting::EFbxSystemUnitType unit_type = setting.system_unit_type();
+	FbxSystemUnit fbx_system_unit;
+	if (unit_type == UMIOSetting::eFbxSystemUnitMM)
+		fbx_system_unit = FbxSystemUnit::mm;
+	if (unit_type == UMIOSetting::eFbxSystemUnitDM)
+		fbx_system_unit = FbxSystemUnit::dm;
+	if (unit_type == UMIOSetting::eFbxSystemUnitCM)
+		fbx_system_unit = FbxSystemUnit::cm;
+	if (unit_type == UMIOSetting::eFbxSystemUnitM)
+		fbx_system_unit = FbxSystemUnit::m;
+	if (unit_type == UMIOSetting::eFbxSystemUnitKM)
+		fbx_system_unit = FbxSystemUnit::km;
+	if (unit_type == UMIOSetting::eFbxSystemUnitInch)
+		fbx_system_unit = FbxSystemUnit::Inch;
+	if (unit_type == UMIOSetting::eFbxSystemUnitFoot)
+		fbx_system_unit = FbxSystemUnit::Foot;
+	if (unit_type == UMIOSetting::eFbxSystemUnitMile)
+		fbx_system_unit = FbxSystemUnit::Mile;
+	if (unit_type == UMIOSetting::eFbxSystemUnitYard)
+		fbx_system_unit = FbxSystemUnit::Yard;
+
+	fbx_system_unit.ConvertScene(fbx_scene);
 }
 
 /**
@@ -1813,6 +1893,8 @@ UMObjectPtr UMFbxLoadImpl::load(std::string path, const UMIOSetting& setting)
 	
 	FbxIOSettings& fbx_settings = (*manager->GetIOSettings());
 	set_load_setting(fbx_settings, setting);
+	set_system_unit_type(scene, setting);
+	set_axis_type(scene, setting);
 
 	// init importer
 	if (!importer->Initialize(path.c_str(), -1, manager->GetIOSettings())) {
@@ -1949,6 +2031,64 @@ void UMFbxSaveImpl::set_save_setting(FbxIOSettings& fbx_settings, const UMIOSett
 		if (type == UMIOSetting::eUMExpOldFBX)
 			set_old_fbx(val);
 	}
+}
+ 
+/**
+ * set axis type
+ */
+void UMFbxSaveImpl::set_axis_type(FbxScene* fbx_scene, const UMIOSetting& setting)
+{
+	if (!fbx_scene) return;
+	const UMIOSetting::EFbxAxisType type = setting.axis_type();
+
+	FbxAxisSystem::EPreDefinedAxisSystem axis_system = FbxAxisSystem::eOpenGL;
+	if (type == UMIOSetting::eFbxAxisMayaZUp) 
+		axis_system = FbxAxisSystem::eMayaZUp;
+	else if (type == UMIOSetting::eFbxAxisMayaYUp) 
+		axis_system = FbxAxisSystem::eMayaYUp;
+	else if (type == UMIOSetting::eFbxAxisMax) 
+		axis_system = FbxAxisSystem::eMax;
+	else if (type == UMIOSetting::eFbxAxisMotionBuilder) 
+		axis_system = FbxAxisSystem::eMotionBuilder;
+	else if (type == UMIOSetting::eFbxAxisOpenGL) 
+		axis_system = FbxAxisSystem::eOpenGL;
+	else if (type == UMIOSetting::eFbxAxisDirectX) 
+		axis_system = FbxAxisSystem::eDirectX;
+	else if (type == UMIOSetting::eFbxAxisLightWave) 
+		axis_system = FbxAxisSystem::eLightwave;
+
+	FbxAxisSystem fbx_axis_system(axis_system);
+	fbx_axis_system.ConvertScene(fbx_scene);
+}
+
+/**
+ * set system unit type to scene
+ */
+void UMFbxSaveImpl::set_system_unit_type(FbxScene* fbx_scene, const UMIOSetting& setting)
+{
+	if (!fbx_scene) return;
+	const UMIOSetting::EFbxSystemUnitType unit_type = setting.system_unit_type();
+	FbxSystemUnit fbx_system_unit;
+	if (unit_type == UMIOSetting::eFbxSystemUnitMM)
+		fbx_system_unit = FbxSystemUnit::mm;
+	if (unit_type == UMIOSetting::eFbxSystemUnitDM)
+		fbx_system_unit = FbxSystemUnit::dm;
+	if (unit_type == UMIOSetting::eFbxSystemUnitCM)
+		fbx_system_unit = FbxSystemUnit::cm;
+	if (unit_type == UMIOSetting::eFbxSystemUnitM)
+		fbx_system_unit = FbxSystemUnit::m;
+	if (unit_type == UMIOSetting::eFbxSystemUnitKM)
+		fbx_system_unit = FbxSystemUnit::km;
+	if (unit_type == UMIOSetting::eFbxSystemUnitInch)
+		fbx_system_unit = FbxSystemUnit::Inch;
+	if (unit_type == UMIOSetting::eFbxSystemUnitFoot)
+		fbx_system_unit = FbxSystemUnit::Foot;
+	if (unit_type == UMIOSetting::eFbxSystemUnitMile)
+		fbx_system_unit = FbxSystemUnit::Mile;
+	if (unit_type == UMIOSetting::eFbxSystemUnitYard)
+		fbx_system_unit = FbxSystemUnit::Yard;
+
+	fbx_system_unit.ConvertScene(fbx_scene);
 }
 
 /**
@@ -2893,6 +3033,8 @@ bool UMFbxSaveImpl::save(std::string path, UMObjectPtr object, const UMIOSetting
 	}
 
 	FbxScene* scene = create_scene(object);
+	set_system_unit_type(scene, setting);
+	set_axis_type(scene, setting);
 	if (!scene) {
 		printf("create_scene failed.\n");
 		return UMObjectPtr();

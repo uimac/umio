@@ -167,6 +167,8 @@ BOOST_PYTHON_MODULE(UMIO)
 			.def("set_imp_bool_prop", &UMIOSetting::set_imp_bool_prop)
 			.def("set_bl_exp_bool_prop", &UMIOSetting::set_bl_exp_bool_prop)
 			.def("set_bl_imp_bool_prop", &UMIOSetting::set_bl_imp_bool_prop)
+			.def("set_axis_type", &UMIOSetting::set_axis_type)
+			.def("set_system_unit_type", &UMIOSetting::set_system_unit_type)
 			;
 
 		enum_<UMIOSetting::EExpSettingType>("ExpSettingType")
@@ -265,6 +267,31 @@ BOOST_PYTHON_MODULE(UMIO)
 			.value("UMImpPatch", UMIOSetting::eUMImpPatch)
 			.export_values()
 			;
+
+		enum_<UMIOSetting::EFbxAxisType>("AxisType")
+			.value("AxisMayaZUp", UMIOSetting::eFbxAxisMayaZUp)
+			.value("AxisMayaYUp", UMIOSetting::eFbxAxisMayaYUp)
+			.value("AxisMax", UMIOSetting::eFbxAxisMax)
+			.value("AxisMotionBuilder", UMIOSetting::eFbxAxisMotionBuilder)
+			.value("AxisOpenGL", UMIOSetting::eFbxAxisOpenGL)
+			.value("AxisDirectX", UMIOSetting::eFbxAxisDirectX)
+			.value("AxisLightWave", UMIOSetting::eFbxAxisLightWave)
+			.export_values()
+			;
+
+		enum_<UMIOSetting::EFbxSystemUnitType>("SystemUnitType")
+			.value("SystemUnitMM", UMIOSetting::eFbxSystemUnitMM)
+			.value("SystemUnitDM", UMIOSetting::eFbxSystemUnitDM)
+			.value("SystemUnitCM", UMIOSetting::eFbxSystemUnitCM)
+			.value("SystemUnitM", UMIOSetting::eFbxSystemUnitM)
+			.value("SystemUnitKM", UMIOSetting::eFbxSystemUnitKM)
+			.value("SystemUnitInch", UMIOSetting::eFbxSystemUnitInch)
+			.value("SystemUnitFoot", UMIOSetting::eFbxSystemUnitFoot)
+			.value("SystemUnitMile", UMIOSetting::eFbxSystemUnitMile)
+			.value("SystemUnitYard", UMIOSetting::eFbxSystemUnitYard)
+			.export_values()
+			;
+
 	}
 	
 	//
