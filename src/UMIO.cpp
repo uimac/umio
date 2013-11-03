@@ -12,6 +12,10 @@
 #include "UMIO.h"
 #include "UMObject.h"
 
+#if defined(WITH_FBX2014) || defined(WITH_FBX2013) || defined(WITH_FBX2011)
+#define WITH_FBX
+#endif
+
 #ifdef WITH_FBX
 #include "UMFbx.h"
 #endif
@@ -20,7 +24,7 @@
 #include <map>
 #include <iostream>
 #include <fstream>
-
+#include <sstream>
 
 #ifdef WITH_BOOST_SERIALIZATION
 #include <boost/archive/binary_oarchive.hpp>
@@ -53,7 +57,10 @@ UMObjectPtr UMIO::load(std::string path, const UMIOSetting& setting)
 	if (is_fbx_load)
 	{
 		UMFbx fbx;
-		return fbx.load(path, setting);
+		if (UMObjectPtr obj = fbx.load(path, setting))
+		{
+			return obj;
+		}
 	}
 #endif
 	
@@ -132,6 +139,50 @@ bool UMIO::save(std::string path, UMObjectPtr object, const UMIOSetting& setting
 #endif // WITH_BOOST_SERIALIZATION
 
 	return false;
+}
+
+/**
+ * load file
+ */
+UMObjectPtr UMIO::load_bos_from_memory(const std::string& src, const UMIOSetting& setting)
+{
+	bool is_fbx_load = false;
+	UMIOSetting::UMImpSettingMap::const_iterator bt = setting.bl_imp_prop_map().begin();
+	for (; bt != setting.bl_imp_prop_map().end(); ++bt)
+	{
+		UMIOSetting::EUMImpSettingType type = bt->first;
+		bool val = bt->second;
+
+		if (type == UMIOSetting::eUMImpFBX)
+		{
+			is_fbx_load = val;
+		}
+	}
+	
+#ifdef WITH_BOOST_SERIALIZATION
+	// load bos
+	try {
+		std::istringstream stream(src);
+
+		// convert bos to fbx or other format 
+		boost::archive::binary_iarchive ia(stream);
+		
+		umio::UMObjectPtr obj = umio::UMObject::create_object();
+		
+		ia >> (*obj);
+		
+		if (UMObject::re_bind_all_nodes(obj))
+		{
+			return obj;
+		}
+	}
+	catch (...) {
+		//std::cout << "unknown excaption" << std::endl;
+		return UMObjectPtr();
+	}
+#endif // WITH_BOOST_SERIALIZATION
+
+	return UMObjectPtr();
 }
 
 /**

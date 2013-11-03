@@ -36,6 +36,11 @@ public:
 	 * save 3d file
 	 */
 	bool save(std::string path, UMObjectPtr object, const UMIOSetting& setting);
+	
+	/**
+	 * load bos from memory
+	 */
+	UMObjectPtr load_bos_from_memory(const std::string& src, const UMIOSetting& setting);
 
 	/**
 	 * load settings

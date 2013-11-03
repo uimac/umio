@@ -1188,8 +1188,15 @@ bool UMFbxLoadImpl::assign_mesh(UMObjectPtr object, FbxNode* node)
 	if (is_triangulate())
 	{
 		FbxGeometryConverter converter(manager());
-		converter.Triangulate(fbx_mesh, true);
-		node->SetNodeAttribute(fbx_mesh);
+		FbxNodeAttribute* attr = converter.Triangulate(fbx_mesh, false);
+		if (fbx_mesh = FbxCast<FbxMesh>(attr))
+		{
+			node->SetNodeAttribute(attr);
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	const int polygon_count = fbx_mesh->GetPolygonCount();
