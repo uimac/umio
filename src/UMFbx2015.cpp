@@ -9,7 +9,7 @@
  * Dual licensed under the MIT or GPL Version 2 licenses. 
  *
  */
-#ifdef WITH_FBX2014
+#ifdef WITH_FBX2015
 
 /**
  * if you build with FBXSDK2014, you will need to write below to your about box.
@@ -3403,4 +3403,4 @@ bool UMFbx::save(std::string path, UMObjectPtr object, const UMIOSetting& settin
 
 } // namespace umio
 
-#endif //WITH_FBX2014
+#endif //WITH_FBX2015
