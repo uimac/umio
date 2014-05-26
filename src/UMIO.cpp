@@ -5,8 +5,8 @@
  * @author tori31001 at gmail.com
  *
  *
- * Copyright (C) 2012 Kazuma Hatta
- * Dual licensed under the MIT or GPL Version 2 licenses. 
+ * Copyright (C) 2014 Kazuma Hatta
+ * Licensed under the MIT or GPL Version 2 or GPL Version 3 licenses. 
  *
  */
 #include "UMIO.h"
@@ -29,6 +29,10 @@
 #ifdef WITH_BOOST_SERIALIZATION
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/archive/binary_iarchive.hpp>
+#endif
+
+#ifdef WITH_MSGPACK
+#include <msgpack.hpp>
 #endif
 
 namespace umio
@@ -88,6 +92,38 @@ UMObjectPtr UMIO::load(std::string path, const UMIOSetting& setting)
 	}
 #endif // WITH_BOOST_SERIALIZATION
 
+
+#ifdef WITH_MSGPACK
+	// load msgpack msg
+	try {
+		// convert msg to fbx or other format 
+		std::ifstream file(path, std::ios::in | std::ios::binary);
+		std::istreambuf_iterator<char> first(file);
+		std::istreambuf_iterator<char> last;
+		const std::string data(first, last);
+			
+		msgpack::zone zone;
+		msgpack::object msg_obj;
+		msgpack::unpack(data.data(), data.size(), NULL, &zone, &msg_obj);
+			
+		umio::UMObjectPtr obj = umio::UMObject::create_object();
+		msg_obj.convert(&(*obj));
+		return obj;
+	}
+	catch (msgpack::unpack_error& ) {
+		//std::cout << "msg unpack failed" << std::endl;
+		return UMObjectPtr();
+	}
+	catch (msgpack::type_error& ) {
+		//std::cout << "msg type error" << std::endl;
+		return UMObjectPtr();
+	}
+	catch (...) {
+		//std::cout << "unknown excaption" << std::endl;
+		return UMObjectPtr();
+	}
+#endif // WITH_MSGPACK
+
 	return UMObjectPtr();
 }
 
@@ -137,6 +173,34 @@ bool UMIO::save(std::string path, UMObjectPtr object, const UMIOSetting& setting
 		return false;
 	}
 #endif // WITH_BOOST_SERIALIZATION
+	
+#ifdef WITH_MSGPACK
+	// save msgpack msg
+	try {
+		// convert fbx or other format to msg
+		std::ofstream file(path, std::ios::out | std::ios::binary | std::ios::trunc);
+		msgpack::pack(&file, *object);
+		if (object) {
+			return true;
+		}
+				
+		/* // for debug
+		msgpack::sbuffer sbuf;
+		msgpack::pack(sbuf, *obj);
+				 
+		msgpack::zone zone;
+		msgpack::object msg_obj;
+		msgpack::unpack(sbuf.data(), sbuf.size(), NULL, &zone, &msg_obj);
+		UM::UMObjectPtr new_obj = UM::UMObject::create_object();
+		msg_obj.convert(&(*new_obj));
+		new_obj = new_obj;
+			*/
+	}
+	catch (...) {
+		//std::cout << "unknown excaption" << std::endl;
+		return false;
+	}
+#endif // WITH_MSGPACK
 
 	return false;
 }
@@ -181,6 +245,37 @@ UMObjectPtr UMIO::load_bos_from_memory(const std::string& src, const UMIOSetting
 		return UMObjectPtr();
 	}
 #endif // WITH_BOOST_SERIALIZATION
+	
+#ifdef WITH_MSGPACK
+	// load msgpack msg
+	try {
+		// convert msg to fbx or other format 
+		std::istringstream stream(src);
+		std::istreambuf_iterator<char> first(stream);
+		std::istreambuf_iterator<char> last;
+		const std::string data(first, last);
+			
+		msgpack::zone zone;
+		msgpack::object msg_obj;
+		msgpack::unpack(data.data(), data.size(), NULL, &zone, &msg_obj);
+			
+		umio::UMObjectPtr obj = umio::UMObject::create_object();
+		msg_obj.convert(&(*obj));
+		return obj;
+	}
+	catch (msgpack::unpack_error& ) {
+		//std::cout << "msg unpack failed" << std::endl;
+		return UMObjectPtr();
+	}
+	catch (msgpack::type_error& ) {
+		//std::cout << "msg type error" << std::endl;
+		return UMObjectPtr();
+	}
+	catch (...) {
+		//std::cout << "unknown excaption" << std::endl;
+		return UMObjectPtr();
+	}
+#endif // WITH_MSGPACK
 
 	return UMObjectPtr();
 }
@@ -208,6 +303,38 @@ bool UMIO::load_setting(std::string path, UMIOSetting& setting)
 		return UMObjectPtr();
 	}
 #endif // WITH_BOOST_SERIALIZATION
+
+
+#ifdef WITH_MSGPACK
+	// load msgpack msg
+	try {
+		// convert msg to fbx or other format 
+		std::ifstream file(path, std::ios::in | std::ios::binary);
+		std::istreambuf_iterator<char> first(file);
+		std::istreambuf_iterator<char> last;
+		const std::string data(first, last);
+			
+		msgpack::zone zone;
+		msgpack::object msg_obj;
+		msgpack::unpack(data.data(), data.size(), NULL, &zone, &msg_obj);
+			
+		msg_obj.convert(&setting);
+		return true;
+	}
+	catch (msgpack::unpack_error& ) {
+		//std::cout << "msg unpack failed" << std::endl;
+		return false;
+	}
+	catch (msgpack::type_error& ) {
+		//std::cout << "msg type error" << std::endl;
+		return false;
+	}
+	catch (...) {
+		//std::cout << "unknown excaption" << std::endl;
+		return false;
+	}
+#endif // WITH_MSGPACK
+
 	return false;
 }
 	
@@ -235,6 +362,21 @@ bool UMIO::save_setting(std::string path, const UMIOSetting& setting)
 		return false;
 	}
 #endif // WITH_BOOST_SERIALIZATION
+	
+#ifdef WITH_MSGPACK
+	// save msgpack msg
+	try {
+		// convert fbx or other format to msg
+		std::ofstream file(path, std::ios::out | std::ios::binary | std::ios::trunc);
+		msgpack::pack(&file, setting);
+		return true;
+	}
+	catch (...) {
+		//std::cout << "unknown excaption" << std::endl;
+		return false;
+	}
+#endif // WITH_MSGPACK
+
 	return false;
 }
 

@@ -4,8 +4,8 @@
  *
  * @author tori31001 at gmail.com
  *
- * Copyright (C) 2012 Kazuma Hatta
- * Dual licensed under the MIT or GPL Version 2 licenses. 
+ * Copyright (C) 2014 Kazuma Hatta
+ * Licensed under the MIT or GPL Version 2 or GPL Version 3 licenses. 
  *
  */
 #pragma once
@@ -27,6 +27,10 @@
 	#include <boost/serialization/map.hpp>
 	#include <boost/serialization/string.hpp>
 	#include <boost/serialization/array.hpp>
+#endif
+
+#ifdef WITH_MSGPACK
+	#include <msgpack.hpp>
 #endif
 
 namespace umio
@@ -113,6 +117,8 @@ public:
 	void set_geometric_rotation(const UMVec4d& rot) { geometric_rotation_ = rot; }
 	void set_geometric_scaling(const UMVec4d& scale) { geometric_scaling_ = scale; }
 	
+	// msgpack serialization
+	#include "UMNodeMsg.h"
 private:
 	// boost serialization
 	#include "UMNodeBos.h"
@@ -506,6 +512,8 @@ public:
 	void set_frame_color(const UMVec4d& val) { frame_color_ = val; }
 	void set_audio_color(const UMVec4d& val) { audio_color_ = val; }
 	
+	// msgpack serialization
+	#include "UMCameraMsg.h"
 private:
 	// boost serialization
 	#include "UMCameraBos.h"
@@ -700,7 +708,8 @@ public:
 	void set_limb_length(double value) { limb_length_ = value; }
 	void set_size(double value) { size_ = value; }
 	
-
+	// msgpack serialization
+	#include "UMSkeletonMsg.h"
 private:
 	// boost serialization
 	#include "UMSkeletonBos.h"
@@ -737,6 +746,8 @@ public:
 	Mat44dList& mutable_matrix_list() { return matrix_list_; }
 	BoolList& mutable_matrix_is_local_list() { return matrix_is_local_list_; }
 	
+	// msgpack serialization
+	#include "UMPoseMsg.h"
 private:
 	// boost serialization
 	#include "UMPoseBos.h"
@@ -807,6 +818,8 @@ public:
 	void set_blend_mode(int blend_mode) { blend_mode_ = blend_mode; }
 	void set_alpha(double alpha) { alpha_ = alpha; }
 	
+	// msgpack serialization
+	#include "UMTextureMsg.h"
 private:
 	// boost serialization
 	#include "UMTextureBos.h"
@@ -859,6 +872,8 @@ public:
 	void add_index(int index) { mutable_index_list().push_back(index); }
 	void add_weight(double weight) { mutable_weight_list().push_back(weight); }
 	
+	// msgpack serialization
+	#include "UMClusterMsg.h"
 private:
 	// boost serialization
 	#include "UMClusterBos.h"
@@ -903,6 +918,8 @@ public:
 	void set_geometry_node(UMNode* geometry_node) { geometry_node_ = geometry_node; }
 	void set_geometry_node_id(int geometry_id) { geometry_node_id_ = geometry_id; }
 	
+	// msgpack serialization
+	#include "UMDeformerMsg.h"
 protected:
 	// boost serialization
 	#include "UMDeformerBos.h"
@@ -948,6 +965,8 @@ public:
 	void add_vertex(const DoubleList& vertex) { mutable_vertex_list().push_back(vertex); }
 	void add_normal(const DoubleList& normal) { mutable_normal_list().push_back(normal); }
 	
+	// msgpack serialization
+	#include "UMShapeMsg.h"
 private:
 	// boost serialization
 	#include "UMShapeBos.h"
@@ -986,6 +1005,8 @@ public:
 	void add_full_weight(double weight) { full_weight_list_.push_back(weight); }
 	void set_deform_percent(double percent) { deform_percent_ = percent; }
 	
+	// msgpack serialization
+	#include "UMBlendShapeChannelMsg.h"
 private:
 	// boost serialization
 	#include "UMBlendShapeChannelBos.h"
@@ -1015,7 +1036,9 @@ public:
 
 	// external use
 	void add_blend_shape_channel(const UMBlendShapeChannel& channel) { blend_shape_channel_list_.push_back(channel); }
-
+	
+	// msgpack serialization
+	#include "UMBlendShapeMsg.h"
 private:
 	// boost serialization
 	#include "UMBlendShapeBos.h"
@@ -1045,6 +1068,8 @@ public:
 	// external use
 	void add_cluster(const UMCluster& cluster) { mutable_cluster_list().push_back(cluster); }
 	
+	// msgpack serialization
+	#include "UMSkinMsg.h"
 private:
 	// boost serialization
 	#include "UMSkinBos.h"
@@ -1133,6 +1158,8 @@ public:
 	void add_texture(const UMTexture& texture) { mutable_texture_list().push_back(texture); }
 	void add_layered_texture(const TextureList& texture_list) { mutable_layered_texture_list().push_back(texture_list); }
 	
+	// msgpack serialization
+	#include "UMMaterialMsg.h"
 private:
 	// boost serialization
 	#include "UMMaterialBos.h"
@@ -1229,6 +1256,8 @@ public:
 	int add_normal_layer() { layered_normal_list_.push_back(DoubleListVec()); return static_cast<int>(layered_normal_list_.size()-1); }
 	int add_vertex_color_layer() { layered_vertex_color_list_.push_back(DoubleListVec()); return static_cast<int>(layered_vertex_color_list_.size()-1); }
 	
+	// msgpack serialization
+	#include "UMMeshMsg.h"
 private:
 	// boost serialization
 	#include "UMMeshBos.h"
@@ -1325,7 +1354,9 @@ public:
 	// re bind all node from node_id.
 	// do after loading a serialized file
 	static bool re_bind_all_nodes(UMObjectPtr object);
-
+	
+	// msgpack serialization
+	#include "UMObjectMsg.h"
 private:
 	// boost serialization
 	#include "UMObjectBos.h"

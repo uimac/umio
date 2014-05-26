@@ -5,8 +5,8 @@
  * @author tori31001 at gmail.com
  *
  *
- * Copyright (C) 2012 Kazuma Hatta
- * Dual licensed under the MIT or GPL Version 2 licenses. 
+ * Copyright (C) 2014 Kazuma Hatta
+ * Licensed under the MIT or GPL Version 2 or GPL Version 3 licenses. 
  */
 #pragma once
 
@@ -17,6 +17,11 @@
 #ifdef WITH_BOOST_SERIALIZATION
 	#include <boost/serialization/serialization.hpp>
 #endif
+
+#ifdef WITH_MSGPACK
+	#include <msgpack.hpp>
+#endif
+
 
 namespace umio
 {
@@ -176,6 +181,9 @@ public:
 		}
 		return dst;
 	}
+
+	// msgpack serialization
+	#include "UMVector2Msg.h"
 private:
 	// boost serialization
 	#include "UMVector2Bos.h"
@@ -326,6 +334,9 @@ public:
 		}
 		return dst;
 	}
+
+	// msgpack serialization
+	#include "UMVector3Msg.h"
 private:
 	// boost serialization
 	#include "UMVector3Bos.h"
@@ -480,6 +491,9 @@ public:
 		}
 		return dst;
 	}
+
+	// msgpack serialization
+	#include "UMVector4Msg.h"
 private:
 	// boost serialization
 	#include "UMVector4Bos.h"
