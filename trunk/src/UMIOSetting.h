@@ -5,8 +5,8 @@
  * @author tori31001 at gmail.com
  *
  *
- * Copyright (C) 2012 Kazuma Hatta
- * Dual licensed under the MIT or GPL Version 2 licenses. 
+ * Copyright (C) 2014 Kazuma Hatta
+ * Licensed under the MIT or GPL Version 2 or GPL Version 3 licenses. 
  *
  */
 #pragma once
@@ -19,6 +19,10 @@
 	#include <boost/serialization/map.hpp>
 	#include <boost/serialization/string.hpp>
 	#include <boost/serialization/array.hpp>
+#endif
+
+#ifdef WITH_MSGPACK
+	#include <msgpack.hpp>
 #endif
 
 namespace umio
@@ -208,6 +212,8 @@ public:
 		system_unit_type_ = type;
 	}
 	
+	// msgpack serialization
+	#include "UMIOSettingMsg.h"
 private:
 
 	// for bos serialization

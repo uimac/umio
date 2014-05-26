@@ -5,8 +5,8 @@
  * @author tori31001 at gmail.com
  *
  *
- * Copyright (C) 2012 Kazuma Hatta
- * Dual licensed under the MIT or GPL Version 2 licenses. 
+ * Copyright (C) 2014 Kazuma Hatta
+ * Licensed under the MIT or GPL Version 2 or GPL Version 3 licenses. 
  *
  */
 #ifdef WITH_FBX2014
@@ -1693,17 +1693,17 @@ bool UMFbxLoadImpl::assign_one_node(UMObjectPtr object, UMNode* dst_node, FbxNod
 	}
 	
 	FbxScene* scene = current_scene();
-	if (scene && scene->GetAnimationEvaluator())
+	if (scene && scene->GetEvaluator())
 	{
 		// set local tranform
 		matrix_to_UMMat44d(
 			dst_node->mutable_local_transform(),
-			scene->GetAnimationEvaluator()->GetNodeLocalTransform(node));
+			scene->GetEvaluator()->GetNodeLocalTransform(node));
 
 		// set global transform
 		matrix_to_UMMat44d(
 			dst_node->mutable_global_transform(),
-			scene->GetAnimationEvaluator()->GetNodeGlobalTransform(node));
+			scene->GetEvaluator()->GetNodeGlobalTransform(node));
 	}
 
 	return true;
@@ -2800,7 +2800,7 @@ bool UMFbxSaveImpl::export_bind_pose(FbxScene* scene, UMObjectPtr object, FbxNod
 					{
 						if (FbxNode* node = cluster->GetLink())
 						{
-							if (FbxAnimEvaluator* evaluator = scene->GetAnimationEvaluator())
+							if (FbxAnimEvaluator* evaluator = scene->GetEvaluator())
 							{
 								const FbxAMatrix transform = evaluator->GetNodeGlobalTransform(node);
 								pose->Add(node, transform, false, true);
@@ -2855,7 +2855,7 @@ bool UMFbxSaveImpl::export_skins(FbxScene* scene, UMObjectPtr object, FbxNode* f
 						{
 							fbx_cluster->SetLink(fbx_link_node);
 							// transform
-							if (FbxAnimEvaluator* evaluator = scene->GetAnimationEvaluator())
+							if (FbxAnimEvaluator* evaluator = scene->GetEvaluator())
 							{
 								const FbxAMatrix transform = evaluator->GetNodeGlobalTransform(fbx_node);
 								fbx_cluster->SetTransformMatrix(transform);
