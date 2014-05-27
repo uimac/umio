@@ -174,10 +174,10 @@ public:
 	}
 
 	// msgpack serialization
-	#include "UMMatrixMsg.h"
+	#include "msg/UMMatrixMsg.h"
 private:
 	// boost serialization
-	#include "UMMatrixBos.h"
+	#include "bos/UMMatrixBos.h"
 };
 
 } //umio

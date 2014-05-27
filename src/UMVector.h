@@ -183,10 +183,10 @@ public:
 	}
 
 	// msgpack serialization
-	#include "UMVector2Msg.h"
+	#include "msg/UMVector2Msg.h"
 private:
 	// boost serialization
-	#include "UMVector2Bos.h"
+	#include "bos/UMVector2Bos.h"
 };
 
 /**
@@ -336,10 +336,10 @@ public:
 	}
 
 	// msgpack serialization
-	#include "UMVector3Msg.h"
+	#include "msg/UMVector3Msg.h"
 private:
 	// boost serialization
-	#include "UMVector3Bos.h"
+	#include "bos/UMVector3Bos.h"
 };
 
 /**
@@ -493,10 +493,10 @@ public:
 	}
 
 	// msgpack serialization
-	#include "UMVector4Msg.h"
+	#include "msg/UMVector4Msg.h"
 private:
 	// boost serialization
-	#include "UMVector4Bos.h"
+	#include "bos/UMVector4Bos.h"
 
 };
 

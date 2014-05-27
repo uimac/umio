@@ -26,6 +26,65 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\bos\UMBlendShapeBos.h" />
+    <ClInclude Include="..\..\src\bos\UMBlendShapeChannelBos.h" />
+    <ClInclude Include="..\..\src\bos\UMCameraBos.h" />
+    <ClInclude Include="..\..\src\bos\UMClusterBos.h" />
+    <ClInclude Include="..\..\src\bos\UMDeformerBos.h" />
+    <ClInclude Include="..\..\src\bos\UMIOSettingBos.h" />
+    <ClInclude Include="..\..\src\bos\UMMaterialBos.h" />
+    <ClInclude Include="..\..\src\bos\UMMatrixBos.h" />
+    <ClInclude Include="..\..\src\bos\UMMeshBos.h" />
+    <ClInclude Include="..\..\src\bos\UMNodeBos.h" />
+    <ClInclude Include="..\..\src\bos\UMObjectBos.h" />
+    <ClInclude Include="..\..\src\bos\UMPoseBos.h" />
+    <ClInclude Include="..\..\src\bos\UMShapeBos.h" />
+    <ClInclude Include="..\..\src\bos\UMSkeletonBos.h" />
+    <ClInclude Include="..\..\src\bos\UMSkinBos.h" />
+    <ClInclude Include="..\..\src\bos\UMTextureBos.h" />
+    <ClInclude Include="..\..\src\bos\UMVector2Bos.h" />
+    <ClInclude Include="..\..\src\bos\UMVector3Bos.h" />
+    <ClInclude Include="..\..\src\bos\UMVector4Bos.h" />
+    <ClInclude Include="..\..\src\msg\UMBlendShapeChannelMsg.h" />
+    <ClInclude Include="..\..\src\msg\UMBlendShapeMsg.h" />
+    <ClInclude Include="..\..\src\msg\UMCameraMsg.h" />
+    <ClInclude Include="..\..\src\msg\UMClusterMsg.h" />
+    <ClInclude Include="..\..\src\msg\UMDeformerMsg.h" />
+    <ClInclude Include="..\..\src\msg\UMIOSettingMsg.h" />
+    <ClInclude Include="..\..\src\msg\UMMaterialMsg.h" />
+    <ClInclude Include="..\..\src\msg\UMMatrixMsg.h" />
+    <ClInclude Include="..\..\src\msg\UMMeshMsg.h" />
+    <ClInclude Include="..\..\src\msg\UMNodeMsg.h" />
+    <ClInclude Include="..\..\src\msg\UMObjectMsg.h" />
+    <ClInclude Include="..\..\src\msg\UMPoseMsg.h" />
+    <ClInclude Include="..\..\src\msg\UMShapeMsg.h" />
+    <ClInclude Include="..\..\src\msg\UMSkeletonMsg.h" />
+    <ClInclude Include="..\..\src\msg\UMSkinMsg.h" />
+    <ClInclude Include="..\..\src\msg\UMTextureMsg.h" />
+    <ClInclude Include="..\..\src\msg\UMVector2Msg.h" />
+    <ClInclude Include="..\..\src\msg\UMVector3Msg.h" />
+    <ClInclude Include="..\..\src\msg\UMVector4Msg.h" />
+    <ClInclude Include="..\..\src\UMAnimation.h" />
+    <ClInclude Include="..\..\src\UMFbx.h" />
+    <ClInclude Include="..\..\src\UMIO.h" />
+    <ClInclude Include="..\..\src\UMIOSetting.h" />
+    <ClInclude Include="..\..\src\UMListTypes.h" />
+    <ClInclude Include="..\..\src\UMMatrix.h" />
+    <ClInclude Include="..\..\src\UMObject.h" />
+    <ClInclude Include="..\..\src\UMVector.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\UMFbx.cpp" />
+    <ClCompile Include="..\..\src\UMFbx2011.cpp" />
+    <ClCompile Include="..\..\src\UMFbx2013.cpp" />
+    <ClCompile Include="..\..\src\UMFbx2014.cpp" />
+    <ClCompile Include="..\..\src\UMFbx2015.cpp" />
+    <ClCompile Include="..\..\src\UMIO.cpp" />
+    <ClCompile Include="..\..\src\UMMain.cpp" />
+    <ClCompile Include="..\..\src\UMObject.cpp" />
+    <ClCompile Include="..\..\src\UMPython.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{19F5A1F5-C3CA-4B74-954A-0A9EC988C59D}</ProjectGuid>
     <RootNamespace>UMIO</RootNamespace>
@@ -127,7 +186,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/bos;$(SolutionDir)src/msg;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2014;WITH_MSGPACK</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -148,7 +207,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/bos;$(SolutionDir)src/msg;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2014;WITH_MSGPACK</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -173,7 +232,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/bos;$(SolutionDir)src/msg;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2014;WITH_MSGPACK</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
@@ -199,7 +258,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/bos;$(SolutionDir)src/msg;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2014;WITH_MSGPACK</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -218,65 +277,6 @@
       </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\src\bos\UMBlendShapeBos.h" />
-    <ClInclude Include="..\..\src\bos\UMBlendShapeChannelBos.h" />
-    <ClInclude Include="..\..\src\bos\UMCameraBos.h" />
-    <ClInclude Include="..\..\src\bos\UMClusterBos.h" />
-    <ClInclude Include="..\..\src\bos\UMDeformerBos.h" />
-    <ClInclude Include="..\..\src\bos\UMIOSettingBos.h" />
-    <ClInclude Include="..\..\src\bos\UMMaterialBos.h" />
-    <ClInclude Include="..\..\src\bos\UMMatrixBos.h" />
-    <ClInclude Include="..\..\src\bos\UMMeshBos.h" />
-    <ClInclude Include="..\..\src\bos\UMNodeBos.h" />
-    <ClInclude Include="..\..\src\bos\UMObjectBos.h" />
-    <ClInclude Include="..\..\src\bos\UMPoseBos.h" />
-    <ClInclude Include="..\..\src\bos\UMShapeBos.h" />
-    <ClInclude Include="..\..\src\bos\UMSkeletonBos.h" />
-    <ClInclude Include="..\..\src\bos\UMSkinBos.h" />
-    <ClInclude Include="..\..\src\bos\UMTextureBos.h" />
-    <ClInclude Include="..\..\src\bos\UMVector2Bos.h" />
-    <ClInclude Include="..\..\src\bos\UMVector3Bos.h" />
-    <ClInclude Include="..\..\src\bos\UMVector4Bos.h" />
-    <ClInclude Include="..\..\src\msg\UMBlendShapeChannelMsg.h" />
-    <ClInclude Include="..\..\src\msg\UMBlendShapeMsg.h" />
-    <ClInclude Include="..\..\src\msg\UMCameraMsg.h" />
-    <ClInclude Include="..\..\src\msg\UMClusterMsg.h" />
-    <ClInclude Include="..\..\src\msg\UMDeformerMsg.h" />
-    <ClInclude Include="..\..\src\msg\UMIOSettingMsg.h" />
-    <ClInclude Include="..\..\src\msg\UMMaterialMsg.h" />
-    <ClInclude Include="..\..\src\msg\UMMatrixMsg.h" />
-    <ClInclude Include="..\..\src\msg\UMMeshMsg.h" />
-    <ClInclude Include="..\..\src\msg\UMNodeMsg.h" />
-    <ClInclude Include="..\..\src\msg\UMObjectMsg.h" />
-    <ClInclude Include="..\..\src\msg\UMPoseMsg.h" />
-    <ClInclude Include="..\..\src\msg\UMShapeMsg.h" />
-    <ClInclude Include="..\..\src\msg\UMSkeletonMsg.h" />
-    <ClInclude Include="..\..\src\msg\UMSkinMsg.h" />
-    <ClInclude Include="..\..\src\msg\UMTextureMsg.h" />
-    <ClInclude Include="..\..\src\msg\UMVector2Msg.h" />
-    <ClInclude Include="..\..\src\msg\UMVector3Msg.h" />
-    <ClInclude Include="..\..\src\msg\UMVector4Msg.h" />
-    <ClInclude Include="..\..\src\UMAnimation.h" />
-    <ClInclude Include="..\..\src\UMFbx.h" />
-    <ClInclude Include="..\..\src\UMIO.h" />
-    <ClInclude Include="..\..\src\UMIOSetting.h" />
-    <ClInclude Include="..\..\src\UMMatrix.h" />
-    <ClInclude Include="..\..\src\UMObject.h" />
-    <ClInclude Include="..\..\src\UMListTypes.h" />
-    <ClInclude Include="..\..\src\UMVector.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\src\UMFbx.cpp" />
-    <ClCompile Include="..\..\src\UMFbx2011.cpp" />
-    <ClCompile Include="..\..\src\UMFbx2013.cpp" />
-    <ClCompile Include="..\..\src\UMFbx2014.cpp" />
-    <ClCompile Include="..\..\src\UMFbx2015.cpp" />
-    <ClCompile Include="..\..\src\UMIO.cpp" />
-    <ClCompile Include="..\..\src\UMMain.cpp" />
-    <ClCompile Include="..\..\src\UMObject.cpp" />
-    <ClCompile Include="..\..\src\UMPython.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
