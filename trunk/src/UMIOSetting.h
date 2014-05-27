@@ -158,6 +158,7 @@ public:
 	UMIOSetting()
 	{
 		bl_imp_prop_map_[eUMImpFBX]				= true;
+		bl_imp_prop_map_[eUMImpTriangulate]		= true;
 		bl_exp_prop_map_[eUMExpFBX]				= true;
 
 		imp_prop_map_[eImpFbxMaterial]			= true;
@@ -213,11 +214,11 @@ public:
 	}
 	
 	// msgpack serialization
-	#include "UMIOSettingMsg.h"
+	#include "msg/UMIOSettingMsg.h"
 private:
 
 	// for bos serialization
-	#include "UMIOSettingBos.h"
+	#include "bos/UMIOSettingBos.h"
 
 	ExpSettingMap exp_prop_map_;
 	ImpSettingMap imp_prop_map_;

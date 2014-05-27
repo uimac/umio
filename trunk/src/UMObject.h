@@ -118,10 +118,10 @@ public:
 	void set_geometric_scaling(const UMVec4d& scale) { geometric_scaling_ = scale; }
 	
 	// msgpack serialization
-	#include "UMNodeMsg.h"
+	#include "msg/UMNodeMsg.h"
 private:
 	// boost serialization
-	#include "UMNodeBos.h"
+	#include "bos/UMNodeBos.h"
 
 	UMNode* parent_;
 	NodePointerList children_;
@@ -513,10 +513,10 @@ public:
 	void set_audio_color(const UMVec4d& val) { audio_color_ = val; }
 	
 	// msgpack serialization
-	#include "UMCameraMsg.h"
+	#include "msg/UMCameraMsg.h"
 private:
 	// boost serialization
-	#include "UMCameraBos.h"
+	#include "bos/UMCameraBos.h"
 
 	/// geometrical
 	UMVec4d position_;
@@ -709,10 +709,10 @@ public:
 	void set_size(double value) { size_ = value; }
 	
 	// msgpack serialization
-	#include "UMSkeletonMsg.h"
+	#include "msg/UMSkeletonMsg.h"
 private:
 	// boost serialization
-	#include "UMSkeletonBos.h"
+	#include "bos/UMSkeletonBos.h"
 
 	//	FbxSkeleton::EType or -1
 	int type_;
@@ -747,10 +747,10 @@ public:
 	BoolList& mutable_matrix_is_local_list() { return matrix_is_local_list_; }
 	
 	// msgpack serialization
-	#include "UMPoseMsg.h"
+	#include "msg/UMPoseMsg.h"
 private:
 	// boost serialization
-	#include "UMPoseBos.h"
+	#include "bos/UMPoseBos.h"
 	
 	bool bind_pose_;
 	bool rest_pose_;
@@ -819,10 +819,10 @@ public:
 	void set_alpha(double alpha) { alpha_ = alpha; }
 	
 	// msgpack serialization
-	#include "UMTextureMsg.h"
+	#include "msg/UMTextureMsg.h"
 private:
 	// boost serialization
-	#include "UMTextureBos.h"
+	#include "bos/UMTextureBos.h"
 
 	std::string name_;
 	std::string file_name_;
@@ -873,10 +873,10 @@ public:
 	void add_weight(double weight) { mutable_weight_list().push_back(weight); }
 	
 	// msgpack serialization
-	#include "UMClusterMsg.h"
+	#include "msg/UMClusterMsg.h"
 private:
 	// boost serialization
-	#include "UMClusterBos.h"
+	#include "bos/UMClusterBos.h"
 
 	std::string name_;
 	IntList index_list_;
@@ -919,10 +919,10 @@ public:
 	void set_geometry_node_id(int geometry_id) { geometry_node_id_ = geometry_id; }
 	
 	// msgpack serialization
-	#include "UMDeformerMsg.h"
+	#include "msg/UMDeformerMsg.h"
 protected:
 	// boost serialization
-	#include "UMDeformerBos.h"
+	#include "bos/UMDeformerBos.h"
 
 	UMNode* geometry_node_;
 	int geometry_node_id_;
@@ -966,10 +966,10 @@ public:
 	void add_normal(const DoubleList& normal) { mutable_normal_list().push_back(normal); }
 	
 	// msgpack serialization
-	#include "UMShapeMsg.h"
+	#include "msg/UMShapeMsg.h"
 private:
 	// boost serialization
-	#include "UMShapeBos.h"
+	#include "bos/UMShapeBos.h"
 
 	std::string name_;
 	UMNode* base_geometry_node_;
@@ -1006,10 +1006,10 @@ public:
 	void set_deform_percent(double percent) { deform_percent_ = percent; }
 	
 	// msgpack serialization
-	#include "UMBlendShapeChannelMsg.h"
+	#include "msg/UMBlendShapeChannelMsg.h"
 private:
 	// boost serialization
-	#include "UMBlendShapeChannelBos.h"
+	#include "bos/UMBlendShapeChannelBos.h"
 
 	UMShape::ShapeList target_shape_list_;
 	DoubleList full_weight_list_;
@@ -1038,10 +1038,10 @@ public:
 	void add_blend_shape_channel(const UMBlendShapeChannel& channel) { blend_shape_channel_list_.push_back(channel); }
 	
 	// msgpack serialization
-	#include "UMBlendShapeMsg.h"
+	#include "msg/UMBlendShapeMsg.h"
 private:
 	// boost serialization
-	#include "UMBlendShapeBos.h"
+	#include "bos/UMBlendShapeBos.h"
 
 	std::string name_;
 	UMBlendShapeChannel::ChannelList blend_shape_channel_list_;
@@ -1069,10 +1069,10 @@ public:
 	void add_cluster(const UMCluster& cluster) { mutable_cluster_list().push_back(cluster); }
 	
 	// msgpack serialization
-	#include "UMSkinMsg.h"
+	#include "msg/UMSkinMsg.h"
 private:
 	// boost serialization
-	#include "UMSkinBos.h"
+	#include "bos/UMSkinBos.h"
 
 	std::string name_;
 	UMCluster::ClusterList cluster_list_;
@@ -1159,10 +1159,10 @@ public:
 	void add_layered_texture(const TextureList& texture_list) { mutable_layered_texture_list().push_back(texture_list); }
 	
 	// msgpack serialization
-	#include "UMMaterialMsg.h"
+	#include "msg/UMMaterialMsg.h"
 private:
 	// boost serialization
-	#include "UMMaterialBos.h"
+	#include "bos/UMMaterialBos.h"
 
 	std::string name_;
 	
@@ -1257,10 +1257,10 @@ public:
 	int add_vertex_color_layer() { layered_vertex_color_list_.push_back(DoubleListVec()); return static_cast<int>(layered_vertex_color_list_.size()-1); }
 	
 	// msgpack serialization
-	#include "UMMeshMsg.h"
+	#include "msg/UMMeshMsg.h"
 private:
 	// boost serialization
-	#include "UMMeshBos.h"
+	#include "bos/UMMeshBos.h"
 
 	IntListVec vertex_index_list_;
 	DoubleListVec vertex_list_;
@@ -1356,10 +1356,10 @@ public:
 	static bool re_bind_all_nodes(UMObjectPtr object);
 	
 	// msgpack serialization
-	#include "UMObjectMsg.h"
+	#include "msg/UMObjectMsg.h"
 private:
 	// boost serialization
-	#include "UMObjectBos.h"
+	#include "bos/UMObjectBos.h"
 
 	UMMesh::IDToMeshMap mesh_map_;
 	UMSkeleton::IDToSkeletonMap skeleton_map_;
