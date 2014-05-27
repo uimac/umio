@@ -158,19 +158,19 @@
     <OutDir>$(SolutionDir)out/$(Platform)/$(Configuration)\</OutDir>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
     <TargetExt>.dll</TargetExt>
-    <TargetName>$(ProjectName)</TargetName>
+    <TargetName>umio_fbx2014</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)out/$(Platform)/$(Configuration)\</OutDir>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
     <TargetExt>.dll</TargetExt>
-    <TargetName>$(ProjectName)</TargetName>
+    <TargetName>umio_fbx2014</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)out/$(Platform)/$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <TargetExt>.dll</TargetExt>
-    <TargetName>$(ProjectName)</TargetName>
+    <TargetName>umio_fbx2014</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\output\$(Configuration)\</OutDir>
@@ -179,7 +179,7 @@
     <OutDir>$(SolutionDir)out/$(Platform)/$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <TargetExt>.dll</TargetExt>
-    <TargetName>$(ProjectName)</TargetName>
+    <TargetName>umio_fbx2014</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -187,6 +187,7 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;BOOST_PYTHON_STATIC_LIB;FBXSDK_NEW_API;WITH_PYTHON;WITH_FBX2014;WITH_MSGPACK</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -198,7 +199,7 @@
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>copy /Y "$(OutDir)$(ProjectName).dll" "$(OutDir)$(ProjectName).pyd"</Command>
+      <Command>copy /Y "$(OutDir)$(TargetName).dll" "$(OutDir)$(TargetName).pyd"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -208,6 +209,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;BOOST_PYTHON_STATIC_LIB;FBXSDK_NEW_API;WITH_PYTHON;WITH_FBX2014;%(PreprocessorDefinitions);WITH_MSGPACK</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -220,7 +222,7 @@
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>copy /Y "$(OutDir)$(ProjectName).dll" "$(OutDir)$(ProjectName).pyd"</Command>
+      <Command>copy /Y "$(OutDir)$(TargetName).dll" "$(OutDir)$(TargetName).pyd"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -232,6 +234,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>BOOST_PYTHON_STATIC_LIB;FBXSDK_NEW_API;WITH_PYTHON;WITH_FBX2014;WITH_MSGPACK</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -245,7 +248,7 @@
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>copy /Y "$(OutDir)$(ProjectName).dll" "$(OutDir)$(ProjectName).pyd"</Command>
+      <Command>copy /Y "$(OutDir)$(TargetName).dll" "$(OutDir)$(TargetName).pyd"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -256,6 +259,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>BOOST_PYTHON_STATIC_LIB;FBXSDK_NEW_API;WITH_PYTHON;WITH_FBX2014;%(PreprocessorDefinitions);WITH_MSGPACK</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -269,7 +273,7 @@
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>copy /Y "$(OutDir)$(ProjectName).dll" "$(OutDir)$(ProjectName).pyd"</Command>
+      <Command>copy /Y "$(OutDir)$(TargetName).dll" "$(OutDir)$(TargetName).pyd"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
