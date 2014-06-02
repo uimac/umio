@@ -80,6 +80,7 @@
     <ClInclude Include="..\..\src\UMListTypes.h" />
     <ClInclude Include="..\..\src\UMMatrix.h" />
     <ClInclude Include="..\..\src\UMObject.h" />
+    <ClInclude Include="..\..\src\UMTinyObj.h" />
     <ClInclude Include="..\..\src\UMVector.h" />
   </ItemGroup>
   <ItemGroup>
@@ -92,24 +93,25 @@
     <ClCompile Include="..\..\src\UMMain.cpp" />
     <ClCompile Include="..\..\src\UMObject.cpp" />
     <ClCompile Include="..\..\src\UMPython.cpp" />
+    <ClCompile Include="..\..\src\UMTinyObj.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{A399C7AD-CA39-41D9-A708-185BF7A4A9FA}</ProjectGuid>
+    <ProjectGuid>{952E06EE-ABE1-46AB-B055-AD6D8476C64B}</ProjectGuid>
     <RootNamespace>UMIO</RootNamespace>
-    <ProjectName>umio_exe_fbx2014</ProjectName>
+    <ProjectName>umio_obj</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v110_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Emscripten'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110_xp</PlatformToolset>
+    <PlatformToolset>emcc</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -124,7 +126,7 @@
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v110_xp</PlatformToolset>
@@ -136,18 +138,18 @@
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v110_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Emscripten'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110_xp</PlatformToolset>
+    <PlatformToolset>emcc</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleasePython32|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -164,7 +166,7 @@
     <PlatformToolset>v100</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
@@ -201,26 +203,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)out/$(Platform)/$(Configuration)\</OutDir>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
-    <TargetExt>.exe</TargetExt>
-    <TargetName>umio_fbx2014</TargetName>
+    <TargetExt>.lib</TargetExt>
+    <TargetName>umio_obj</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)out/$(Platform)/$(Configuration)\</OutDir>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
-    <TargetExt>.exe</TargetExt>
-    <TargetName>umio_fbx2014</TargetName>
+    <TargetExt>.lib</TargetExt>
+    <TargetName>umio_obj</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)out/$(Platform)/$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
-    <TargetExt>.exe</TargetExt>
-    <TargetName>umio_fbx2014</TargetName>
+    <TargetExt>.lib</TargetExt>
+    <TargetName>umio_obj</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Emscripten'">
     <OutDir>$(SolutionDir)out/$(Platform)/$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
-    <TargetExt>.exe</TargetExt>
-    <TargetName>umio_fbx2014</TargetName>
+    <TargetExt>.lib</TargetExt>
+    <TargetName>umio_obj</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\output\$(Configuration)\</OutDir>
@@ -229,21 +231,21 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)out/$(Platform)/$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
-    <TargetExt>.exe</TargetExt>
-    <TargetName>umio_fbx2014</TargetName>
+    <TargetExt>.lib</TargetExt>
+    <TargetName>umio_obj</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Emscripten'">
     <OutDir>$(SolutionDir)out/$(Platform)/$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
-    <TargetExt>.exe</TargetExt>
-    <TargetName>umio_fbx2014</TargetName>
+    <TargetExt>.bc</TargetExt>
+    <TargetName>umio_obj</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2014;WITH_MSGPACK</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/tinyobjloader/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32_LEAN_AND_MEAN;WITH_TINYOBJ</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
@@ -265,7 +267,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2014;WITH_MSGPACK</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;WIN32_LEAN_AND_MEAN;WITH_TINYOBJ</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
@@ -286,8 +288,8 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2014;WITH_MSGPACK</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/tinyobjloader/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32_LEAN_AND_MEAN;WITH_TINYOBJ</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -312,8 +314,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2014;WITH_MSGPACK</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/tinyobjloader/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WITH_TINYOBJ</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -339,10 +341,11 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2014;WITH_MSGPACK</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/tinyobjloader/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WITH_EMSCRIPTEN;WIN32_LEAN_AND_MEAN;WITH_TINYOBJ</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <LanguageStandardMode>LanguageStandardGnu++11</LanguageStandardMode>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -366,8 +369,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2014;WITH_MSGPACK</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/tinyobjloader/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WITH_TINYOBJ</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>

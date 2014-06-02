@@ -9,6 +9,8 @@
  * Licensed under the MIT or GPL Version 2 or GPL Version 3 licenses. 
  *
  */
+#if !defined(WITH_EMSCRIPTEN)
+
 #include <stdio.h>
 #include <iostream>
 #include <string>
@@ -154,3 +156,5 @@ int main(int argc, char **argv)
 	std::cout << "success." << std::endl;
 	return 0;
 }
+
+#endif // !defined(WITH_EMSCRIPTEN)
