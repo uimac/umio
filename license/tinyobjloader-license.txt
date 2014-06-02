@@ -2,7 +2,6 @@ https://github.com/syoyo/tinyobjloader
 
 "tinyobjloader" is Licensed under 2 clause BSD by Syoyo Fujita.
 
----------------------------------------------------------------------
 
 Copyright (c) <YEAR>, <OWNER>
 All rights reserved.
