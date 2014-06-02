@@ -18,7 +18,11 @@
 
 #ifdef WITH_FBX
 #include "UMFbx.h"
-#endif
+#endif // WITH_FBX
+
+#ifdef WITH_TINYOBJ
+#include "UMTinyObj.h"
+#endif // WITH_TINYOBJ
 
 #include <string>
 #include <map>
@@ -61,12 +65,24 @@ UMObjectPtr UMIO::load(std::string path, const UMIOSetting& setting)
 	if (is_fbx_load)
 	{
 		UMFbx fbx;
-		if (UMObjectPtr obj = fbx.load(path, setting))
+		UMObjectPtr obj = fbx.load(path, setting);
+		if (obj)
 		{
 			return obj;
 		}
 	}
-#endif
+#endif // WITH_FBX
+
+#ifdef WITH_TINYOBJ
+	{
+		UMTinyObj tiny_obj;
+		UMObjectPtr obj = tiny_obj.load(path, setting);
+		if (obj)
+		{
+			return obj;
+		}
+	}
+#endif // WITH_TINYOBJ
 	
 #ifdef WITH_BOOST_SERIALIZATION
 	// load bos

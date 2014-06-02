@@ -7,30 +7,62 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "umio_pyd_fbx2014", "project
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "umio_exe_fbx2014", "project\umio_exe_fbx2014\umio_exe_fbx2014.vcxproj", "{A399C7AD-CA39-41D9-A708-185BF7A4A9FA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "umio_nofbx", "project\umio_lib_nofbx\umio_lib_nofbx.vcxproj", "{46DDC362-50A4-4308-AD22-230FA58EA1EB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "umio_obj", "project\umio_lib_obj\umio_lib_obj.vcxproj", "{952E06EE-ABE1-46AB-B055-AD6D8476C64B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Emscripten = Debug|Emscripten
 		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
+		Release|Emscripten = Release|Emscripten
 		Release|Win32 = Release|Win32
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19F5A1F5-C3CA-4B74-954A-0A9EC988C59D}.Debug|Emscripten.ActiveCfg = Debug|Emscripten
+		{19F5A1F5-C3CA-4B74-954A-0A9EC988C59D}.Debug|Emscripten.Build.0 = Debug|Emscripten
 		{19F5A1F5-C3CA-4B74-954A-0A9EC988C59D}.Debug|Win32.ActiveCfg = Debug|Win32
 		{19F5A1F5-C3CA-4B74-954A-0A9EC988C59D}.Debug|Win32.Build.0 = Debug|Win32
 		{19F5A1F5-C3CA-4B74-954A-0A9EC988C59D}.Debug|x64.ActiveCfg = Debug|x64
-		{19F5A1F5-C3CA-4B74-954A-0A9EC988C59D}.Debug|x64.Build.0 = Debug|x64
+		{19F5A1F5-C3CA-4B74-954A-0A9EC988C59D}.Release|Emscripten.ActiveCfg = Release|Emscripten
 		{19F5A1F5-C3CA-4B74-954A-0A9EC988C59D}.Release|Win32.ActiveCfg = Release|Win32
 		{19F5A1F5-C3CA-4B74-954A-0A9EC988C59D}.Release|Win32.Build.0 = Release|Win32
 		{19F5A1F5-C3CA-4B74-954A-0A9EC988C59D}.Release|x64.ActiveCfg = Release|x64
-		{19F5A1F5-C3CA-4B74-954A-0A9EC988C59D}.Release|x64.Build.0 = Release|x64
+		{3719EE44-AA5F-42FA-B2B6-58A2C71C61FB}.Debug|Emscripten.ActiveCfg = Debug|Emscripten
 		{3719EE44-AA5F-42FA-B2B6-58A2C71C61FB}.Debug|Win32.ActiveCfg = Debug|Win32
 		{3719EE44-AA5F-42FA-B2B6-58A2C71C61FB}.Debug|x64.ActiveCfg = Debug|x64
+		{3719EE44-AA5F-42FA-B2B6-58A2C71C61FB}.Release|Emscripten.ActiveCfg = Release|Emscripten
 		{3719EE44-AA5F-42FA-B2B6-58A2C71C61FB}.Release|Win32.ActiveCfg = Release|Win32
 		{3719EE44-AA5F-42FA-B2B6-58A2C71C61FB}.Release|x64.ActiveCfg = Release|x64
+		{A399C7AD-CA39-41D9-A708-185BF7A4A9FA}.Debug|Emscripten.ActiveCfg = Debug|Emscripten
 		{A399C7AD-CA39-41D9-A708-185BF7A4A9FA}.Debug|Win32.ActiveCfg = Debug|Win32
 		{A399C7AD-CA39-41D9-A708-185BF7A4A9FA}.Debug|x64.ActiveCfg = Debug|x64
+		{A399C7AD-CA39-41D9-A708-185BF7A4A9FA}.Release|Emscripten.ActiveCfg = Release|Emscripten
 		{A399C7AD-CA39-41D9-A708-185BF7A4A9FA}.Release|Win32.ActiveCfg = Release|Win32
 		{A399C7AD-CA39-41D9-A708-185BF7A4A9FA}.Release|x64.ActiveCfg = Release|x64
+		{46DDC362-50A4-4308-AD22-230FA58EA1EB}.Debug|Emscripten.ActiveCfg = Debug|Emscripten
+		{46DDC362-50A4-4308-AD22-230FA58EA1EB}.Debug|Emscripten.Build.0 = Debug|Emscripten
+		{46DDC362-50A4-4308-AD22-230FA58EA1EB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{46DDC362-50A4-4308-AD22-230FA58EA1EB}.Debug|Win32.Build.0 = Debug|Win32
+		{46DDC362-50A4-4308-AD22-230FA58EA1EB}.Debug|x64.ActiveCfg = Debug|x64
+		{46DDC362-50A4-4308-AD22-230FA58EA1EB}.Release|Emscripten.ActiveCfg = Release|Emscripten
+		{46DDC362-50A4-4308-AD22-230FA58EA1EB}.Release|Win32.ActiveCfg = Release|Win32
+		{46DDC362-50A4-4308-AD22-230FA58EA1EB}.Release|Win32.Build.0 = Release|Win32
+		{46DDC362-50A4-4308-AD22-230FA58EA1EB}.Release|x64.ActiveCfg = Release|x64
+		{952E06EE-ABE1-46AB-B055-AD6D8476C64B}.Debug|Emscripten.ActiveCfg = Debug|Emscripten
+		{952E06EE-ABE1-46AB-B055-AD6D8476C64B}.Debug|Emscripten.Build.0 = Debug|Emscripten
+		{952E06EE-ABE1-46AB-B055-AD6D8476C64B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{952E06EE-ABE1-46AB-B055-AD6D8476C64B}.Debug|Win32.Build.0 = Debug|Win32
+		{952E06EE-ABE1-46AB-B055-AD6D8476C64B}.Debug|x64.ActiveCfg = Debug|x64
+		{952E06EE-ABE1-46AB-B055-AD6D8476C64B}.Debug|x64.Build.0 = Debug|x64
+		{952E06EE-ABE1-46AB-B055-AD6D8476C64B}.Release|Emscripten.ActiveCfg = Release|Emscripten
+		{952E06EE-ABE1-46AB-B055-AD6D8476C64B}.Release|Emscripten.Build.0 = Release|Emscripten
+		{952E06EE-ABE1-46AB-B055-AD6D8476C64B}.Release|Win32.ActiveCfg = Release|Win32
+		{952E06EE-ABE1-46AB-B055-AD6D8476C64B}.Release|Win32.Build.0 = Release|Win32
+		{952E06EE-ABE1-46AB-B055-AD6D8476C64B}.Release|x64.ActiveCfg = Release|x64
+		{952E06EE-ABE1-46AB-B055-AD6D8476C64B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
