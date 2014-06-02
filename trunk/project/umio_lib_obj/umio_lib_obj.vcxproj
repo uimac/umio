@@ -95,6 +95,9 @@
     <ClCompile Include="..\..\src\UMPython.cpp" />
     <ClCompile Include="..\..\src\UMTinyObj.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\license\tinyobjloader-license.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{952E06EE-ABE1-46AB-B055-AD6D8476C64B}</ProjectGuid>
     <RootNamespace>UMIO</RootNamespace>

@@ -145,4 +145,7 @@
       <UniqueIdentifier>{1a37be3f-142f-4742-8e54-4c737a7f2bbf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\license\tinyobjloader-license.txt" />
+  </ItemGroup>
 </Project>

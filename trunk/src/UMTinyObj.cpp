@@ -56,38 +56,51 @@ UMObjectPtr UMTinyObj::load(std::string path, const UMIOSetting& setting)
 				vertex_index_list[1] = shapes[i].mesh.indices[f*3+1];
 				vertex_index_list[2] = shapes[i].mesh.indices[f*3+2];
 				ummesh.mutable_vertex_index_list().push_back(vertex_index_list);
-			}
-		}
-		// vertex
-		{
-			for (size_t v = 0; v < shapes[i].mesh.positions.size() / 3; ++v)
-			{
-				DoubleList vertex_list(3);
-				vertex_list[0] = shapes[i].mesh.positions[3*v+0];
-				vertex_list[1] = shapes[i].mesh.positions[3*v+1];
-				vertex_list[2] = shapes[i].mesh.positions[3*v+2];
-				ummesh.mutable_vertex_list().push_back(vertex_list);
-			}
-		}
-		// normal
-		{
-			for (size_t n = 0; n < shapes[i].mesh.normals.size() / 3; ++n) 
-			{
-				DoubleList normal_list(3);
-				normal_list[0] = shapes[i].mesh.normals[3*n+0];
-				normal_list[1] = shapes[i].mesh.normals[3*n+1];
-				normal_list[2] = shapes[i].mesh.normals[3*n+2];
-				ummesh.mutable_normal_list().push_back(normal_list);
-			}
-		}
-		// uv
-		{
-			for (size_t uv = 0; uv < shapes[i].mesh.texcoords.size() / 2; ++uv)
-			{
-				DoubleList uv_list(2);
-				uv_list[0] = shapes[i].mesh.texcoords[2*uv+0];
-				uv_list[1] = shapes[i].mesh.texcoords[2*uv+1];
-				ummesh.mutable_uv_list().push_back(uv_list);
+				
+				const int face[] = {
+					vertex_index_list[0],
+					vertex_index_list[1],
+					vertex_index_list[2]
+				};
+
+				// vertex
+				if (!shapes[i].mesh.positions.empty())
+				{
+					for (int k = 0; k < 3; ++k)
+					{
+						const int vi = face[k];
+						DoubleList vertex_list(3);
+						vertex_list[0] = shapes[i].mesh.positions[3*vi+0];
+						vertex_list[1] = shapes[i].mesh.positions[3*vi+1];
+						vertex_list[2] = shapes[i].mesh.positions[3*vi+2];
+						ummesh.mutable_vertex_list().push_back(vertex_list);
+					}
+				}
+				// normal
+				if (!shapes[i].mesh.normals.empty())
+				{
+					for (int k = 0; k < 3; ++k)
+					{
+						const int vi = face[k];
+						DoubleList normal_list(3);
+						normal_list[0] = shapes[i].mesh.normals[3*vi+0];
+						normal_list[1] = shapes[i].mesh.normals[3*vi+1];
+						normal_list[2] = shapes[i].mesh.normals[3*vi+2];
+						ummesh.mutable_normal_list().push_back(normal_list);
+					}
+				}
+				// uv
+				if (!shapes[i].mesh.texcoords.empty())
+				{
+					for (int k = 0; k < 3; ++k)
+					{
+						const int vi = face[k];
+						DoubleList uv_list(2);
+						uv_list[0] = shapes[i].mesh.texcoords[2*vi+0];
+						uv_list[1] = shapes[i].mesh.texcoords[2*vi+1];
+						ummesh.mutable_uv_list().push_back(uv_list);
+					}
+				}
 			}
 		}
 		// material
