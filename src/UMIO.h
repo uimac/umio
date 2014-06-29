@@ -43,6 +43,11 @@ public:
 	UMObjectPtr load_bos_from_memory(const std::string& src, const UMIOSetting& setting);
 
 	/**
+	 * save bos to memory
+	 */
+	char* save_to_memory(int& dst_size, UMObjectPtr object, const UMIOSetting& setting);
+
+	/**
 	 * load settings
 	 */
 	bool load_setting(std::string path, UMIOSetting& setting);

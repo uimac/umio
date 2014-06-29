@@ -109,6 +109,22 @@ public:
 	}
 };
 
+// for UMIO::save_to_memory
+static boost::python::object save_to_memory_wrap(
+	UMIO& self, 
+	UMObjectPtr object, 
+	const UMIOSetting& setting)
+{
+	int buffer_size = 0;
+	char* buffer = self.save_to_memory(buffer_size, object, setting);
+	if (buffer && buffer_size > 0)
+	{
+		boost::python::object memory_view(boost::python::handle<>(PyMemoryView_FromMemory(buffer, buffer_size, PyBUF_READ)));
+		return memory_view;
+	}
+	return boost::python::object();
+}
+
 // call function with default arguments
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(uv_list_with_default_arg, uv_list, 0, 1);
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(normal_list_with_default_arg, normal_list, 0, 1);
@@ -1170,6 +1186,7 @@ BOOST_PYTHON_MODULE(UMIO)
 	class_<UMIO>("UMIO")
 		.def("load", &UMIO::load)
 		.def("save", &UMIO::save)
+		.def("save_to_memory", &save_to_memory_wrap, (arg("self")))
 		.def("load_setting", &UMIO::load_setting)
 		.def("save_setting", &UMIO::save_setting)
 		;

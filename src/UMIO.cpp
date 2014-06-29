@@ -29,6 +29,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 
 #ifdef WITH_BOOST_SERIALIZATION
 #include <boost/archive/binary_oarchive.hpp>
@@ -294,6 +295,50 @@ UMObjectPtr UMIO::load_bos_from_memory(const std::string& src, const UMIOSetting
 #endif // WITH_MSGPACK
 
 	return UMObjectPtr();
+}
+
+/**
+ * save to memory
+ */
+char* UMIO::save_to_memory(int& dst_size, UMObjectPtr object, const UMIOSetting& setting)
+{
+	bool is_fbx_save = false;
+	UMIOSetting::UMExpSettingMap::const_iterator bt = setting.bl_exp_prop_map().begin();
+	for (; bt != setting.bl_exp_prop_map().end(); ++bt)
+	{
+		UMIOSetting::EUMExpSettingType type = bt->first;
+		bool val = bt->second;
+
+		if (type == UMIOSetting::eUMExpFBX)
+		{
+			is_fbx_save = val;
+		}
+	}
+	
+#ifdef WITH_MSGPACK
+	// save msgpack msg
+	char* dst_buffer = NULL;
+	try {
+		msgpack::sbuffer sbuf;
+		msgpack::pack(sbuf, *object);
+		dst_size = sbuf.size();
+		dst_buffer = new char[dst_size];
+		if (dst_buffer)
+		{
+			std::copy(sbuf.data(), sbuf.data() + sbuf.size(), dst_buffer);
+		}
+		return dst_buffer;
+	}
+	catch (...) {
+		if (dst_buffer)
+		{
+			delete dst_buffer;
+		}
+		return NULL;
+	}
+#endif // WITH_MSGPACK
+
+	return NULL;
 }
 
 /**
