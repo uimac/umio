@@ -366,6 +366,8 @@ BOOST_PYTHON_MODULE(UMIO)
 		.def("set_geometric_translation", &UMNode::set_geometric_translation)
 		.def("set_geometric_rotation", &UMNode::set_geometric_rotation)
 		.def("set_geometric_scaling", &UMNode::set_geometric_scaling)
+		.def("set_local_transform", &UMNode::set_local_transform)
+		.def("set_global_transform", &UMNode::set_global_transform)
 		;
 		
 	class_<std::vector<UMNode> >("NodeList")

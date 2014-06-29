@@ -116,6 +116,8 @@ public:
 	void set_geometric_translation(const UMVec4d& trans) { geometric_translation_ = trans; }
 	void set_geometric_rotation(const UMVec4d& rot) { geometric_rotation_ = rot; }
 	void set_geometric_scaling(const UMVec4d& scale) { geometric_scaling_ = scale; }
+	void set_local_transform(const UMMat44d& mat) { local_transform_ = mat; }
+	void set_global_transform(const UMMat44d& mat) { global_transform_ = mat; }
 	
 	// msgpack serialization
 	#include "msg/UMNodeMsg.h"
