@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "umio_nofbx", "project\umio_
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "umio_obj", "project\umio_lib_obj\umio_lib_obj.vcxproj", "{952E06EE-ABE1-46AB-B055-AD6D8476C64B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "umio_pyd_nofbx", "project\umio_pyd_nofbx\umio_pyd_nofbx.vcxproj", "{79C1C237-9EFE-4647-8C96-82AF6C9A67EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Emscripten = Debug|Emscripten
@@ -62,7 +64,18 @@ Global
 		{952E06EE-ABE1-46AB-B055-AD6D8476C64B}.Release|Win32.ActiveCfg = Release|Win32
 		{952E06EE-ABE1-46AB-B055-AD6D8476C64B}.Release|Win32.Build.0 = Release|Win32
 		{952E06EE-ABE1-46AB-B055-AD6D8476C64B}.Release|x64.ActiveCfg = Release|x64
-		{952E06EE-ABE1-46AB-B055-AD6D8476C64B}.Release|x64.Build.0 = Release|x64
+		{79C1C237-9EFE-4647-8C96-82AF6C9A67EA}.Debug|Emscripten.ActiveCfg = Debug|Emscripten
+		{79C1C237-9EFE-4647-8C96-82AF6C9A67EA}.Debug|Emscripten.Build.0 = Debug|Emscripten
+		{79C1C237-9EFE-4647-8C96-82AF6C9A67EA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{79C1C237-9EFE-4647-8C96-82AF6C9A67EA}.Debug|Win32.Build.0 = Debug|Win32
+		{79C1C237-9EFE-4647-8C96-82AF6C9A67EA}.Debug|x64.ActiveCfg = Debug|x64
+		{79C1C237-9EFE-4647-8C96-82AF6C9A67EA}.Debug|x64.Build.0 = Debug|x64
+		{79C1C237-9EFE-4647-8C96-82AF6C9A67EA}.Release|Emscripten.ActiveCfg = Release|Emscripten
+		{79C1C237-9EFE-4647-8C96-82AF6C9A67EA}.Release|Emscripten.Build.0 = Release|Emscripten
+		{79C1C237-9EFE-4647-8C96-82AF6C9A67EA}.Release|Win32.ActiveCfg = Release|Win32
+		{79C1C237-9EFE-4647-8C96-82AF6C9A67EA}.Release|Win32.Build.0 = Release|Win32
+		{79C1C237-9EFE-4647-8C96-82AF6C9A67EA}.Release|x64.ActiveCfg = Release|x64
+		{79C1C237-9EFE-4647-8C96-82AF6C9A67EA}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
