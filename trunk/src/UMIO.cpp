@@ -12,7 +12,7 @@
 #include "UMIO.h"
 #include "UMObject.h"
 
-#if defined(WITH_FBX2014) || defined(WITH_FBX2013) || defined(WITH_FBX2011)
+#if defined(WITH_FBX2015) || defined(WITH_FBX2014) || defined(WITH_FBX2013) || defined(WITH_FBX2011)
 #define WITH_FBX
 #endif
 
@@ -225,7 +225,7 @@ bool UMIO::save(std::string path, UMObjectPtr object, const UMIOSetting& setting
 /**
  * load file
  */
-UMObjectPtr UMIO::load_bos_from_memory(const std::string& src, const UMIOSetting& setting)
+UMObjectPtr UMIO::load_from_memory(const std::string& src, const UMIOSetting& setting)
 {
 	bool is_fbx_load = false;
 	UMIOSetting::UMImpSettingMap::const_iterator bt = setting.bl_imp_prop_map().begin();

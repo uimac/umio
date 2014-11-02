@@ -105,6 +105,14 @@ public:
 	{
 		m[row][column] = value;
 	}
+
+	/**
+	 * get
+	 */
+	T get(int row, int column)
+	{
+		return m[row][column];
+	}
 	
 	/**
 	 * compare equal
