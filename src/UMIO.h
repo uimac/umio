@@ -40,7 +40,7 @@ public:
 	/**
 	 * load bos from memory
 	 */
-	UMObjectPtr load_bos_from_memory(const std::string& src, const UMIOSetting& setting);
+	UMObjectPtr load_from_memory(const std::string& src, const UMIOSetting& setting);
 
 	/**
 	 * save bos to memory
