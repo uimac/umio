@@ -1283,11 +1283,11 @@ bool UMFbxLoadImpl::assign_vertex_colors(
  */
 bool UMFbxLoadImpl::assign_mesh(UMObjectPtr object, FbxNode* node)
 {
-	if (!object) return UMObjectPtr();
-	if (!node) return UMObjectPtr();
+	if (!object) return false;
+	if (!node) return false;
 
 	FbxMesh* fbx_mesh = node->GetMesh();
-	if (!fbx_mesh) return UMObjectPtr();
+	if (!fbx_mesh) return false;
 	
 	FbxMesh* fbx_mesh_no_triangulated = fbx_mesh;
 	if (is_triangulate())
@@ -1397,11 +1397,11 @@ bool UMFbxLoadImpl::assign_mesh(UMObjectPtr object, FbxNode* node)
  */
 bool UMFbxLoadImpl::assign_nurbs(UMObjectPtr object, FbxNode* node)
 {
-	if (!object) return UMObjectPtr();
-	if (!node) return UMObjectPtr();
+	if (!object) return false;
+	if (!node) return false;
 
 	FbxNurbs* fbx_nurbs = node->GetNurb();
-	if (!fbx_nurbs) return UMObjectPtr();
+	if (!fbx_nurbs) return false;
 	
 	FbxGeometryConverter converter(manager());
 	if (FbxMesh* fbx_mesh = converter.TriangulateNurb(fbx_nurbs))
@@ -1417,11 +1417,11 @@ bool UMFbxLoadImpl::assign_nurbs(UMObjectPtr object, FbxNode* node)
  */
 bool UMFbxLoadImpl::assign_patch(UMObjectPtr object, FbxNode* node)
 {
-	if (!object) return UMObjectPtr();
-	if (!node) return UMObjectPtr();
+	if (!object) return false;
+	if (!node) return false;
 
 	FbxPatch* fbx_patch = node->GetPatch();
-	if (!fbx_patch) return UMObjectPtr();
+	if (!fbx_patch) return false;
 	
 	FbxGeometryConverter converter(manager());
 	if (FbxMesh* fbx_mesh = converter.TriangulatePatch(fbx_patch))
@@ -2951,7 +2951,7 @@ bool UMFbxSaveImpl::save(std::string path, UMObjectPtr object, const UMIOSetting
 
 	// Create a manager
 	manager_ = FbxManager::Create();
-	if (!manager_) return UMObjectPtr();
+	if (!manager_) return false;
 	FbxManager* manager = manager_;
 
 	// init manager
@@ -2977,7 +2977,7 @@ bool UMFbxSaveImpl::save(std::string path, UMObjectPtr object, const UMIOSetting
 	exporter_ = FbxExporter::Create(manager,"");
 	if (!exporter_) {
 		printf("FbxExporter::Create failed.\n");
-		return UMObjectPtr();
+		return false;
 	}
 	FbxExporter* exporter = exporter_;
 	
@@ -3000,7 +3000,7 @@ bool UMFbxSaveImpl::save(std::string path, UMObjectPtr object, const UMIOSetting
 			// old fbx, text
 			if (!exporter->Initialize(path.c_str(), 4, manager->GetIOSettings())) {
 				printf("Call to FbxExporter::Initialize() failed.\n");
-				return UMObjectPtr();
+				return false;
 			}
 		}
 		else
@@ -3008,7 +3008,7 @@ bool UMFbxSaveImpl::save(std::string path, UMObjectPtr object, const UMIOSetting
 			// newest fbx, text
 			if (!exporter->Initialize(path.c_str(), 1, manager->GetIOSettings())) {
 				printf("Call to FbxExporter::Initialize() failed.\n");
-				return UMObjectPtr();
+				return false;
 			}
 		}
 	}
@@ -3019,7 +3019,7 @@ bool UMFbxSaveImpl::save(std::string path, UMObjectPtr object, const UMIOSetting
 			// old fbx, binary
 			if (!exporter->Initialize(path.c_str(), 3, manager->GetIOSettings())) {
 				printf("Call to FbxExporter::Initialize() failed.\n");
-				return UMObjectPtr();
+				return false;
 			}
 		}
 		else
@@ -3027,7 +3027,7 @@ bool UMFbxSaveImpl::save(std::string path, UMObjectPtr object, const UMIOSetting
 			// newest fbx, binary
 			if (!exporter->Initialize(path.c_str(), 0, manager->GetIOSettings())) {
 				printf("Call to FbxExporter::Initialize() failed.\n");
-				return UMObjectPtr();
+				return false;
 			}
 		}
 	}
@@ -3037,13 +3037,13 @@ bool UMFbxSaveImpl::save(std::string path, UMObjectPtr object, const UMIOSetting
 	set_axis_type(scene, setting);
 	if (!scene) {
 		printf("create_scene failed.\n");
-		return UMObjectPtr();
+		return false;
 	}
 
 	// Import the scene.
 	if (!exporter->Export(scene)) {
 		printf("export failed.\n");
-		return UMObjectPtr();
+		return false;
 	}
 
 	printf("export success.\n");
