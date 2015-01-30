@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Emscripten">
-      <Configuration>Debug</Configuration>
-      <Platform>Emscripten</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
@@ -12,18 +8,6 @@
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="ReleasePython33FBX2013|Win32">
-      <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="ReleasePython33FBX2013|x64">
-      <Configuration>Release</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Emscripten">
-      <Configuration>Release</Configuration>
-      <Platform>Emscripten</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
@@ -105,63 +89,18 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v120_xp</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Emscripten'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110_xp</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Emscripten'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v120_xp</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v120_xp</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Emscripten'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>emcc</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleasePython32|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v100</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleasePython32|Emscripten'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v100</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -195,16 +134,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)\output\$(Platform)\$(Configuration)\</OutDir>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)out/$(Platform)/$(Configuration)\</OutDir>
-    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
-    <TargetExt>.lib</TargetExt>
-    <TargetName>umio_fbx2014</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)out/$(Platform)/$(Configuration)\</OutDir>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
     <TargetExt>.lib</TargetExt>
@@ -216,23 +146,7 @@
     <TargetExt>.lib</TargetExt>
     <TargetName>umio_fbx2014</TargetName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Emscripten'">
-    <OutDir>$(SolutionDir)out/$(Platform)/$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
-    <TargetExt>.lib</TargetExt>
-    <TargetName>umio_fbx2014</TargetName>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)\output\$(Configuration)\</OutDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Emscripten'" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)out/$(Platform)/$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
-    <TargetExt>.lib</TargetExt>
-    <TargetName>umio_fbx2014</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Emscripten'">
     <OutDir>$(SolutionDir)out/$(Platform)/$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <TargetExt>.lib</TargetExt>
@@ -242,14 +156,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2014;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python33/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2014/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libboost_python-vc110-mt-gd-1_51.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2014/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libboost_python-vc120-mt-gd-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -264,14 +178,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2014;WITH_MSGPACK</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python33/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2014/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libboost_python-vc110-mt-gd-1_51.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2014/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libboost_python-vc120-mt-gd-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -286,15 +200,15 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2014;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python33/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2014/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libboost_python-vc110-mt-gd-1_51.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2014/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libboost_python-vc120-mt-gd-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent>
@@ -312,7 +226,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2014;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
@@ -321,8 +235,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python33/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2014/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libboost_python-vc110-mt-1_51.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2014/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libboost_python-vc120-mt-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -339,7 +253,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2014;WITH_MSGPACK</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
@@ -349,8 +263,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python33/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2014/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libboost_python-vc110-mt-1_51.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2014/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libboost_python-vc120-mt-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -367,7 +281,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python33/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2014/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2014;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -375,8 +289,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python33/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2014/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libboost_python-vc110-mt-1_51.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2014/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libboost_python-vc120-mt-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
