@@ -5,7 +5,7 @@
  *
  *
  * Copyright (C) 2014 Kazuma Hatta
- * Licensed under the MIT or GPL Version 2 or GPL Version 3 licenses. 
+ * Licensed under the MIT or GPL Version 3 licenses. 
  */
 #pragma once
 
