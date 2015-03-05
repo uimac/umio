@@ -1693,17 +1693,17 @@ bool UMFbxLoadImpl::assign_one_node(UMObjectPtr object, UMNode* dst_node, FbxNod
 	}
 	
 	FbxScene* scene = current_scene();
-	if (scene && scene->GetEvaluator())
+	if (scene && scene->GetAnimationEvaluator())
 	{
 		// set local tranform
 		matrix_to_UMMat44d(
 			dst_node->mutable_local_transform(),
-			scene->GetEvaluator()->GetNodeLocalTransform(node));
+			scene->GetAnimationEvaluator()->GetNodeLocalTransform(node));
 
 		// set global transform
 		matrix_to_UMMat44d(
 			dst_node->mutable_global_transform(),
-			scene->GetEvaluator()->GetNodeGlobalTransform(node));
+			scene->GetAnimationEvaluator()->GetNodeGlobalTransform(node));
 	}
 
 	return true;
@@ -2800,7 +2800,7 @@ bool UMFbxSaveImpl::export_bind_pose(FbxScene* scene, UMObjectPtr object, FbxNod
 					{
 						if (FbxNode* node = cluster->GetLink())
 						{
-							if (FbxAnimEvaluator* evaluator = scene->GetEvaluator())
+							if (FbxAnimEvaluator* evaluator = scene->GetAnimationEvaluator())
 							{
 								const FbxAMatrix transform = evaluator->GetNodeGlobalTransform(node);
 								pose->Add(node, transform, false, true);
@@ -2855,7 +2855,7 @@ bool UMFbxSaveImpl::export_skins(FbxScene* scene, UMObjectPtr object, FbxNode* f
 						{
 							fbx_cluster->SetLink(fbx_link_node);
 							// transform
-							if (FbxAnimEvaluator* evaluator = scene->GetEvaluator())
+							if (FbxAnimEvaluator* evaluator = scene->GetAnimationEvaluator())
 							{
 								const FbxAMatrix transform = evaluator->GetNodeGlobalTransform(fbx_node);
 								fbx_cluster->SetTransformMatrix(transform);
