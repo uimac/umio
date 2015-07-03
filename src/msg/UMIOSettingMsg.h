@@ -62,8 +62,8 @@
 		}
 		SerializableMap imp = v.get<1>();
 		{
-			SerializableMap::const_iterator it = exp.begin();
-			for (; it != exp.end(); ++it) {
+			SerializableMap::const_iterator it = imp.begin();
+			for (; it != imp.end(); ++it) {
 				imp_prop_map_[static_cast<EImpSettingType>(it->first)] = !!it->second;
 			}
 		}
