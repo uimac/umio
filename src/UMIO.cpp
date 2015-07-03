@@ -125,7 +125,10 @@ UMObjectPtr UMIO::load(std::string path, const UMIOSetting& setting)
 			
 		umio::UMObjectPtr obj = umio::UMObject::create_object();
 		msg_obj.convert(&(*obj));
-		return obj;
+		if (UMObject::re_bind_all_nodes(obj))
+		{
+			return obj;
+		}
 	}
 	catch (msgpack::unpack_error& ) {
 		//std::cout << "msg unpack failed" << std::endl;
@@ -278,7 +281,11 @@ UMObjectPtr UMIO::load_from_memory(const std::string& src, const UMIOSetting& se
 			
 		umio::UMObjectPtr obj = umio::UMObject::create_object();
 		msg_obj.convert(&(*obj));
-		return obj;
+
+		if (UMObject::re_bind_all_nodes(obj))
+		{
+			return obj;
+		}
 	}
 	catch (msgpack::unpack_error& ) {
 		//std::cout << "msg unpack failed" << std::endl;
