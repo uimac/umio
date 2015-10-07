@@ -208,26 +208,6 @@ public:
 	 */
 	size_t total_polygon_size() const;
 
-	///**
-	// * get camera change event
-	// */
-	//umbase::UMEventPtr camera_change_event() { return camera_change_event_; }
-	//
-	///**
-	// * get background change event
-	// */
-	//umbase::UMEventPtr background_change_event() { return background_change_event_; }
-	//
-	///**
-	// * get foreground change event
-	// */
-	//umbase::UMEventPtr foreground_change_event() { return foreground_change_event_; }
-
-	///**
-	//* get loaded event
-	//*/
-	//umbase::UMEventPtr loaded_event() { return loaded_event_; }
-
 	/** 
 	 * deformation setting
 	 */
@@ -288,11 +268,6 @@ private:
 
 	UMLineList temporary_line_list_;
 	UMMeshList temporary_mesh_list_;
-
-	//umbase::UMEventPtr camera_change_event_;
-	//umbase::UMEventPtr background_change_event_;
-	//umbase::UMEventPtr foreground_change_event_;
-	//umbase::UMEventPtr loaded_event_;
 };
 
 } // umdraw

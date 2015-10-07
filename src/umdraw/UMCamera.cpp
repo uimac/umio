@@ -14,7 +14,6 @@
 #include "UMMath.h"
 #include "UMVector.h"
 #include "UMMatrix.h"
-#include "UMAny.h"
 #include "UMBox.h"
 
 namespace umdraw

@@ -28,10 +28,6 @@ namespace umdraw
  */
 void UMScene::init(int width, int height)
 {
-	//camera_change_event_ = std::make_shared<umbase::UMEvent>(eSoftwareEventCameraChaged);
-	//foreground_change_event_ = std::make_shared<umbase::UMEvent>(eSoftwareEventForegroundChaged);
-	//loaded_event_ = std::make_shared<umbase::UMEvent>(eSoftwareEventModelLoaded);
-
 	width_ = width;
 	height_ = height;
 	is_enable_deform_ = true;
@@ -77,11 +73,6 @@ bool UMScene::load(const umstring& absolute_file_path)
 		return false;
 	}
 
-	//if (loaded_event_) {
-	//	umbase::UMAny param(mesh_group);
-	//	loaded_event_->set_parameter(param);
-	//	loaded_event_->notify();
-	//}
 	return true;
 }
 
@@ -129,11 +120,6 @@ bool UMScene::load_from_memory(const std::string& src)
 		return false;
 	}
 
-	//if (loaded_event_) {
-	//	umbase::UMAny param(mesh_group);
-	//	loaded_event_->set_parameter(param);
-	//	loaded_event_->notify();
-	//}
 	return true;
 }
 
@@ -185,9 +171,6 @@ void UMScene::set_current_camera(UMCameraPtr camera)
 	{
 		mutable_camera_list()[0] = camera;
 	}
-	//umbase::UMEvent::Parameter parameter(camera);
-	//camera_change_event_->set_parameter(parameter);
-	//camera_change_event_->notify();
 }
 
 /**
@@ -196,12 +179,6 @@ void UMScene::set_current_camera(UMCameraPtr camera)
 void UMScene::set_background_image(UMImagePtr image)
 {
 	background_image_ = image;
-	//umbase::UMEvent::Parameter parameter(image);
-	//if (background_change_event_)
-	//{
-	//	background_change_event_->set_parameter(parameter);
-	//	background_change_event_->notify();
-	//}
 }
 
 /**
@@ -210,12 +187,6 @@ void UMScene::set_background_image(UMImagePtr image)
 void UMScene::set_foreground_image(UMImagePtr image)
 {
 	foreground_image_ = image;
-	//umbase::UMEvent::Parameter parameter(image);
-	//if (foreground_change_event_)
-	//{
-	//	foreground_change_event_->set_parameter(parameter);
-	//	foreground_change_event_->notify();
-	//}
 }
 
 /**

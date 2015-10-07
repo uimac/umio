@@ -71,11 +71,6 @@ UMAbcScenePtr UMAbcSoftwareIO::load(umstring path, const UMAbcSetting& setting)
 	{
 		scene->set_umdraw_scene(reference_scene);
 	}
-	//if (loaded_event_) {
-	//	umbase::UMAny param(scene);
-	//	loaded_event_->set_parameter(param);
-	//	loaded_event_->notify();
-	//}
 	return scene;
 }
 
