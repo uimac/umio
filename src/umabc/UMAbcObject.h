@@ -16,7 +16,6 @@
 #include "UMMacro.h"
 #include "UMBox.h"
 #include "UMMathTypes.h"
-#include "UMAbcCallback.h"
 #include "UMAbc.h"
 #include "UMObject.h"
 

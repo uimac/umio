@@ -16,7 +16,6 @@
 #include <functional>
 #include "UMMacro.h"
 #include "UMAbcSetting.h"
-#include "UMAbcCallback.h"
 
 /// uimac alembic library
 namespace umabc

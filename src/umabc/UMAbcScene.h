@@ -16,7 +16,6 @@
 #include <map>
 #include "UMMacro.h"
 #include "UMAbcSetting.h"
-#include "UMAbcCallback.h"
 #include "UMAbc.h"
 
 namespace umdraw

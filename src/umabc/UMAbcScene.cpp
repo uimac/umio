@@ -19,7 +19,6 @@
 #include "UMAbcObject.h"
 #include "UMStringUtil.h"
 #include "UMPath.h"
-#include "UMAbcCallback.h"
 #include "UMMaterial.h"
 #include "UMAbcSoftwareIO.h"
 #include "UMAbcMesh.h"

@@ -16,7 +16,6 @@
 #include <functional>
 #include "UMMacro.h"
 #include "UMAbcSetting.h"
-#include "UMAbcCallback.h"
 #include "UMMaterial.h"
 
 namespace umdraw
