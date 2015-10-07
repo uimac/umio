@@ -991,6 +991,7 @@ bool UMFbxLoadImpl::assign_blend_shapes(UMObjectPtr object, UMMesh& mesh, FbxNod
 							fbx_shape->GetNormalsIndices(&fbx_normals_indices);
 							if (fbx_normals_indices)
 							{
+								const int count = fbx_shape->GetElementNormalCount();
 								const int normal_indices_count = fbx_normals_indices->GetCount();
 								for (int m = 0; m < normal_indices_count; ++m)
 								{
@@ -1004,6 +1005,7 @@ bool UMFbxLoadImpl::assign_blend_shapes(UMObjectPtr object, UMMesh& mesh, FbxNod
 							fbx_shape->GetNormals(&fbx_normals);
 							if (fbx_normals)
 							{
+								const int count = fbx_shape->GetElementNormalCount();
 								const int normal_count = fbx_normals->GetCount();
 								for (int m = 0; m < normal_count; ++m)
 								{

@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Emscripten">
-      <Configuration>Debug</Configuration>
-      <Platform>Emscripten</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
@@ -20,10 +16,6 @@
     <ProjectConfiguration Include="ReleasePython34FBX2015|x64">
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Emscripten">
-      <Configuration>Release</Configuration>
-      <Platform>Emscripten</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
@@ -73,16 +65,76 @@
     <ClInclude Include="..\..\src\msg\UMVector2Msg.h" />
     <ClInclude Include="..\..\src\msg\UMVector3Msg.h" />
     <ClInclude Include="..\..\src\msg\UMVector4Msg.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbc.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcCallback.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcCamera.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcConvert.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcCurve.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcMesh.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcNurbsPatch.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcObject.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcPoint.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcScene.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcSetting.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcSoftwareEventType.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcSoftwareIO.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcXform.h" />
     <ClInclude Include="..\..\src\UMAnimation.h" />
+    <ClInclude Include="..\..\src\umbase\UMAny.h" />
+    <ClInclude Include="..\..\src\umbase\UMBox.h" />
+    <ClInclude Include="..\..\src\umbase\UMMacro.h" />
+    <ClInclude Include="..\..\src\umbase\UMMath.h" />
+    <ClInclude Include="..\..\src\umbase\UMMathTypes.h" />
+    <ClInclude Include="..\..\src\umbase\UMMatrix.h" />
+    <ClInclude Include="..\..\src\umbase\UMPath.h" />
+    <ClInclude Include="..\..\src\umbase\UMStringUtil.h" />
+    <ClInclude Include="..\..\src\umbase\UMTime.h" />
+    <ClInclude Include="..\..\src\umbase\UMVector.h" />
+    <ClInclude Include="..\..\src\umdraw\UMCamera.h" />
+    <ClInclude Include="..\..\src\umdraw\UMCurve.h" />
+    <ClInclude Include="..\..\src\umdraw\UMDraw.h" />
+    <ClInclude Include="..\..\src\umdraw\UMLight.h" />
+    <ClInclude Include="..\..\src\umdraw\UMLine.h" />
+    <ClInclude Include="..\..\src\umdraw\UMMaterial.h" />
+    <ClInclude Include="..\..\src\umdraw\UMMesh.h" />
+    <ClInclude Include="..\..\src\umdraw\UMMeshGroup.h" />
+    <ClInclude Include="..\..\src\umdraw\UMNode.h" />
+    <ClInclude Include="..\..\src\umdraw\UMPoint.h" />
+    <ClInclude Include="..\..\src\umdraw\UMScene.h" />
+    <ClInclude Include="..\..\src\umdraw\UMShaderEntry.h" />
+    <ClInclude Include="..\..\src\umdraw\UMSkin.h" />
+    <ClInclude Include="..\..\src\umdraw\UMSoftwareIO.h" />
     <ClInclude Include="..\..\src\UMFbx.h" />
     <ClInclude Include="..\..\src\UMIO.h" />
     <ClInclude Include="..\..\src\UMIOSetting.h" />
     <ClInclude Include="..\..\src\UMListTypes.h" />
-    <ClInclude Include="..\..\src\UMMatrix.h" />
     <ClInclude Include="..\..\src\UMObject.h" />
-    <ClInclude Include="..\..\src\UMVector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\umabc\UMAbc.cpp" />
+    <ClCompile Include="..\..\src\umabc\UMAbcCamera.cpp" />
+    <ClCompile Include="..\..\src\umabc\UMAbcCurve.cpp" />
+    <ClCompile Include="..\..\src\umabc\UMAbcMesh.cpp" />
+    <ClCompile Include="..\..\src\umabc\UMAbcNurbsPatch.cpp" />
+    <ClCompile Include="..\..\src\umabc\UMAbcObject.cpp" />
+    <ClCompile Include="..\..\src\umabc\UMAbcPoint.cpp" />
+    <ClCompile Include="..\..\src\umabc\UMAbcScene.cpp" />
+    <ClCompile Include="..\..\src\umabc\UMAbcSoftwareIO.cpp" />
+    <ClCompile Include="..\..\src\umabc\UMAbcXform.cpp" />
+    <ClCompile Include="..\..\src\umbase\UMBox.cpp" />
+    <ClCompile Include="..\..\src\umbase\UMPath.cpp" />
+    <ClCompile Include="..\..\src\umbase\UMTime.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMCamera.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMCurve.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMDraw.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMLight.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMLine.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMMaterial.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMMesh.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMPoint.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMScene.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMShaderEntry.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMSoftwareIO.cpp" />
     <ClCompile Include="..\..\src\UMFbx.cpp" />
     <ClCompile Include="..\..\src\UMFbx2011.cpp" />
     <ClCompile Include="..\..\src\UMFbx2013.cpp" />
@@ -103,13 +155,13 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -122,14 +174,14 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -181,36 +233,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/umbase;$(SolutionDir)src/umdraw;$(SolutionDir)src/umabc;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/alembic/include;$(SolutionDir)lib/ilmbase2/include;$(SolutionDir)lib/ilmbase2/include/config.windows;$(SolutionDir)lib/ilmbase2/include/Half;$(SolutionDir)lib/ilmbase2/include/Iex;$(SolutionDir)lib/ilmbase2/include/IlmThread;$(SolutionDir)lib/ilmbase2/include/Imath</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2015/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libboost_python-vc120-mt-gd-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
-    </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Emscripten'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK</PreprocessorDefinitions>
-      <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2015/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libboost_python-vc120-mt-gd-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2015/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/;$(SolutionDir)lib/alembic/$(Platform)/$(Configuration)/;$(SolutionDir)lib/hdf5/$(Platform)/$(Configuration)/;$(SolutionDir)lib/ilmbase2/$(Platform)/$(Configuration)/;$(SolutionDir)lib/zlib/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;shlwapi.lib;libboost_python-vc120-mt-gd-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib;AlembicAbc.lib;AlembicAbcCollection.lib;AlembicAbcCoreAbstract.lib;AlembicAbcCoreFactory.lib;AlembicAbcCoreHDF5.lib;AlembicAbcCoreOgawa.lib;AlembicAbcGeom.lib;AlembicAbcMaterial.lib;AlembicOgawa.lib;AlembicUtil.lib;Imath.lib;IlmThread.lib;Iex.lib;Half.lib;libhdf5_hl.lib;zlib.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -225,15 +255,15 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/umbase;$(SolutionDir)src/umdraw;$(SolutionDir)src/umabc;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/alembic/include;$(SolutionDir)lib/ilmbase2/include;$(SolutionDir)lib/ilmbase2/include/config.windows;$(SolutionDir)lib/ilmbase2/include/Half;$(SolutionDir)lib/ilmbase2/include/Iex;$(SolutionDir)lib/ilmbase2/include/IlmThread;$(SolutionDir)lib/ilmbase2/include/Imath</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2015/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libboost_python-vc120-mt-gd-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2015/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/;$(SolutionDir)lib/alembic/$(Platform)/$(Configuration)/;$(SolutionDir)lib/hdf5/$(Platform)/$(Configuration)/;$(SolutionDir)lib/ilmbase2/$(Platform)/$(Configuration)/;$(SolutionDir)lib/zlib/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;shlwapi.lib;libboost_python-vc120-mt-gd-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib;AlembicAbc.lib;AlembicAbcCollection.lib;AlembicAbcCoreAbstract.lib;AlembicAbcCoreFactory.lib;AlembicAbcCoreHDF5.lib;AlembicAbcCoreOgawa.lib;AlembicAbcGeom.lib;AlembicAbcMaterial.lib;AlembicOgawa.lib;AlembicUtil.lib;Imath.lib;IlmThread.lib;Iex.lib;Half.lib;libhdf5_hl.lib;zlib.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent>
@@ -251,8 +281,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/umbase;$(SolutionDir)src/umdraw;$(SolutionDir)src/umabc;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/alembic/include;$(SolutionDir)lib/ilmbase2/include;$(SolutionDir)lib/ilmbase2/include/config.windows;$(SolutionDir)lib/ilmbase2/include/Half;$(SolutionDir)lib/ilmbase2/include/Iex;$(SolutionDir)lib/ilmbase2/include/IlmThread;$(SolutionDir)lib/ilmbase2/include/Imath</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -260,35 +290,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2015/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libboost_python-vc120-mt-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
-    </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Emscripten'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2015/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libboost_python-vc120-mt-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2015/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/;$(SolutionDir)lib/alembic/$(Platform)/$(Configuration)/;$(SolutionDir)lib/hdf5/$(Platform)/$(Configuration)/;$(SolutionDir)lib/ilmbase2/$(Platform)/$(Configuration)/;$(SolutionDir)lib/zlib/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;shlwapi.lib;libboost_python-vc120-mt-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib;AlembicAbc.lib;AlembicAbcCollection.lib;AlembicAbcCoreAbstract.lib;AlembicAbcCoreFactory.lib;AlembicAbcCoreHDF5.lib;AlembicAbcCoreOgawa.lib;AlembicAbcGeom.lib;AlembicAbcMaterial.lib;AlembicOgawa.lib;AlembicUtil.lib;Imath.lib;IlmThread.lib;Iex.lib;Half.lib;libhdf5_hl.lib;zlib.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -302,19 +305,20 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
-      <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/umbase;$(SolutionDir)src/umdraw;$(SolutionDir)src/umabc;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/alembic/include;$(SolutionDir)lib/ilmbase2/include;$(SolutionDir)lib/ilmbase2/include/config.windows;$(SolutionDir)lib/ilmbase2/include/Half;$(SolutionDir)lib/ilmbase2/include/Iex;$(SolutionDir)lib/ilmbase2/include/IlmThread;$(SolutionDir)lib/ilmbase2/include/Imath</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>
+      </ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2015/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libboost_python-vc120-mt-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2015/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/;$(SolutionDir)lib/alembic/$(Platform)/$(Configuration)/;$(SolutionDir)lib/hdf5/$(Platform)/$(Configuration)/;$(SolutionDir)lib/ilmbase2/$(Platform)/$(Configuration)/;$(SolutionDir)lib/zlib/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;shlwapi.lib;libboost_python-vc120-mt-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib;AlembicAbc.lib;AlembicAbcCollection.lib;AlembicAbcCoreAbstract.lib;AlembicAbcCoreFactory.lib;AlembicAbcCoreHDF5.lib;AlembicAbcCoreOgawa.lib;AlembicAbcGeom.lib;AlembicAbcMaterial.lib;AlembicOgawa.lib;AlembicUtil.lib;Imath.lib;IlmThread.lib;Iex.lib;Half.lib;libhdf5_hl.lib;zlib.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>

@@ -14,6 +14,7 @@
 #include <vector>
 #include <string>
 #include <array>
+#include "UMMathTypes.h"
 #include "UMVector.h"
 #include "UMMatrix.h"
 

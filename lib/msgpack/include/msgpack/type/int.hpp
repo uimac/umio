@@ -33,11 +33,11 @@ namespace detail {
 	struct convert_integer_sign<T, true> {
 		static inline T convert(object o) {
 			if(o.type == type::POSITIVE_INTEGER) {
-				if(o.via.u64 > (uint64_t)std::numeric_limits<T>::max())
+				if(o.via.u64 > (::uint64_t)std::numeric_limits<T>::max())
 					{ throw type_error(); }
 				return (T)o.via.u64;
 			} else if(o.type == type::NEGATIVE_INTEGER) {
-				if(o.via.i64 < (int64_t)std::numeric_limits<T>::min())
+				if(o.via.i64 < (::int64_t)std::numeric_limits<T>::min())
 					{ throw type_error(); }
 				return (T)o.via.i64;
 			}
@@ -49,7 +49,7 @@ namespace detail {
 	struct convert_integer_sign<T, false> {
 		static inline T convert(object o) {
 			if(o.type == type::POSITIVE_INTEGER) {
-				if(o.via.u64 > (uint64_t)std::numeric_limits<T>::max())
+				if(o.via.u64 > (::uint64_t)std::numeric_limits<T>::max())
 					{ throw type_error(); }
 				return (T)o.via.u64;
 			}

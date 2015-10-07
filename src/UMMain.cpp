@@ -30,8 +30,8 @@
 // run and convert
 int main(int argc, char **argv) 
 {
-	char* srcpath = NULL;
-	char* dstpath = NULL;
+	char* srcpath = "C:\\Users\\uimac\\Downloads\\NakanoSisters_1_1_FBX\\kano.fbx";
+	char* dstpath = "D:\\outa.bos";
 	char* iosettingpath = NULL;
 	
 	// input
