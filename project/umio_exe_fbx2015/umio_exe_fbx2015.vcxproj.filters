@@ -246,9 +246,6 @@
     <ClInclude Include="..\..\src\umabc\UMAbcSetting.h">
       <Filter>src\umabc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\umabc\UMAbcSoftwareEventType.h">
-      <Filter>src\umabc</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\umabc\UMAbcSoftwareIO.h">
       <Filter>src\umabc</Filter>
     </ClInclude>
@@ -256,9 +253,6 @@
       <Filter>src\umabc</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\umabc\UMAbc.h">
-      <Filter>src\umabc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\umabc\UMAbcCallback.h">
       <Filter>src\umabc</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\umabc\UMAbcCamera.h">
