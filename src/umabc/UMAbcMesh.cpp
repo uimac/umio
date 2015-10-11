@@ -1078,6 +1078,9 @@ const Imath::V2f * UMAbcMesh::uv() const
  */
 unsigned int UMAbcMesh::uv_size() const
 {
+	if (!impl_->uv().getVals()) {
+		return 0;
+	}
 	return static_cast<unsigned int>(impl_->uv().getVals()->size());
 }
 
