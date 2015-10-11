@@ -177,13 +177,13 @@ void UMAbcCamera::update_box(bool recursive)
 {
 }
 
-/**
- * refresh
- */
-void UMAbcCamera::draw(bool recursive, UMAbc::DrawType type)
-{
-	UMAbcObject::draw(recursive, type);
-}
+///**
+// * refresh
+// */
+//void UMAbcCamera::draw(bool recursive, UMAbc::DrawType type)
+//{
+//	UMAbcObject::draw(recursive, type);
+//}
 
 /**
 * get umcamera

@@ -16,7 +16,6 @@
 #include <map>
 #include "UMMacro.h"
 #include "UMAbcSetting.h"
-#include "UMAbc.h"
 
 namespace umdraw
 {
@@ -44,7 +43,7 @@ class UMAbcScene;
 typedef std::shared_ptr<UMAbcScene> UMAbcScenePtr;
 typedef std::vector<UMAbcScenePtr> UMAbcSceneList;
 
-class UMAbcScene : public UMAbc
+class UMAbcScene //: public UMAbc
 {
 	DISALLOW_COPY_AND_ASSIGN(UMAbcScene);
 public:
@@ -62,10 +61,10 @@ public:
 	 */
 	virtual bool dispose();
 	
-	/** 
-	 * refresh scene
-	 */
-	virtual bool draw();
+	///** 
+	// * refresh scene
+	// */
+	//virtual bool draw();
 	
 	/**
 	 * update scene

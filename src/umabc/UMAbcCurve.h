@@ -70,11 +70,11 @@ public:
 	 */
 	virtual void update_box(bool recursive);
 
-	/**
-	 * draw
-	 * @param [in] recursive do children recursively
-	 */
-	virtual void draw(bool recursive, UMAbc::DrawType type);
+	///**
+	// * draw
+	// * @param [in] recursive do children recursively
+	// */
+	//virtual void draw(bool recursive, UMAbc::DrawType type);
 	
 	/**
 	 * update curve all

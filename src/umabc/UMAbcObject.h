@@ -16,7 +16,6 @@
 #include "UMMacro.h"
 #include "UMBox.h"
 #include "UMMathTypes.h"
-#include "UMAbc.h"
 #include "UMObject.h"
 
 namespace Alembic {
@@ -103,10 +102,10 @@ public:
 	 */
 	virtual void update_box(bool recursive);
 
-	/**
-	 * draw
-	 */
-	virtual void draw(bool recursive, UMAbc::DrawType type);
+	///**
+	// * draw
+	// */
+	//virtual void draw(bool recursive, UMAbc::DrawType type);
 
 	/**
 	 * get children

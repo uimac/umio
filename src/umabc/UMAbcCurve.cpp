@@ -50,11 +50,11 @@ namespace umabc
 		*/
 		virtual void update_box(bool recursive);
 
-		/**
-		* draw
-		* @param [in] recursive do children recursively
-		*/
-		virtual void draw(bool recursive, UMAbc::DrawType type);
+		///**
+		//* draw
+		//* @param [in] recursive do children recursively
+		//*/
+		//virtual void draw(bool recursive, UMAbc::DrawType type);
 
 		/**
 		* update curve all
@@ -166,10 +166,10 @@ void UMAbcCurve::Impl::update_box(bool recursive)
 	mutable_box().extend(UMAbcConvert::imath_box_to_um(sample.getSelfBounds()));
 }
 
-void UMAbcCurve::Impl::draw(bool recursive, UMAbc::DrawType type)
-{
-	if (!is_valid()) return;
-}
+//void UMAbcCurve::Impl::draw(bool recursive, UMAbc::DrawType type)
+//{
+//	if (!is_valid()) return;
+//}
 
 /**
 * initialize
@@ -203,15 +203,15 @@ void UMAbcCurve::update_box(bool recursive)
 	impl_->update_box(recursive);
 }
 
-/**
-* draw
-* @param [in] recursive do children recursively
-*/
-void UMAbcCurve::draw(bool recursive, UMAbc::DrawType type)
-{
-	impl_->draw(recursive, type);
-	UMAbcObject::draw(recursive, type);
-}
+///**
+//* draw
+//* @param [in] recursive do children recursively
+//*/
+//void UMAbcCurve::draw(bool recursive, UMAbc::DrawType type)
+//{
+//	impl_->draw(recursive, type);
+//	UMAbcObject::draw(recursive, type);
+//}
 
 /**
 * update curve all

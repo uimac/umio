@@ -65,11 +65,11 @@ namespace umabc
 		*/
 		void update_box(bool recursive);
 
-		/**
-		* draw
-		* @param [in] recursive do children recursively
-		*/
-		void draw(bool recursive, UMAbc::DrawType type);
+		///**
+		//* draw
+		//* @param [in] recursive do children recursively
+		//*/
+		//void draw(bool recursive, UMAbc::DrawType type);
 
 		/**
 		* get opengl mesh
@@ -859,36 +859,36 @@ int UMAbcMesh::Impl::polygon_count() const
 	return static_cast<int>(triangle_index_.size());
 }
 
-/**
- * draw
- */
-void UMAbcMesh::Impl::draw(bool recursive, UMAbc::DrawType type)
-{
-	if (!is_valid()) return;
-	if (triangle_index_.empty()) return;
-	if (!vertex_) return;
-	
-#ifdef WITH_OPENGL
-	if (type == UMAbc::eOpenGL && !umdraw::UMDirectX11::current_device_pointer())
-	{
-		if (opengl_mesh_)
-		{
-			opengl_mesh_->draw(umdraw::UMOpenGLDrawParameterPtr());
-		}
-	}
-#endif // WITH_OPENGL
-
-#ifdef WITH_DIRECTX
-	if (type == UMAbc::eDirectX && umdraw::UMDirectX11::current_device_pointer())
-	{
-		if (directx_mesh_)
-		{
-			directx_mesh_->draw(
-				reinterpret_cast<ID3D11Device*>(umdraw::UMDirectX11::current_device_pointer()));
-		}
-	}
-#endif // WITH_DIRECTX
-}
+///**
+// * draw
+// */
+//void UMAbcMesh::Impl::draw(bool recursive, UMAbc::DrawType type)
+//{
+//	if (!is_valid()) return;
+//	if (triangle_index_.empty()) return;
+//	if (!vertex_) return;
+//	
+//#ifdef WITH_OPENGL
+//	if (type == UMAbc::eOpenGL && !umdraw::UMDirectX11::current_device_pointer())
+//	{
+//		if (opengl_mesh_)
+//		{
+//			opengl_mesh_->draw(umdraw::UMOpenGLDrawParameterPtr());
+//		}
+//	}
+//#endif // WITH_OPENGL
+//
+//#ifdef WITH_DIRECTX
+//	if (type == UMAbc::eDirectX && umdraw::UMDirectX11::current_device_pointer())
+//	{
+//		if (directx_mesh_)
+//		{
+//			directx_mesh_->draw(
+//				reinterpret_cast<ID3D11Device*>(umdraw::UMDirectX11::current_device_pointer()));
+//		}
+//	}
+//#endif // WITH_DIRECTX
+//}
 
 /** 
  * get material from vertex index
@@ -940,15 +940,15 @@ void UMAbcMesh::update_box(bool recursive)
 	impl_->update_box(recursive);
 }
 
-/**
- * draw
- * @param [in] recursive do children recursively
- */
-void UMAbcMesh::draw(bool recursive, UMAbc::DrawType type)
-{
-	impl_->draw(recursive, type);
-	UMAbcObject::draw(recursive, type);
-}
+///**
+// * draw
+// * @param [in] recursive do children recursively
+// */
+//void UMAbcMesh::draw(bool recursive, UMAbc::DrawType type)
+//{
+//	impl_->draw(recursive, type);
+//	UMAbcObject::draw(recursive, type);
+//}
 
 
 /**

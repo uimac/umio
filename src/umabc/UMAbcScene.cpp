@@ -94,13 +94,13 @@ public:
 		return true;
 	}
 
-	/** 
-	 * refresh scene
-	 */
-	bool draw()
-	{
-		return true;
-	}
+	///** 
+	// * refresh scene
+	// */
+	//bool draw()
+	//{
+	//	return true;
+	//}
 
 	bool clear() 
 	{
@@ -287,13 +287,13 @@ bool UMAbcScene::dispose()
 	return true;
 }
 
-/** 
- * refresh scene
- */
-bool UMAbcScene::draw()
-{
-	return impl_->draw();
-}
+///** 
+// * refresh scene
+// */
+//bool UMAbcScene::draw()
+//{
+//	return impl_->draw();
+//}
 
 /** 
  * update scene

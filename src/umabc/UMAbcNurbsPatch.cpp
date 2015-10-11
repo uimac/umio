@@ -58,11 +58,11 @@ namespace umabc
 		*/
 		virtual void update_box(bool recursive);
 
-		/**
-		* draw
-		* @param [in] recursive do children recursively
-		*/
-		virtual void draw(bool recursive, UMAbc::DrawType type);
+		///**
+		//* draw
+		//* @param [in] recursive do children recursively
+		//*/
+		//virtual void draw(bool recursive, UMAbc::DrawType type);
 
 		/**
 		* update patch all
@@ -183,13 +183,13 @@ void UMAbcNurbsPatch::Impl::update_box(bool recursive)
 	}
 }
 
-/**
- * refresh
- */
-void UMAbcNurbsPatch::Impl::draw(bool recursive, UMAbc::DrawType type)
-{
-	if (!is_valid()) return;
-}
+///**
+// * refresh
+// */
+//void UMAbcNurbsPatch::Impl::draw(bool recursive, UMAbc::DrawType type)
+//{
+//	if (!is_valid()) return;
+//}
 
 
 /**
@@ -224,15 +224,15 @@ void UMAbcNurbsPatch::update_box(bool recursive)
 	return impl_->update_box(recursive);
 }
 
-/**
-* draw
-* @param [in] recursive do children recursively
-*/
-void UMAbcNurbsPatch::draw(bool recursive, UMAbc::DrawType type)
-{
-	impl_->draw(recursive, type);
-	UMAbcObject::draw(recursive, type);
-}
+///**
+//* draw
+//* @param [in] recursive do children recursively
+//*/
+//void UMAbcNurbsPatch::draw(bool recursive, UMAbc::DrawType type)
+//{
+//	impl_->draw(recursive, type);
+//	UMAbcObject::draw(recursive, type);
+//}
 
 /**
 * update patch all
