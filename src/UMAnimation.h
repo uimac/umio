@@ -17,7 +17,7 @@
 #include <memory>
 
 #ifdef WITH_PYTHON
-	#include <boost/shared_ptr.hpp>
+	//#include <boost/shared_ptr.hpp>
 #endif
 
 #include "UMObject.h"
@@ -29,7 +29,8 @@ typedef unsigned long long UMTime;
 
 class UMAnimation;
 #ifdef WITH_PYTHON
-	typedef boost::shared_ptr<UMAnimation> UMAnimationPtr;
+	typedef std::shared_ptr<UMAnimation> UMAnimationPtr;
+	//typedef boost::shared_ptr<UMAnimation> UMAnimationPtr;
 #else
 	typedef std::shared_ptr<UMAnimation> UMAnimationPtr;
 #endif // WITH_PYTHON

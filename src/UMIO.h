@@ -56,6 +56,11 @@ public:
 	 * save settings
 	 */
 	bool save_setting(std::string path, const UMIOSetting& setting);
+
+	/**
+	 * create object
+	 */
+	UMObjectPtr create_object() { return UMObject::create_object(); }
 };
 
 
