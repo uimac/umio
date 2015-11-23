@@ -200,12 +200,24 @@ PYBIND11_PLUGIN(UMIO)
 	// UMVec4d
 	//
 	class_<UMVec4d> vec4(m, "UMVec4d");
-	// TODO
-	//vec4.def_readwrite("x", &UMVec4d::x)
-	//	.def_readwrite("y", &UMVec4d::y)
-	//	.def_readwrite("z", &UMVec4d::z)
-	//	.def_readwrite("w", &UMVec4d::w)
-	//	;
+
+	vec4.def(init<>())
+		.def_property("x",
+			[](const UMVec4d& v) { return v.x; },
+			[](UMVec4d& v, double x) { v.x = x; }
+		)
+		.def_property("y",
+			[](const UMVec4d& v) { return v.y; },
+			[](UMVec4d& v, double y) { v.y = y; }
+		)
+		.def_property("z",
+			[](const UMVec4d& v) { return v.z; },
+			[](UMVec4d& v, double z) { v.z = z; }
+		)
+		.def_property("w",
+			[](const UMVec4d& v) { return v.w; },
+			[](UMVec4d& v, double w) { v.w = w; }
+		);
 	
 	//
 	// UMMat44d
