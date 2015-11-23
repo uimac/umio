@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Emscripten">
-      <Configuration>Debug</Configuration>
-      <Platform>Emscripten</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
@@ -20,10 +16,6 @@
     <ProjectConfiguration Include="ReleasePython34FBX2015|x64">
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Emscripten">
-      <Configuration>Release</Configuration>
-      <Platform>Emscripten</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
@@ -199,28 +191,6 @@
       </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Emscripten'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK</PreprocessorDefinitions>
-      <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2015/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libboost_python-vc120-mt-gd-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
-    </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -253,33 +223,6 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2015/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libboost_python-vc120-mt-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib</AdditionalDependencies>
-    </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Emscripten'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
