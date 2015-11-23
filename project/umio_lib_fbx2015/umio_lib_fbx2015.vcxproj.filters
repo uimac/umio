@@ -10,6 +10,15 @@
     <Filter Include="src\msg">
       <UniqueIdentifier>{94a46394-1d37-4a9f-bc7c-1d5870be78f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\umabc">
+      <UniqueIdentifier>{ed2d1b5d-286a-42dd-89a6-f14cac30c7ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\umbase">
+      <UniqueIdentifier>{c10df024-c08c-4319-9095-4f2413a946f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\umdraw">
+      <UniqueIdentifier>{a48e5a38-e18e-4f8d-925b-e559441a9fc1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\msg\UMShapeMsg.h">
@@ -150,6 +159,108 @@
     <ClInclude Include="..\..\src\UMAnimation.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\umbase\UMAny.h">
+      <Filter>src\umbase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umbase\UMBox.h">
+      <Filter>src\umbase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umbase\UMMacro.h">
+      <Filter>src\umbase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umbase\UMMath.h">
+      <Filter>src\umbase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umbase\UMMathTypes.h">
+      <Filter>src\umbase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umbase\UMMatrix.h">
+      <Filter>src\umbase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umbase\UMPath.h">
+      <Filter>src\umbase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umbase\UMStringUtil.h">
+      <Filter>src\umbase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umbase\UMTime.h">
+      <Filter>src\umbase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umbase\UMVector.h">
+      <Filter>src\umbase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umdraw\UMMaterial.h">
+      <Filter>src\umdraw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umdraw\UMMesh.h">
+      <Filter>src\umdraw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umdraw\UMMeshGroup.h">
+      <Filter>src\umdraw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umdraw\UMNode.h">
+      <Filter>src\umdraw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umdraw\UMPoint.h">
+      <Filter>src\umdraw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umdraw\UMScene.h">
+      <Filter>src\umdraw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umdraw\UMShaderEntry.h">
+      <Filter>src\umdraw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umdraw\UMSkin.h">
+      <Filter>src\umdraw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umdraw\UMSoftwareIO.h">
+      <Filter>src\umdraw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umdraw\UMCamera.h">
+      <Filter>src\umdraw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umdraw\UMCurve.h">
+      <Filter>src\umdraw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umdraw\UMLight.h">
+      <Filter>src\umdraw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umdraw\UMLine.h">
+      <Filter>src\umdraw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umabc\UMAbcConvert.h">
+      <Filter>src\umabc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umabc\UMAbcCurve.h">
+      <Filter>src\umabc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umabc\UMAbcMesh.h">
+      <Filter>src\umabc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umabc\UMAbcNurbsPatch.h">
+      <Filter>src\umabc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umabc\UMAbcObject.h">
+      <Filter>src\umabc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umabc\UMAbcPoint.h">
+      <Filter>src\umabc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umabc\UMAbcScene.h">
+      <Filter>src\umabc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umabc\UMAbcSetting.h">
+      <Filter>src\umabc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umabc\UMAbcSoftwareIO.h">
+      <Filter>src\umabc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umabc\UMAbcXform.h">
+      <Filter>src\umabc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umabc\UMAbcCamera.h">
+      <Filter>src\umabc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\UMFbx.cpp">
@@ -178,6 +289,72 @@
     </ClCompile>
     <ClCompile Include="..\..\src\UMPython.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umbase\UMBox.cpp">
+      <Filter>src\umbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umbase\UMPath.cpp">
+      <Filter>src\umbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umbase\UMTime.cpp">
+      <Filter>src\umbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umdraw\UMMesh.cpp">
+      <Filter>src\umdraw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umdraw\UMPoint.cpp">
+      <Filter>src\umdraw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umdraw\UMScene.cpp">
+      <Filter>src\umdraw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umdraw\UMShaderEntry.cpp">
+      <Filter>src\umdraw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umdraw\UMSoftwareIO.cpp">
+      <Filter>src\umdraw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umdraw\UMCamera.cpp">
+      <Filter>src\umdraw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umdraw\UMCurve.cpp">
+      <Filter>src\umdraw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umdraw\UMLight.cpp">
+      <Filter>src\umdraw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umdraw\UMLine.cpp">
+      <Filter>src\umdraw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umdraw\UMMaterial.cpp">
+      <Filter>src\umdraw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umabc\UMAbcCurve.cpp">
+      <Filter>src\umabc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umabc\UMAbcMesh.cpp">
+      <Filter>src\umabc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umabc\UMAbcNurbsPatch.cpp">
+      <Filter>src\umabc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umabc\UMAbcObject.cpp">
+      <Filter>src\umabc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umabc\UMAbcPoint.cpp">
+      <Filter>src\umabc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umabc\UMAbcScene.cpp">
+      <Filter>src\umabc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umabc\UMAbcSoftwareIO.cpp">
+      <Filter>src\umabc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umabc\UMAbcXform.cpp">
+      <Filter>src\umabc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umabc\UMAbcCamera.cpp">
+      <Filter>src\umabc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -65,7 +65,11 @@
     <ClInclude Include="..\..\src\msg\UMVector2Msg.h" />
     <ClInclude Include="..\..\src\msg\UMVector3Msg.h" />
     <ClInclude Include="..\..\src\msg\UMVector4Msg.h" />
-    <ClInclude Include="..\..\src\umabc\UMAbc.h" />
+    <ClInclude Include="..\..\src\pmx\EncodingHelper.h" />
+    <ClInclude Include="..\..\src\pmx\Pmd.h" />
+    <ClInclude Include="..\..\src\pmx\Pmx.h" />
+    <ClInclude Include="..\..\src\pmx\PmxAbcConverter.h" />
+    <ClInclude Include="..\..\src\pmx\Vmd.h" />
     <ClInclude Include="..\..\src\umabc\UMAbcCamera.h" />
     <ClInclude Include="..\..\src\umabc\UMAbcConvert.h" />
     <ClInclude Include="..\..\src\umabc\UMAbcCurve.h" />
@@ -90,7 +94,6 @@
     <ClInclude Include="..\..\src\umbase\UMVector.h" />
     <ClInclude Include="..\..\src\umdraw\UMCamera.h" />
     <ClInclude Include="..\..\src\umdraw\UMCurve.h" />
-    <ClInclude Include="..\..\src\umdraw\UMDraw.h" />
     <ClInclude Include="..\..\src\umdraw\UMLight.h" />
     <ClInclude Include="..\..\src\umdraw\UMLine.h" />
     <ClInclude Include="..\..\src\umdraw\UMMaterial.h" />
@@ -109,7 +112,8 @@
     <ClInclude Include="..\..\src\UMObject.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\umabc\UMAbc.cpp" />
+    <ClCompile Include="..\..\src\pmx\Pmx.cpp" />
+    <ClCompile Include="..\..\src\pmx\PmxAbcConverter.cpp" />
     <ClCompile Include="..\..\src\umabc\UMAbcCamera.cpp" />
     <ClCompile Include="..\..\src\umabc\UMAbcCurve.cpp" />
     <ClCompile Include="..\..\src\umabc\UMAbcMesh.cpp" />
@@ -124,7 +128,6 @@
     <ClCompile Include="..\..\src\umbase\UMTime.cpp" />
     <ClCompile Include="..\..\src\umdraw\UMCamera.cpp" />
     <ClCompile Include="..\..\src\umdraw\UMCurve.cpp" />
-    <ClCompile Include="..\..\src\umdraw\UMDraw.cpp" />
     <ClCompile Include="..\..\src\umdraw\UMLight.cpp" />
     <ClCompile Include="..\..\src\umdraw\UMLine.cpp" />
     <ClCompile Include="..\..\src\umdraw\UMMaterial.cpp" />
@@ -153,13 +156,13 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v120_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v120_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -231,14 +234,15 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/umbase;$(SolutionDir)src/umdraw;$(SolutionDir)src/umabc;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/alembic/include;$(SolutionDir)lib/ilmbase2/include;$(SolutionDir)lib/ilmbase2/include/config.windows;$(SolutionDir)lib/ilmbase2/include/Half;$(SolutionDir)lib/ilmbase2/include/Iex;$(SolutionDir)lib/ilmbase2/include/IlmThread;$(SolutionDir)lib/ilmbase2/include/Imath</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/umbase;$(SolutionDir)src/umdraw;$(SolutionDir)src/umabc;$(SolutionDir)src/pmx;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/alembic/include;$(SolutionDir)lib/ilmbase2/include;$(SolutionDir)lib/ilmbase2/include/config.windows;$(SolutionDir)lib/ilmbase2/include/Half;$(SolutionDir)lib/ilmbase2/include/Iex;$(SolutionDir)lib/ilmbase2/include/IlmThread;$(SolutionDir)lib/ilmbase2/include/Imath</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN;_SCL_SECURE_NO_WARNINGS;WITH_ALEMBIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)lib/boost/$(Platform)/$(Configuration)/;$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2015/$(Platform)/$(Configuration)/;$(SolutionDir)lib/msgpack/$(Platform)/$(Configuration)/;$(SolutionDir)lib/alembic/$(Platform)/$(Configuration)/;$(SolutionDir)lib/hdf5/$(Platform)/$(Configuration)/;$(SolutionDir)lib/ilmbase2/$(Platform)/$(Configuration)/;$(SolutionDir)lib/zlib/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
       <AdditionalDependencies>winmm.lib;shlwapi.lib;libboost_python-vc120-mt-gd-1_57.lib;libfbxsdk-md.lib;%(AdditionalDependencies);msgpack.lib;AlembicAbc.lib;AlembicAbcCollection.lib;AlembicAbcCoreAbstract.lib;AlembicAbcCoreFactory.lib;AlembicAbcCoreHDF5.lib;AlembicAbcCoreOgawa.lib;AlembicAbcGeom.lib;AlembicAbcMaterial.lib;AlembicOgawa.lib;AlembicUtil.lib;Imath.lib;IlmThread.lib;Iex.lib;Half.lib;libhdf5_hl.lib;zlib.lib</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -253,10 +257,10 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/umbase;$(SolutionDir)src/umdraw;$(SolutionDir)src/umabc;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/alembic/include;$(SolutionDir)lib/ilmbase2/include;$(SolutionDir)lib/ilmbase2/include/config.windows;$(SolutionDir)lib/ilmbase2/include/Half;$(SolutionDir)lib/ilmbase2/include/Iex;$(SolutionDir)lib/ilmbase2/include/IlmThread;$(SolutionDir)lib/ilmbase2/include/Imath</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/umbase;$(SolutionDir)src/umdraw;$(SolutionDir)src/umabc;$(SolutionDir)src/pmx;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/alembic/include;$(SolutionDir)lib/ilmbase2/include;$(SolutionDir)lib/ilmbase2/include/config.windows;$(SolutionDir)lib/ilmbase2/include/Half;$(SolutionDir)lib/ilmbase2/include/Iex;$(SolutionDir)lib/ilmbase2/include/IlmThread;$(SolutionDir)lib/ilmbase2/include/Imath</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN;_SCL_SECURE_NO_WARNINGS;WITH_ALEMBIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -279,8 +283,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/umbase;$(SolutionDir)src/umdraw;$(SolutionDir)src/umabc;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/alembic/include;$(SolutionDir)lib/ilmbase2/include;$(SolutionDir)lib/ilmbase2/include/config.windows;$(SolutionDir)lib/ilmbase2/include/Half;$(SolutionDir)lib/ilmbase2/include/Iex;$(SolutionDir)lib/ilmbase2/include/IlmThread;$(SolutionDir)lib/ilmbase2/include/Imath</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/umbase;$(SolutionDir)src/umdraw;$(SolutionDir)src/umabc;$(SolutionDir)src/pmx;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/alembic/include;$(SolutionDir)lib/ilmbase2/include;$(SolutionDir)lib/ilmbase2/include/config.windows;$(SolutionDir)lib/ilmbase2/include/Half;$(SolutionDir)lib/ilmbase2/include/Iex;$(SolutionDir)lib/ilmbase2/include/IlmThread;$(SolutionDir)lib/ilmbase2/include/Imath</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN;_SCL_SECURE_NO_WARNINGS;WITH_ALEMBIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -306,8 +310,8 @@
       <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/umbase;$(SolutionDir)src/umdraw;$(SolutionDir)src/umabc;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/alembic/include;$(SolutionDir)lib/ilmbase2/include;$(SolutionDir)lib/ilmbase2/include/config.windows;$(SolutionDir)lib/ilmbase2/include/Half;$(SolutionDir)lib/ilmbase2/include/Iex;$(SolutionDir)lib/ilmbase2/include/IlmThread;$(SolutionDir)lib/ilmbase2/include/Imath</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/umbase;$(SolutionDir)src/umdraw;$(SolutionDir)src/umabc;$(SolutionDir)src/pmx;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/alembic/include;$(SolutionDir)lib/ilmbase2/include;$(SolutionDir)lib/ilmbase2/include/config.windows;$(SolutionDir)lib/ilmbase2/include/Half;$(SolutionDir)lib/ilmbase2/include/Iex;$(SolutionDir)lib/ilmbase2/include/IlmThread;$(SolutionDir)lib/ilmbase2/include/Imath</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN;_SCL_SECURE_NO_WARNINGS;WITH_ALEMBIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ProgramDataBaseFileName>
       </ProgramDataBaseFileName>
     </ClCompile>

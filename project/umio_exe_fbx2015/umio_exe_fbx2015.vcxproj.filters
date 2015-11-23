@@ -10,14 +10,17 @@
     <Filter Include="src\bos">
       <UniqueIdentifier>{cf8f3ae0-9946-46af-90b7-171db0330209}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\umbase">
-      <UniqueIdentifier>{cc9593ff-8863-4af1-bb42-eb81bbe2c1a2}</UniqueIdentifier>
+    <Filter Include="src\pmx">
+      <UniqueIdentifier>{53ebcfa5-bec9-4151-9007-31c574d9b139}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\umdraw">
+      <UniqueIdentifier>{c08d6d92-75e3-4c7f-9bb9-c21f9fe97f02}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\umabc">
       <UniqueIdentifier>{f9c794bf-c07f-4816-b0e6-684f450612ca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\umdraw">
-      <UniqueIdentifier>{c08d6d92-75e3-4c7f-9bb9-c21f9fe97f02}</UniqueIdentifier>
+    <Filter Include="src\umbase">
+      <UniqueIdentifier>{cc9593ff-8863-4af1-bb42-eb81bbe2c1a2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -153,36 +156,6 @@
     <ClInclude Include="..\..\src\UMObject.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\umbase\UMMathTypes.h">
-      <Filter>src\umbase</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\umbase\UMMatrix.h">
-      <Filter>src\umbase</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\umbase\UMPath.h">
-      <Filter>src\umbase</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\umbase\UMStringUtil.h">
-      <Filter>src\umbase</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\umbase\UMTime.h">
-      <Filter>src\umbase</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\umbase\UMVector.h">
-      <Filter>src\umbase</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\umbase\UMAny.h">
-      <Filter>src\umbase</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\umbase\UMBox.h">
-      <Filter>src\umbase</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\umbase\UMMacro.h">
-      <Filter>src\umbase</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\umbase\UMMath.h">
-      <Filter>src\umbase</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\umdraw\UMMaterial.h">
       <Filter>src\umdraw</Filter>
     </ClInclude>
@@ -216,14 +189,32 @@
     <ClInclude Include="..\..\src\umdraw\UMCurve.h">
       <Filter>src\umdraw</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\umdraw\UMDraw.h">
-      <Filter>src\umdraw</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\umdraw\UMLight.h">
       <Filter>src\umdraw</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\umdraw\UMLine.h">
       <Filter>src\umdraw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pmx\Vmd.h">
+      <Filter>src\pmx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pmx\EncodingHelper.h">
+      <Filter>src\pmx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pmx\Pmd.h">
+      <Filter>src\pmx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pmx\Pmx.h">
+      <Filter>src\pmx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pmx\PmxAbcConverter.h">
+      <Filter>src\pmx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umabc\UMAbcCamera.h">
+      <Filter>src\umabc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umabc\UMAbcConvert.h">
+      <Filter>src\umabc</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\umabc\UMAbcCurve.h">
       <Filter>src\umabc</Filter>
@@ -252,14 +243,35 @@
     <ClInclude Include="..\..\src\umabc\UMAbcXform.h">
       <Filter>src\umabc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\umabc\UMAbc.h">
-      <Filter>src\umabc</Filter>
+    <ClInclude Include="..\..\src\umbase\UMBox.h">
+      <Filter>src\umbase</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\umabc\UMAbcCamera.h">
-      <Filter>src\umabc</Filter>
+    <ClInclude Include="..\..\src\umbase\UMMacro.h">
+      <Filter>src\umbase</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\umabc\UMAbcConvert.h">
-      <Filter>src\umabc</Filter>
+    <ClInclude Include="..\..\src\umbase\UMMath.h">
+      <Filter>src\umbase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umbase\UMMathTypes.h">
+      <Filter>src\umbase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umbase\UMMatrix.h">
+      <Filter>src\umbase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umbase\UMPath.h">
+      <Filter>src\umbase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umbase\UMStringUtil.h">
+      <Filter>src\umbase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umbase\UMTime.h">
+      <Filter>src\umbase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umbase\UMVector.h">
+      <Filter>src\umbase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\umbase\UMAny.h">
+      <Filter>src\umbase</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -290,15 +302,6 @@
     <ClCompile Include="..\..\src\UMFbx.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\umbase\UMBox.cpp">
-      <Filter>src\umbase</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\umbase\UMPath.cpp">
-      <Filter>src\umbase</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\umbase\UMTime.cpp">
-      <Filter>src\umbase</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\umdraw\UMMaterial.cpp">
       <Filter>src\umdraw</Filter>
     </ClCompile>
@@ -323,14 +326,23 @@
     <ClCompile Include="..\..\src\umdraw\UMCurve.cpp">
       <Filter>src\umdraw</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\umdraw\UMDraw.cpp">
-      <Filter>src\umdraw</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\umdraw\UMLight.cpp">
       <Filter>src\umdraw</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\umdraw\UMLine.cpp">
       <Filter>src\umdraw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\pmx\Pmx.cpp">
+      <Filter>src\pmx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\pmx\PmxAbcConverter.cpp">
+      <Filter>src\pmx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umabc\UMAbcCamera.cpp">
+      <Filter>src\umabc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\umabc\UMAbcCurve.cpp">
+      <Filter>src\umabc</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\umabc\UMAbcMesh.cpp">
       <Filter>src\umabc</Filter>
@@ -353,14 +365,14 @@
     <ClCompile Include="..\..\src\umabc\UMAbcXform.cpp">
       <Filter>src\umabc</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\umabc\UMAbc.cpp">
-      <Filter>src\umabc</Filter>
+    <ClCompile Include="..\..\src\umbase\UMBox.cpp">
+      <Filter>src\umbase</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\umabc\UMAbcCamera.cpp">
-      <Filter>src\umabc</Filter>
+    <ClCompile Include="..\..\src\umbase\UMPath.cpp">
+      <Filter>src\umbase</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\umabc\UMAbcCurve.cpp">
-      <Filter>src\umabc</Filter>
+    <ClCompile Include="..\..\src\umbase\UMTime.cpp">
+      <Filter>src\umbase</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

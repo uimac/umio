@@ -57,7 +57,41 @@
     <ClInclude Include="..\..\src\msg\UMVector2Msg.h" />
     <ClInclude Include="..\..\src\msg\UMVector3Msg.h" />
     <ClInclude Include="..\..\src\msg\UMVector4Msg.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcCamera.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcConvert.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcCurve.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcMesh.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcNurbsPatch.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcObject.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcPoint.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcScene.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcSetting.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcSoftwareIO.h" />
+    <ClInclude Include="..\..\src\umabc\UMAbcXform.h" />
     <ClInclude Include="..\..\src\UMAnimation.h" />
+    <ClInclude Include="..\..\src\umbase\UMAny.h" />
+    <ClInclude Include="..\..\src\umbase\UMBox.h" />
+    <ClInclude Include="..\..\src\umbase\UMMacro.h" />
+    <ClInclude Include="..\..\src\umbase\UMMath.h" />
+    <ClInclude Include="..\..\src\umbase\UMMathTypes.h" />
+    <ClInclude Include="..\..\src\umbase\UMMatrix.h" />
+    <ClInclude Include="..\..\src\umbase\UMPath.h" />
+    <ClInclude Include="..\..\src\umbase\UMStringUtil.h" />
+    <ClInclude Include="..\..\src\umbase\UMTime.h" />
+    <ClInclude Include="..\..\src\umbase\UMVector.h" />
+    <ClInclude Include="..\..\src\umdraw\UMCamera.h" />
+    <ClInclude Include="..\..\src\umdraw\UMCurve.h" />
+    <ClInclude Include="..\..\src\umdraw\UMLight.h" />
+    <ClInclude Include="..\..\src\umdraw\UMLine.h" />
+    <ClInclude Include="..\..\src\umdraw\UMMaterial.h" />
+    <ClInclude Include="..\..\src\umdraw\UMMesh.h" />
+    <ClInclude Include="..\..\src\umdraw\UMMeshGroup.h" />
+    <ClInclude Include="..\..\src\umdraw\UMNode.h" />
+    <ClInclude Include="..\..\src\umdraw\UMPoint.h" />
+    <ClInclude Include="..\..\src\umdraw\UMScene.h" />
+    <ClInclude Include="..\..\src\umdraw\UMShaderEntry.h" />
+    <ClInclude Include="..\..\src\umdraw\UMSkin.h" />
+    <ClInclude Include="..\..\src\umdraw\UMSoftwareIO.h" />
     <ClInclude Include="..\..\src\UMFbx.h" />
     <ClInclude Include="..\..\src\UMIO.h" />
     <ClInclude Include="..\..\src\UMIOSetting.h" />
@@ -67,6 +101,28 @@
     <ClInclude Include="..\..\src\UMVector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\umabc\UMAbcCamera.cpp" />
+    <ClCompile Include="..\..\src\umabc\UMAbcCurve.cpp" />
+    <ClCompile Include="..\..\src\umabc\UMAbcMesh.cpp" />
+    <ClCompile Include="..\..\src\umabc\UMAbcNurbsPatch.cpp" />
+    <ClCompile Include="..\..\src\umabc\UMAbcObject.cpp" />
+    <ClCompile Include="..\..\src\umabc\UMAbcPoint.cpp" />
+    <ClCompile Include="..\..\src\umabc\UMAbcScene.cpp" />
+    <ClCompile Include="..\..\src\umabc\UMAbcSoftwareIO.cpp" />
+    <ClCompile Include="..\..\src\umabc\UMAbcXform.cpp" />
+    <ClCompile Include="..\..\src\umbase\UMBox.cpp" />
+    <ClCompile Include="..\..\src\umbase\UMPath.cpp" />
+    <ClCompile Include="..\..\src\umbase\UMTime.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMCamera.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMCurve.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMLight.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMLine.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMMaterial.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMMesh.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMPoint.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMScene.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMShaderEntry.cpp" />
+    <ClCompile Include="..\..\src\umdraw\UMSoftwareIO.cpp" />
     <ClCompile Include="..\..\src\UMFbx.cpp" />
     <ClCompile Include="..\..\src\UMFbx2011.cpp" />
     <ClCompile Include="..\..\src\UMFbx2013.cpp" />
@@ -162,8 +218,8 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/python34/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/umbase;$(SolutionDir)src/umdraw;$(SolutionDir)src/umabc;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/alembic/include;$(SolutionDir)lib/ilmbase2/include;$(SolutionDir)lib/ilmbase2/include/config.windows;$(SolutionDir)lib/ilmbase2/include/Half;$(SolutionDir)lib/ilmbase2/include/Iex;$(SolutionDir)lib/ilmbase2/include/IlmThread;$(SolutionDir)lib/ilmbase2/include/Imath</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
@@ -206,8 +262,8 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/python34/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/umbase;$(SolutionDir)src/umdraw;$(SolutionDir)src/umabc;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/alembic/include;$(SolutionDir)lib/ilmbase2/include;$(SolutionDir)lib/ilmbase2/include/config.windows;$(SolutionDir)lib/ilmbase2/include/Half;$(SolutionDir)lib/ilmbase2/include/Iex;$(SolutionDir)lib/ilmbase2/include/IlmThread;$(SolutionDir)lib/ilmbase2/include/Imath</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -232,8 +288,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/python34/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/umbase;$(SolutionDir)src/umdraw;$(SolutionDir)src/umabc;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/alembic/include;$(SolutionDir)lib/ilmbase2/include;$(SolutionDir)lib/ilmbase2/include/config.windows;$(SolutionDir)lib/ilmbase2/include/Half;$(SolutionDir)lib/ilmbase2/include/Iex;$(SolutionDir)lib/ilmbase2/include/IlmThread;$(SolutionDir)lib/ilmbase2/include/Imath</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -287,8 +343,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/python34/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src/umbase;$(SolutionDir)src/umdraw;$(SolutionDir)src/umabc;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/boost/include;$(SolutionDir)lib/fbxsdk2015/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/alembic/include;$(SolutionDir)lib/ilmbase2/include;$(SolutionDir)lib/ilmbase2/include/config.windows;$(SolutionDir)lib/ilmbase2/include/Half;$(SolutionDir)lib/ilmbase2/include/Iex;$(SolutionDir)lib/ilmbase2/include/IlmThread;$(SolutionDir)lib/ilmbase2/include/Imath</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2015;WITH_MSGPACK;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
