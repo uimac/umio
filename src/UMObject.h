@@ -17,10 +17,6 @@
 #include <list>
 #include <memory>
 
-#ifdef WITH_PYTHON
-	#include <boost/shared_ptr.hpp>
-#endif
-
 #ifdef WITH_BOOST_SERIALIZATION
 	#include <boost/serialization/serialization.hpp>
 	#include <boost/serialization/vector.hpp>
@@ -37,11 +33,7 @@ namespace umio
 {
 	
 class UMObject;
-#ifdef WITH_PYTHON
-	typedef boost::shared_ptr<UMObject> UMObjectPtr;
-#else
-	typedef std::shared_ptr<UMObject> UMObjectPtr;
-#endif // WITH_PYTHON
+typedef std::shared_ptr<UMObject> UMObjectPtr;
 
 /*---------------------------------------------------------------------------*
  * UMNode

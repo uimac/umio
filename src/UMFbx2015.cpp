@@ -32,9 +32,6 @@
 #include "UMAnimation.h"
 
 #ifdef WITH_PYTHON
-	#include <boost/python.hpp>
-	//#define printf(fmt) boost::python::exec("print('" #fmt "')\n")
-	//#define printfm(fmt, ...) boost::python::exec("print('" #fmt "'," #__VA_ARGS__ ")\n")
 	#define printf(fmt)
 	#define printfm(fmt, ...)
 #else	
