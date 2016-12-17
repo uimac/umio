@@ -12,17 +12,13 @@
 #include "UMIO.h"
 #include "UMObject.h"
 
-#if defined(WITH_FBX2015) || defined(WITH_FBX2014) || defined(WITH_FBX2013) || defined(WITH_FBX2011)
+#if defined(WITH_FBX2016) || defined(WITH_FBX2015) || defined(WITH_FBX2014) || defined(WITH_FBX2013) || defined(WITH_FBX2011)
 #define WITH_FBX
 #endif
 
 #ifdef WITH_FBX
 #include "UMFbx.h"
 #endif // WITH_FBX
-
-#ifdef WITH_TINYOBJ
-#include "UMTinyObj.h"
-#endif // WITH_TINYOBJ
 
 #include <string>
 #include <map>
@@ -73,17 +69,6 @@ UMObjectPtr UMIO::load(std::string path, const UMIOSetting& setting)
 		}
 	}
 #endif // WITH_FBX
-
-#ifdef WITH_TINYOBJ
-	{
-		UMTinyObj tiny_obj;
-		UMObjectPtr obj = tiny_obj.load(path, setting);
-		if (obj)
-		{
-			return obj;
-		}
-	}
-#endif // WITH_TINYOBJ
 	
 #ifdef WITH_BOOST_SERIALIZATION
 	// load bos
@@ -119,10 +104,10 @@ UMObjectPtr UMIO::load(std::string path, const UMIOSetting& setting)
 		std::istreambuf_iterator<char> last;
 		const std::string data(first, last);
 			
-		msgpack::object msg_obj = msgpack::unpack(data.data(), data.size()).get();
+		msgpack::object_handle msg_obj = msgpack::unpack(data.data(), data.size());
 			
 		umio::UMObjectPtr obj = umio::UMObject::create_object();
-		msg_obj.convert(*obj);
+		msg_obj.get().convert(*obj);
 		if (UMObject::re_bind_all_nodes(obj))
 		{
 			return obj;
@@ -273,10 +258,10 @@ UMObjectPtr UMIO::load_from_memory(const std::string& src, const UMIOSetting& se
 		std::istreambuf_iterator<char> last;
 		const std::string data(first, last);
 			
-		msgpack::object msg_obj = msgpack::unpack(data.data(), data.size()).get();
+		msgpack::object_handle msg_obj = msgpack::unpack(data.data(), data.size());
 			
 		umio::UMObjectPtr obj = umio::UMObject::create_object();
-		msg_obj.convert(*obj);
+		msg_obj.get().convert(*obj);
 
 		if (UMObject::re_bind_all_nodes(obj))
 		{
@@ -378,9 +363,9 @@ bool UMIO::load_setting(std::string path, UMIOSetting& setting)
 		std::istreambuf_iterator<char> last;
 		const std::string data(first, last);
 			
-		msgpack::object msg_obj = msgpack::unpack(data.data(), data.size()).get();
+		msgpack::object_handle msg_obj = msgpack::unpack(data.data(), data.size());
 			
-		msg_obj.convert(setting);
+		msg_obj.get().convert(setting);
 		return true;
 	}
 	catch (msgpack::unpack_error& ) {

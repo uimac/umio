@@ -1,4 +1,4 @@
-﻿/**
+/**
  *
  * main.cpp
  *
@@ -48,22 +48,22 @@ int main(int argc, char **argv)
 	if (!srcpath || !dstpath)
 	{
 		std::cout << "this is 3d data converter." << std::endl;
-#ifdef WITH_BOOST_SERIALIZATION
+#if defined(WITH_BOOST_SERIALIZATION) || defined(WITH_MSGPACK)
 		std::cout << "convert (.fbx) to (.bos) or (.bos) to (.fbx)." << std::endl;
 #endif //WITH_BOOST_SERIALIZATION
 		std::cout << "usage: ./UM.app absolute_src_filepath absolute_dst_filepath absolute_iosetting_filepath" << std::endl;
 		std::cout << " " << std::endl;
 
 #ifndef __APPLE__
-	#ifdef WITH_FBX2013
+	#if defined(WITH_FBX2016) || defined(WITH_FBX2015) || defined(WITH_FBX2014) || defined(WITH_FBX2013)
 			std::wstring fbx_license(
-				_T("This software contains Autodesk® FBX® code developed by Autodesk, Inc. Copyright 2012 Autodesk, Inc. All rights, reserved. ")
-				_T("Such code is provided “as is” and Autodesk, Inc. disclaims any and all warranties, whether express or implied, including ")
-				_T("without limitation the implied warranties of merchantability, fitness for a particular purpose or non-infringement of third party rights. ")
-				_T("In no event shall Autodesk, Inc. be liable for any direct, indirect, incidental, special, exemplary, ")
-				_T("or consequential damages (including, but not limited to, procurement of substitute goods or services; ")
-				_T("loss of use, data, or profits; or business interruption) however caused and on any theory of liability, ")
-				_T("whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of such code."));
+				_T(L"This software contains Autodesk® FBX® code developed by Autodesk, Inc. Copyright 2012 Autodesk, Inc. All rights, reserved. ")
+				_T(L"Such code is provided “as is” and Autodesk, Inc. disclaims any and all warranties, whether express or implied, including ")
+				_T(L"without limitation the implied warranties of merchantability, fitness for a particular purpose or non-infringement of third party rights. ")
+				_T(L"In no event shall Autodesk, Inc. be liable for any direct, indirect, incidental, special, exemplary, ")
+				_T(L"or consequential damages (including, but not limited to, procurement of substitute goods or services; ")
+				_T(L"loss of use, data, or profits; or business interruption) however caused and on any theory of liability, ")
+				_T(L"whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of such code."));
 
 			const HANDLE stdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 			DWORD numWritten = 0;
