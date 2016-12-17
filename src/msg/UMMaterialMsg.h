@@ -74,7 +74,9 @@
 							layered_texture_list_));
 	}
 	
-	void msgpack_unpack(material_msg_type v) {
+	void msgpack_unpack(msgpack::object o) {
+		material_msg_type v;
+		o.convert(v);
 		name_= v.get<0>();
 		double_lists dls = v.get<1>();
 		doubles ds = v.get<2>();

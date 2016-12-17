@@ -23,7 +23,9 @@
 		o.pack(skin_msg_type(deformer_type, name_, cluster_list_));
 	}
 	
-	void msgpack_unpack(skin_msg_type v) {
+	void msgpack_unpack(msgpack::object o) {
+		skin_msg_type v;
+		o.convert(v);
 		deformer_msg_type deformer_type = v.get<0>();
 		UMDeformer::msgpack_unpack(deformer_type);
 		name_ = v.get<1>();

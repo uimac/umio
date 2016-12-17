@@ -17,8 +17,7 @@
 	
 	void get_deformer_msg_type(deformer_msg_type& deformer_type) const
 	{
-		deformer_type.a0 = geometry_node_id_;
-		deformer_type.a1 = deformer_type_;
+		deformer_type = deformer_msg_type(geometry_node_id_, deformer_type_);
 	}
 	
 	template <typename Stream>

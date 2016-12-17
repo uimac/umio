@@ -40,9 +40,10 @@
 							layered_vertex_color_list_));
 	}
 	
-	void msgpack_unpack(mesh_msg_type v) {
-		node_msg_type node_type = v.get<0>();
-		UMNode::msgpack_unpack(node_type);
+	void msgpack_unpack(msgpack::object o) {
+		mesh_msg_type v;
+		o.convert(v);
+		UMNode::_msgpack_unpack(v.get<0>());
 		vertex_index_list_ = v.get<1>();
 		vertex_list_ = v.get<2>();
 		material_index_ = v.get<3>();

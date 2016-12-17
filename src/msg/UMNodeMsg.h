@@ -70,9 +70,7 @@
 			global_transform_
 			);
 		
-		type.a0 = infos;
-		type.a1 = dls;
-		type.a2 = dlvs;
+		type = node_msg_type(infos, dls, dlvs);
 	}
 	
 	template <typename Stream>
@@ -81,16 +79,16 @@
 		get_node_msg_type(type);
 		o.pack(type);
 	}
-	
-	void msgpack_unpack(node_msg_type v) {
+
+	void _msgpack_unpack(node_msg_type v) {
 		node_info_type infos = v.get<0>();
 		double_lists dls = v.get<1>();
 		double_list_vecs dlvs = v.get<2>();
-		
+
 		parent_id_ = infos.get<0>();
 		id_ = infos.get<1>();
 		name_ = infos.get<2>();
-		
+
 		local_translation_ = dls.get<0>();
 		local_rotation_ = dls.get<1>();
 		local_scaling_ = dls.get<2>();
@@ -103,9 +101,15 @@
 		geometric_translation_ = dls.get<9>();
 		geometric_rotation_ = dls.get<10>();
 		geometric_scaling_ = dls.get<11>();
-		
+
 		local_transform_ = dlvs.get<0>();
 		global_transform_ = dlvs.get<1>();
+	}
+	
+	void msgpack_unpack(msgpack::object o) {
+		node_msg_type v;
+		o.convert(v);
+		_msgpack_unpack(v);
 	}
 #endif //WITH_MSGPACK
 	

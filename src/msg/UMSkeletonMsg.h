@@ -25,8 +25,10 @@
 		o.pack(skeleton_msg_type(node_type, type_, limb_length_, size_));
 	}
 	
-	void msgpack_unpack(skeleton_msg_type v) {
-		UMNode::msgpack_unpack(v.get<0>());
+	void msgpack_unpack(msgpack::object o) {
+		skeleton_msg_type v;
+		o.convert(v);
+		UMNode::_msgpack_unpack(v.get<0>());
 		type_ = v.get<1>();
 		limb_length_ = v.get<2>();
 		size_ = v.get<3>();

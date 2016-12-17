@@ -52,7 +52,10 @@
 		o.pack(setting_msg_type(exp, imp, blexp, blimp));
 	}
 	
-	void msgpack_unpack(setting_msg_type v) {
+	void msgpack_unpack(msgpack::object o) {
+		setting_msg_type v;
+		o.convert(v);
+
 		SerializableMap exp = v.get<0>();
 		{
 			SerializableMap::const_iterator it = exp.begin();
