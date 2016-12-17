@@ -9,7 +9,7 @@
  * Licensed under the MIT or GPL Version 3 licenses. 
  *
  */
-#if  !defined (WITH_FBX2011) && !defined (WITH_FBX2013) && !defined(WITH_FBX2014) && !defined(WITH_FBX2015)
+#if  !defined (WITH_FBX2011) && !defined (WITH_FBX2013) && !defined(WITH_FBX2014) && !defined(WITH_FBX2015) && !defined(WITH_FBX2016)
 
 #include "UMFbx.h"
 #include "UMObject.h"
@@ -23,4 +23,4 @@ bool UMFbx::save(std::string path, UMObjectPtr object, const UMIOSetting& settin
 
 } // namespace umio
 
-#endif // !defined (WITH_FBX2011) && !defined (WITH_FBX2013)
+#endif // !defined (WITH_FBX20**)

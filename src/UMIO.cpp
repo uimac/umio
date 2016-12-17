@@ -119,12 +119,10 @@ UMObjectPtr UMIO::load(std::string path, const UMIOSetting& setting)
 		std::istreambuf_iterator<char> last;
 		const std::string data(first, last);
 			
-		msgpack::zone zone;
-		msgpack::object msg_obj;
-		msgpack::unpack(data.data(), data.size(), NULL, &zone, &msg_obj);
+		msgpack::object msg_obj = msgpack::unpack(data.data(), data.size()).get();
 			
 		umio::UMObjectPtr obj = umio::UMObject::create_object();
-		msg_obj.convert(&(*obj));
+		msg_obj.convert(*obj);
 		if (UMObject::re_bind_all_nodes(obj))
 		{
 			return obj;
@@ -275,12 +273,10 @@ UMObjectPtr UMIO::load_from_memory(const std::string& src, const UMIOSetting& se
 		std::istreambuf_iterator<char> last;
 		const std::string data(first, last);
 			
-		msgpack::zone zone;
-		msgpack::object msg_obj;
-		msgpack::unpack(data.data(), data.size(), NULL, &zone, &msg_obj);
+		msgpack::object msg_obj = msgpack::unpack(data.data(), data.size()).get();
 			
 		umio::UMObjectPtr obj = umio::UMObject::create_object();
-		msg_obj.convert(&(*obj));
+		msg_obj.convert(*obj);
 
 		if (UMObject::re_bind_all_nodes(obj))
 		{
@@ -382,11 +378,9 @@ bool UMIO::load_setting(std::string path, UMIOSetting& setting)
 		std::istreambuf_iterator<char> last;
 		const std::string data(first, last);
 			
-		msgpack::zone zone;
-		msgpack::object msg_obj;
-		msgpack::unpack(data.data(), data.size(), NULL, &zone, &msg_obj);
+		msgpack::object msg_obj = msgpack::unpack(data.data(), data.size()).get();
 			
-		msg_obj.convert(&setting);
+		msg_obj.convert(setting);
 		return true;
 	}
 	catch (msgpack::unpack_error& ) {
