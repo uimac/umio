@@ -4,9 +4,6 @@
     <Filter Include="src">
       <UniqueIdentifier>{3fc942cf-d5d3-4693-a9cf-6de502971fb9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\bos">
-      <UniqueIdentifier>{e800f0a8-0803-40fd-ac36-c7c26abe5d42}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\msg">
       <UniqueIdentifier>{a0011da9-7f0a-458e-881d-0713b4eaaa2a}</UniqueIdentifier>
     </Filter>
@@ -92,63 +89,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\msg\UMMaterialMsg.h">
       <Filter>src\msg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMDeformerBos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMIOSettingBos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMMaterialBos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMMatrixBos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMMeshBos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMNodeBos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMObjectBos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMPoseBos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMShapeBos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMSkeletonBos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMSkinBos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMTextureBos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMVector2Bos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMVector3Bos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMVector4Bos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMBlendShapeBos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMBlendShapeChannelBos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMCameraBos.h">
-      <Filter>src\bos</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\bos\UMClusterBos.h">
-      <Filter>src\bos</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
