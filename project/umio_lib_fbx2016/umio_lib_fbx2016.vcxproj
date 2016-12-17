@@ -145,7 +145,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/fbxsdk2016/include;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/pybind11/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/fbxsdk2016/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2016;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -189,7 +189,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/fbxsdk2016/include;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/pybind11/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/fbxsdk2016/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2016;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <ProgramDataBaseFileName>$(TargetName).pdb</ProgramDataBaseFileName>
@@ -215,7 +215,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/fbxsdk2016/include;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/pybind11/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/fbxsdk2016/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2016;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ProgramDataBaseFileName>$(TargetName).pdb</ProgramDataBaseFileName>
@@ -270,7 +270,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/fbxsdk2016/include;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/pybind11/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/fbxsdk2016/include;$(SolutionDir)lib/msgpack/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_FBX2016;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>

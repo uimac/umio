@@ -174,14 +174,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/fbxsdk2016/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/pybind11/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python35/include;$(SolutionDir)lib/fbxsdk2016/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/pybind11/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_PYTHON;WITH_FBX2016;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2016/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libfbxsdk-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib/python35/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2016/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libfbxsdk-md.lib;python35.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -195,15 +195,15 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/fbxsdk2016/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/pybind11/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python35/include;$(SolutionDir)lib/fbxsdk2016/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/pybind11/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_PYTHON;WITH_FBX2016;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <ProgramDataBaseFileName>$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2016/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libfbxsdk-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib/python35/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2016/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libfbxsdk-md.lib;python35.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent>
@@ -220,7 +220,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/fbxsdk2016/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/pybind11/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python35/include;$(SolutionDir)lib/fbxsdk2016/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/pybind11/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_PYTHON;WITH_FBX2016;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ProgramDataBaseFileName>$(TargetName).pdb</ProgramDataBaseFileName>
@@ -229,8 +229,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2016/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libfbxsdk-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib/python35/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2016/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libfbxsdk-md.lib;python35.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -246,7 +246,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python34/include;$(SolutionDir)lib/fbxsdk2016/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/pybind11/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib/python35/include;$(SolutionDir)lib/fbxsdk2016/include;$(SolutionDir)lib/msgpack/include;$(SolutionDir)lib/pybind11/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FBXSDK_NEW_API;WITH_PYTHON;WITH_FBX2016;WITH_MSGPACK;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -254,8 +254,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib/python34/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2016/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libfbxsdk-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib/python35/$(Platform)/$(Configuration)/;$(SolutionDir)lib/fbxsdk2016/$(Platform)/$(Configuration)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libfbxsdk-md.lib;python35.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
