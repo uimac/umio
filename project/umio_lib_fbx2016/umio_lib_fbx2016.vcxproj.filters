@@ -122,5 +122,8 @@
     <ClCompile Include="..\..\src\UMFbx2016.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\UMNode.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

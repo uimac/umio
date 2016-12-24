@@ -63,6 +63,7 @@
     <ClCompile Include="..\..\src\UMFbx2015.cpp" />
     <ClCompile Include="..\..\src\UMIO.cpp" />
     <ClCompile Include="..\..\src\UMMain.cpp" />
+    <ClCompile Include="..\..\src\UMNode.cpp" />
     <ClCompile Include="..\..\src\UMObject.cpp" />
     <ClCompile Include="..\..\src\UMPython.cpp" />
   </ItemGroup>
