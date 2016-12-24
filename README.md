@@ -10,12 +10,13 @@ formats
 
 dependency
  * messagepack for bos
- * (optional) boost::python for pyd
+ * (optional) pybind11 for pyd (Python DLL)
+ * (optional) v8pp for node (node.js native module)
  * (optional) Autodesk FBX SDK for FBX
 
 compiler
- * Visual Studio 2013
+ * Visual Studio 2015
 
 license
 * MIT-GPLv3 dual license.
-* build with FBXSDK => distribution prohibited. Please see FBXSDK EULA. only use MIT license.
+* Building with FBXSDK cannot apply GPL. Please see FBXSDK EULA. In this case, Please only use umio as MIT license.
