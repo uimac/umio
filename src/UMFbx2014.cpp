@@ -659,6 +659,7 @@ bool UMFbxLoadImpl::assign_materials(UMObjectPtr object, UMMesh& mesh, FbxNode* 
 		if (FbxSurfaceMaterial* fbx_material = node->GetMaterial(i))
 		{
 			UMMaterial material;
+			material.set_name(fbx_material->GetName());
 			FbxClassId class_id = fbx_material->GetClassId();
 
 			// shading
