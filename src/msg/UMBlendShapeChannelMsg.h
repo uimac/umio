@@ -13,7 +13,7 @@
 #ifdef WITH_MSGPACK
 	typedef msgpack::type::tuple<
 	UMShape::ShapeList,
-	DoubleList,
+	FloatList,
 	double
 	> blend_shape_channel_msg_type;
 	

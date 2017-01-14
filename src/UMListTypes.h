@@ -23,11 +23,11 @@ namespace umio
 typedef std::vector<int> BoolList;
 typedef std::vector<int> IntList;
 typedef std::vector<unsigned int> UIntList;
-typedef std::vector<double> DoubleList;
+typedef std::vector<float> FloatList;
 typedef std::vector<std::string> StringList;
 typedef std::vector<IntList> IntListVec;
-typedef std::vector<DoubleList> DoubleListVec;
-typedef std::vector<DoubleListVec> LayeredDoubleListVec;
+typedef std::vector<FloatList> FloatListVec;
+typedef std::vector<FloatListVec> LayeredFloatListVec;
 typedef std::vector<UMMat44d> Mat44dList;
 
 

@@ -384,7 +384,7 @@ protected:
 };
 
 /**
- * convert FbxAMatrix to DoubleListVec
+ * convert FbxAMatrix to FloatListVec
  */
 static void matrix_to_UMMat44d(UMMat44d& dst, const FbxAMatrix& src_matrix)
 {
@@ -398,7 +398,7 @@ static void matrix_to_UMMat44d(UMMat44d& dst, const FbxAMatrix& src_matrix)
 }
 
 /**
- * convert FbxMatrix to DoubleListVec
+ * convert FbxMatrix to FloatListVec
  */
 static void matrix_to_UMMat44d(UMMat44d& dst, const FbxMatrix& src_matrix)
 {
@@ -971,17 +971,35 @@ bool UMFbxLoadImpl::assign_blend_shapes(UMObjectPtr object, UMMesh& mesh, FbxNod
 								shape.mutable_vertex_index_list().push_back(index);
 							}
 
-							// vertex
-							const int vertex_count = fbx_shape->GetControlPointsCount();
-							for (int m = 0; m < vertex_count; ++m)
+							if (vertex_indices_count == 0)
 							{
-								FbxVector4 v = fbx_shape->GetControlPointAt(m);
-								DoubleList vertex;
-								vertex.push_back(v[0]);
-								vertex.push_back(v[1]);
-								vertex.push_back(v[2]);
-								vertex.push_back(v[3]);
-								shape.mutable_vertex_list().push_back(vertex);
+								// vertex
+								const int vertex_count = fbx_shape->GetControlPointsCount();
+								for (int m = 0; m < vertex_count; ++m)
+								{
+									FbxVector4 v = fbx_shape->GetControlPointAt(m);
+									FloatList vertex;
+									vertex.push_back(v[0]);
+									vertex.push_back(v[1]);
+									vertex.push_back(v[2]);
+									vertex.push_back(v[3]);
+									shape.mutable_vertex_list().push_back(vertex);
+								}
+							}
+							else
+							{
+								// vertex
+								const int vertex_count = static_cast<int>(shape.vertex_index_list().size());
+								for (int m = 0; m < vertex_count; ++m)
+								{
+									FbxVector4 v = fbx_shape->GetControlPointAt(shape.vertex_index_list()[m]);
+									FloatList vertex;
+									vertex.push_back(v[0]);
+									vertex.push_back(v[1]);
+									vertex.push_back(v[2]);
+									vertex.push_back(v[3]);
+									shape.mutable_vertex_list().push_back(vertex);
+								}
 							}
 
 							// normal index
@@ -1002,16 +1020,47 @@ bool UMFbxLoadImpl::assign_blend_shapes(UMObjectPtr object, UMMesh& mesh, FbxNod
 							fbx_shape->GetNormals(&fbx_normals);
 							if (fbx_normals)
 							{
-								const int normal_count = fbx_normals->GetCount();
-								for (int m = 0; m < normal_count; ++m)
+								if (shape.normal_index_list().size() > 0)
 								{
-									FbxVector4 v = fbx_normals->GetAt(m);
-									DoubleList normal;
-									normal.push_back(v[0]);
-									normal.push_back(v[1]);
-									normal.push_back(v[2]);
-									normal.push_back(v[3]);
-									shape.mutable_normal_list().push_back(normal);
+									const int normal_count = static_cast<int>(shape.normal_index_list().size());
+									for (int m = 0; m < normal_count; ++m)
+									{
+										FbxVector4 v = fbx_normals->GetAt(shape.normal_index_list()[m]);
+										FloatList normal;
+										normal.push_back(v[0]);
+										normal.push_back(v[1]);
+										normal.push_back(v[2]);
+										normal.push_back(v[3]);
+										shape.mutable_normal_list().push_back(normal);
+									}
+								}
+								else if (shape.vertex_index_list().size() > 0)
+								{
+									const int normal_count = static_cast<int>(shape.vertex_index_list().size());
+									for (int m = 0; m < normal_count; ++m)
+									{
+										FbxVector4 v = fbx_normals->GetAt(shape.vertex_index_list()[m]);
+										FloatList normal;
+										normal.push_back(v[0]);
+										normal.push_back(v[1]);
+										normal.push_back(v[2]);
+										normal.push_back(v[3]);
+										shape.mutable_normal_list().push_back(normal);
+									}
+								}
+								else
+								{
+									const int normal_count = fbx_normals->GetCount();
+									for (int m = 0; m < normal_count; ++m)
+									{
+										FbxVector4 v = fbx_normals->GetAt(m);
+										FloatList normal;
+										normal.push_back(v[0]);
+										normal.push_back(v[1]);
+										normal.push_back(v[2]);
+										normal.push_back(v[3]);
+										shape.mutable_normal_list().push_back(normal);
+									}
 								}
 							}
 
@@ -1056,7 +1105,7 @@ bool UMFbxLoadImpl::assign_normals(
 	{
 		FbxLayerElement::EMappingMode mode = fbx_normals->GetMappingMode();
 		FbxLayerElement::EReferenceMode ref_mode = fbx_normals->GetReferenceMode();
-		umio::DoubleList normal;
+		umio::FloatList normal;
 		normal.resize(3);
 
 		FbxVector4 n;
@@ -1125,7 +1174,7 @@ bool UMFbxLoadImpl::assign_uvs(
 	{
 		FbxLayerElement::EMappingMode mode = fbx_uv->GetMappingMode();
 		FbxLayerElement::EReferenceMode ref_mode = fbx_uv->GetReferenceMode();
-		umio::DoubleList uv;
+		umio::FloatList uv;
 		uv.resize(2);
 
 		FbxVector2 v;
@@ -1196,7 +1245,7 @@ bool UMFbxLoadImpl::assign_vertex_colors(
 	{
 		FbxLayerElement::EMappingMode mode = fbx_vertex_color->GetMappingMode();
 		FbxLayerElement::EReferenceMode ref_mode = fbx_vertex_color->GetReferenceMode();
-		umio::DoubleList vertex_color;
+		umio::FloatList vertex_color;
 		vertex_color.resize(4);
 
 		FbxColor v;
@@ -1293,7 +1342,7 @@ bool UMFbxLoadImpl::assign_mesh(UMObjectPtr object, FbxNode* node)
 		// vertex
 		for (int i = 0; i < control_point_count; ++i)
 		{
-			umio::DoubleList vertex;
+			umio::FloatList vertex;
 			vertex.push_back(control_points[i][0]);
 			vertex.push_back(control_points[i][1]);
 			vertex.push_back(control_points[i][2]);
@@ -2909,7 +2958,7 @@ bool UMFbxSaveImpl::export_shape(FbxShape* fbx_shape, const UMShape& shape)
 //#endif // WITH_PYTHON
 	for (int i = 0; i < vertex_count; ++i)
 	{
-		const DoubleList& vertex = shape.vertex_list().at(i);
+		const FloatList& vertex = shape.vertex_list().at(i);
 		if (static_cast<int>(vertex.size()) < 3) continue;
 		FbxVector4 v(
 			vertex.at(0), 
@@ -2944,7 +2993,7 @@ bool UMFbxSaveImpl::export_shape(FbxShape* fbx_shape, const UMShape& shape)
 			
 			for (int i = 0; i < normal_count; ++i)
 			{
-				const DoubleList& normal = shape.normal_list().at(i);
+				const FloatList& normal = shape.normal_list().at(i);
 				FbxVector4 n(
 					normal.at(0), 
 					normal.at(1), 
@@ -3048,7 +3097,7 @@ bool UMFbxSaveImpl::export_mesh(FbxScene* scene, UMObjectPtr object)
 				fbx_mesh->InitControlPoints(vertex_count);
 				for (int i = 0; i < vertex_count; ++i)
 				{
-					const DoubleList& vertex = mesh.vertex_list().at(i);
+					const FloatList& vertex = mesh.vertex_list().at(i);
 					if (static_cast<int>(vertex.size()) < 3) continue;
 					FbxVector4 vertex_point(vertex.at(0), vertex.at(1), vertex.at(2), 1.0);
 					fbx_mesh->SetControlPointAt(vertex_point, i);
@@ -3099,7 +3148,7 @@ bool UMFbxSaveImpl::export_mesh(FbxScene* scene, UMObjectPtr object)
 					fbx_normal->SetReferenceMode(FbxLayerElement::eDirect);
 					for (int i = 0; i < normal_count; ++i)
 					{
-						const DoubleList& normal = mesh.normal_list().at(i);
+						const FloatList& normal = mesh.normal_list().at(i);
 						if (static_cast<int>(normal.size()) < 3) continue;
 						FbxVector4 normal_point(normal.at(0), normal.at(1), normal.at(2), 1.0);
 						fbx_normal->GetDirectArray().Add(normal_point);
@@ -3118,7 +3167,7 @@ bool UMFbxSaveImpl::export_mesh(FbxScene* scene, UMObjectPtr object)
 					fbx_uv->SetReferenceMode(FbxLayerElement::eIndexToDirect);
 					for (int i = 0; i < uv_count; ++i)
 					{
-						const DoubleList& uv = mesh.uv_list().at(i);
+						const FloatList& uv = mesh.uv_list().at(i);
 						if (static_cast<int>(uv.size()) < 2) continue;
 						FbxVector2 fbx_vertex_uv(uv.at(0), uv.at(1));
 						fbx_uv->GetDirectArray().Add(fbx_vertex_uv);

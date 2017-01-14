@@ -849,7 +849,7 @@ public:
 	// getter
 	const std::string& name() const { return name_; }
 	const IntList& index_list() const { return index_list_; }
-	const DoubleList& weight_list() const { return weight_list_; }
+	const FloatList& weight_list() const { return weight_list_; }
 	int link_mode() const { return link_mode_; }
 	const UMNode* link_node() const { return link_node_; }
 	int link_node_id() const { return link_node_id_; }
@@ -857,7 +857,7 @@ public:
 	// setter
 	void set_name(const std::string& name) { name_ = name; }
 	IntList& mutable_index_list() { return index_list_; }
-	DoubleList& mutable_weight_list() { return weight_list_; }
+	FloatList& mutable_weight_list() { return weight_list_; }
 	void set_link_mode(int link_mode) { link_mode_ = link_mode; }
 	void set_link_node(UMNode* link_node) { link_node_ = link_node; }
 	void set_link_node_id(int link_node_id) { link_node_id_ = link_node_id; }
@@ -874,7 +874,7 @@ private:
 
 	std::string name_;
 	IntList index_list_;
-	DoubleList weight_list_;
+	FloatList weight_list_;
 	// FbxCluster::ELinkMode or -1
 	int link_mode_;
 	UMNode* link_node_;
@@ -940,8 +940,8 @@ public:
 
 	const IntList& vertex_index_list() const { return vertex_index_list_; }
 	const IntList& normal_index_list() const { return normal_index_list_; }
-	const DoubleListVec& vertex_list() const { return vertex_list_; }
-	const DoubleListVec& normal_list() const { return normal_list_; }
+	const FloatListVec& vertex_list() const { return vertex_list_; }
+	const FloatListVec& normal_list() const { return normal_list_; }
 	
 	// setter
 	void set_name(const std::string& name) { name_ = name; }
@@ -950,14 +950,14 @@ public:
 	
 	IntList& mutable_vertex_index_list() { return vertex_index_list_; }
 	IntList& mutable_normal_index_list() { return normal_index_list_; }
-	DoubleListVec& mutable_vertex_list() { return vertex_list_; }
-	DoubleListVec& mutable_normal_list() { return normal_list_; }
+	FloatListVec& mutable_vertex_list() { return vertex_list_; }
+	FloatListVec& mutable_normal_list() { return normal_list_; }
 
 	// external use
 	void add_vertex_index(int vertex_index) { mutable_vertex_index_list().push_back(vertex_index); }
 	void add_normal_index(int normal_index) { mutable_normal_index_list().push_back(normal_index); }
-	void add_vertex(const DoubleList& vertex) { mutable_vertex_list().push_back(vertex); }
-	void add_normal(const DoubleList& normal) { mutable_normal_list().push_back(normal); }
+	void add_vertex(const FloatList& vertex) { mutable_vertex_list().push_back(vertex); }
+	void add_normal(const FloatList& normal) { mutable_normal_list().push_back(normal); }
 	
 	// msgpack serialization
 	#include "msg/UMShapeMsg.h"
@@ -970,8 +970,8 @@ private:
 	int base_geometry_node_id_;
 	IntList vertex_index_list_;
 	IntList normal_index_list_;
-	DoubleListVec vertex_list_;
-	DoubleListVec normal_list_;
+	FloatListVec vertex_list_;
+	FloatListVec normal_list_;
 };
 
 /*---------------------------------------------------------------------------*
@@ -986,12 +986,12 @@ public:
 
 	// getter
 	const UMShape::ShapeList& target_shape_list() const { return target_shape_list_; }
-	const DoubleList& full_weight_list() const { return full_weight_list_; }
+	const FloatList& full_weight_list() const { return full_weight_list_; }
 	double deform_percent() const { return deform_percent_; }
 
 	// setter
 	UMShape::ShapeList& mutable_target_shape_list() { return target_shape_list_; }
-	DoubleList& mutable_full_weight_list() { return full_weight_list_; }
+	FloatList& mutable_full_weight_list() { return full_weight_list_; }
 	double mutable_deform_percent() { return deform_percent_; }
 
 	// external use
@@ -1006,7 +1006,7 @@ private:
 	#include "bos/UMBlendShapeChannelBos.h"
 
 	UMShape::ShapeList target_shape_list_;
-	DoubleList full_weight_list_;
+	FloatList full_weight_list_;
 	double deform_percent_;
 };
 
@@ -1191,9 +1191,9 @@ public:
 	typedef std::vector<UMMesh> MeshList;
 
 	UMMesh() {
-		DoubleListVec normal_list_;
-		DoubleListVec uv_list_;
-		DoubleListVec vertex_color_list_;
+		FloatListVec normal_list_;
+		FloatListVec uv_list_;
+		FloatListVec vertex_color_list_;
 		layered_uv_list_.push_back(uv_list_);
 		layered_normal_list_.push_back(normal_list_);
 		layered_vertex_color_list_.push_back(vertex_color_list_);
@@ -1207,48 +1207,48 @@ public:
 	
 	// getter
 	const IntListVec& vertex_index_list() const { return vertex_index_list_; }
-	const DoubleListVec& vertex_list() const { return vertex_list_; }
+	const FloatListVec& vertex_list() const { return vertex_list_; }
 	const IntList& material_index_list() const { return material_index_; }
 	const UMMaterial::MaterialList& material_list() const { return material_list_; }
 	const UMSkin::SkinList& skin_list() const { return skin_list_; }
 	const UMBlendShape::BlendShapeList& blend_shape_list() const { return blend_shape_list_; }
-	const DoubleListVec& normal_list(int layer = 0) const { return layered_normal_list_.at(layer); }
-	const DoubleListVec& vertex_color_list(int layer = 0) const { return layered_vertex_color_list_.at(layer); }
-	const DoubleListVec& uv_list(int layer = 0) const { return layered_uv_list_.at(layer); }
+	const FloatListVec& normal_list(int layer = 0) const { return layered_normal_list_.at(layer); }
+	const FloatListVec& vertex_color_list(int layer = 0) const { return layered_vertex_color_list_.at(layer); }
+	const FloatListVec& uv_list(int layer = 0) const { return layered_uv_list_.at(layer); }
 	
-	const LayeredDoubleListVec& layered_uv_list() const { return layered_uv_list_; }
-	const LayeredDoubleListVec& layered_normal_list() const { return layered_normal_list_; }
-	const LayeredDoubleListVec& layered_vertex_color_list() const { return layered_vertex_color_list_; }
+	const LayeredFloatListVec& layered_uv_list() const { return layered_uv_list_; }
+	const LayeredFloatListVec& layered_normal_list() const { return layered_normal_list_; }
+	const LayeredFloatListVec& layered_vertex_color_list() const { return layered_vertex_color_list_; }
 
 	// setter
 	IntListVec& mutable_vertex_index_list() { return vertex_index_list_; }
-	DoubleListVec& mutable_vertex_list() { return vertex_list_; }
+	FloatListVec& mutable_vertex_list() { return vertex_list_; }
 	IntList& mutable_material_index() { return material_index_; }
 	UMMaterial::MaterialList& mutable_material_list() { return material_list_; }
 	UMSkin::SkinList& mutable_skin_list() { return skin_list_; }
 	UMBlendShape::BlendShapeList& mutable_blend_shape_list() { return blend_shape_list_; }
-	DoubleListVec& mutable_normal_list(int layer = 0) { return layered_normal_list_.at(layer); }
-	DoubleListVec& mutable_vertex_color_list(int layer = 0) { return layered_vertex_color_list_.at(layer); }
-	DoubleListVec& mutable_uv_list(int layer = 0) { return layered_uv_list_.at(layer); }
+	FloatListVec& mutable_normal_list(int layer = 0) { return layered_normal_list_.at(layer); }
+	FloatListVec& mutable_vertex_color_list(int layer = 0) { return layered_vertex_color_list_.at(layer); }
+	FloatListVec& mutable_uv_list(int layer = 0) { return layered_uv_list_.at(layer); }
 
-	LayeredDoubleListVec& mutable_layered_uv_list() { return layered_uv_list_; }
-	LayeredDoubleListVec& mutable_layered_normal_list() { return layered_normal_list_; }
-	LayeredDoubleListVec& mutable_layered_vertex_color_list() { return layered_vertex_color_list_; }
+	LayeredFloatListVec& mutable_layered_uv_list() { return layered_uv_list_; }
+	LayeredFloatListVec& mutable_layered_normal_list() { return layered_normal_list_; }
+	LayeredFloatListVec& mutable_layered_vertex_color_list() { return layered_vertex_color_list_; }
 	
 	// external use
 	void add_vertex_index(const IntList& vertex_index) { mutable_vertex_index_list().push_back(vertex_index); }
-	void add_vertex(const DoubleList& vertex) { mutable_vertex_list().push_back(vertex); }
+	void add_vertex(const FloatList& vertex) { mutable_vertex_list().push_back(vertex); }
 	void add_material_index(int index) { mutable_material_index().push_back(index);	}
 	void add_material(const UMMaterial& material) { mutable_material_list().push_back(material); }
 	void add_skin(const UMSkin& skin) {	mutable_skin_list().push_back(skin); }
 	void add_blend_shape(const UMBlendShape& blend_shape) { mutable_blend_shape_list().push_back(blend_shape); }
-	void add_vertex_color(const DoubleList& vertex_color, int layer = 0) { mutable_vertex_color_list(layer).push_back(vertex_color); }
-	void add_normal(const DoubleList& normal, int layer = 0) {	mutable_normal_list(layer).push_back(normal); }
-	void add_uv(const DoubleList& uv, int layer = 0) {	mutable_uv_list(layer).push_back(uv); }
+	void add_vertex_color(const FloatList& vertex_color, int layer = 0) { mutable_vertex_color_list(layer).push_back(vertex_color); }
+	void add_normal(const FloatList& normal, int layer = 0) {	mutable_normal_list(layer).push_back(normal); }
+	void add_uv(const FloatList& uv, int layer = 0) {	mutable_uv_list(layer).push_back(uv); }
 	
-	int add_uv_layer() { layered_uv_list_.push_back(DoubleListVec()); return static_cast<int>(layered_uv_list_.size()-1); }
-	int add_normal_layer() { layered_normal_list_.push_back(DoubleListVec()); return static_cast<int>(layered_normal_list_.size()-1); }
-	int add_vertex_color_layer() { layered_vertex_color_list_.push_back(DoubleListVec()); return static_cast<int>(layered_vertex_color_list_.size()-1); }
+	int add_uv_layer() { layered_uv_list_.push_back(FloatListVec()); return static_cast<int>(layered_uv_list_.size()-1); }
+	int add_normal_layer() { layered_normal_list_.push_back(FloatListVec()); return static_cast<int>(layered_normal_list_.size()-1); }
+	int add_vertex_color_layer() { layered_vertex_color_list_.push_back(FloatListVec()); return static_cast<int>(layered_vertex_color_list_.size()-1); }
 	
 	// msgpack serialization
 	#include "msg/UMMeshMsg.h"
@@ -1257,15 +1257,15 @@ private:
 	#include "bos/UMMeshBos.h"
 
 	IntListVec vertex_index_list_;
-	DoubleListVec vertex_list_;
+	FloatListVec vertex_list_;
 	IntList material_index_;
 	UMMaterial::MaterialList material_list_;
 	UMSkin::SkinList skin_list_;
 	UMBlendShape::BlendShapeList blend_shape_list_;
 
-	LayeredDoubleListVec layered_uv_list_;
-	LayeredDoubleListVec layered_normal_list_;
-	LayeredDoubleListVec layered_vertex_color_list_;
+	LayeredFloatListVec layered_uv_list_;
+	LayeredFloatListVec layered_normal_list_;
+	LayeredFloatListVec layered_vertex_color_list_;
 		
 };
 

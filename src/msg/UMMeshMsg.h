@@ -13,14 +13,14 @@
 	typedef msgpack::type::tuple<
 	node_msg_type,
 	IntListVec,
-	DoubleListVec,
+	FloatListVec,
 	IntList,
 	UMMaterial::MaterialList,
 	UMSkin::SkinList,
 	UMBlendShape::BlendShapeList,
-	LayeredDoubleListVec,
-	LayeredDoubleListVec,
-	LayeredDoubleListVec
+	LayeredFloatListVec,
+	LayeredFloatListVec,
+	LayeredFloatListVec
 	> mesh_msg_type;
 	
 	template <typename Stream>

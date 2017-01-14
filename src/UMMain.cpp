@@ -135,6 +135,7 @@ int main(int argc, char **argv)
 	{
 		// convert fbx or other format to bos
 		setting.set_bl_imp_bool_prop(umio::UMIOSetting::eUMImpFBX, true);
+		setting.set_bl_imp_bool_prop(umio::UMIOSetting::eUMImpTriangulate, true);
 		setting.set_bl_exp_bool_prop(umio::UMIOSetting::eUMExpFBX, false);
 	}
 
