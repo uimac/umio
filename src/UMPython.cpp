@@ -20,11 +20,14 @@
 #include "UMAnimation.h"
 
 #include <pybind11/pybind11.h>
+#include <pybind11/pytypes.h>
 #include <pybind11/stl.h>
+#include <functional>
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 namespace umio
 {
+
 
 // for UMIO::load_from_memory
 //static umio::UMObjectPtr load_from_memory_wrap(
@@ -39,20 +42,19 @@ namespace umio
 //}
 //
 // for UMIO::save_to_memory
-//static pybind11::object save_to_memory_wrap(
-//	UMIO& self, 
-//	UMObjectPtr object, 
-//	const UMIOSetting& setting)
-//{
-//	int buffer_size = 0;
-//	char* buffer = self.save_to_memory(buffer_size, object, setting);
-//	if (buffer && buffer_size > 0)
-//	{
-//		pybind11::object memory_view(pybind11::handle<>(PyMemoryView_FromMemory(buffer, buffer_size, PyBUF_READ)));
-//		return memory_view;
-//	}
-//	return boost::python::object();
-//}
+static pybind11::bytes save_to_memory_wrap(
+	UMIO& self, 
+	UMObjectPtr object, 
+	const UMIOSetting& setting)
+{
+	int buffer_size = 0;
+	char* buffer = self.save_to_memory(buffer_size, object, setting);
+	if (buffer && buffer_size > 0)
+	{
+		return std::string(buffer, buffer_size);
+	}
+	return pybind11::object();
+}
 
 UMObjectPtr create_object() {
 	return UMObjectPtr(new UMObject());
@@ -1065,10 +1067,11 @@ PYBIND11_PLUGIN(UMIO)
 		.def("load", &UMIO::load)
 		.def("save", &UMIO::save)
 		//.def("load_from_memory", &load_from_memory_wrap, (arg("self"), arg("buffer")))
-		//		.def("save_to_memory", &save_to_memory_wrap, (arg("self")))
+		.def("save_to_memory", [](UMIO& self, UMObjectPtr obj, UMIOSetting& setting) -> pybind11::bytes {
+			return save_to_memory_wrap(self, obj, setting);
+		})
 		.def("load_setting", &UMIO::load_setting)
 		.def("save_setting", &UMIO::save_setting)
-		.def("create_object", &UMIO::create_object)
 		;
 
 	return m.ptr();
