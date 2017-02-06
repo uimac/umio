@@ -811,6 +811,7 @@ public:
 	void set_relative_file_name(const std::string& relative_file_name) { relative_file_name_ = relative_file_name; }
 	void set_blend_mode(int blend_mode) { blend_mode_ = blend_mode; }
 	void set_alpha(double alpha) { alpha_ = alpha; }
+
 	
 	// msgpack serialization
 	#include "msg/UMTextureMsg.h"
@@ -1275,6 +1276,7 @@ private:
 class UMObject {
 public:	
 	typedef std::map<int, UMNode* > IDToNodePointerMap;
+	typedef std::map<std::string, std::vector<char> > EmbeddedFileMap; // filename, filebinary
 
 	UMObject() {}
 	virtual ~UMObject() {}
@@ -1300,6 +1302,10 @@ public:
 	// pose
 	const UMPose::PoseList& pose_list() const { return pose_list_; }
 	UMPose::PoseList& mutable_pose_list() { return pose_list_; }
+
+	// embedded files
+	const EmbeddedFileMap& embedded_file_map() const { return embedded_file_map_; }
+	EmbeddedFileMap& mutable_embedded_file_map() { return embedded_file_map_; }
 
 	// id
 	int next_id() { 
@@ -1360,6 +1366,7 @@ private:
 	UMCamera::IDToCameraMap camera_map_;
 	UMNode::IDToNodeMap other_node_map_;
 	UMPose::PoseList pose_list_;
+	EmbeddedFileMap embedded_file_map_;
 
 	IDToNodePointerMap id_to_node_map_;
 

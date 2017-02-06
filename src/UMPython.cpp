@@ -890,6 +890,7 @@ PYBIND11_PLUGIN(UMIO)
 		.def("skeleton_list", &UMObject::skeleton_map, return_value_policy::reference_internal)
 		.def("camera_list", &UMObject::camera_map, return_value_policy::reference_internal)
 		.def("other_node_list", &UMObject::other_node_map, return_value_policy::reference_internal)
+		.def("embedded_file_map", &UMObject::embedded_file_map, return_value_policy::reference_internal)
 		.def("next_id", &UMObject::next_id)
 		// setter
 		.def("add_mesh", &UMObject::add_mesh)

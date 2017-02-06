@@ -27,6 +27,13 @@
 #include <fbxsdk.h>
 #include <vector>
 #include <algorithm>
+
+#include <map>
+#include <fstream>
+#include <string>
+#include <iterator>
+#include <iostream>
+
 #include "UMFbx.h"
 #include "UMObject.h"
 #include "UMAnimation.h"
@@ -55,9 +62,11 @@ public:
 		manager_(NULL), 
 		importer_(NULL), 
 		current_scene_(NULL), 
+		current_path_(""),
 		is_triangulate_(false),
 		is_load_patch_(false), 
-		is_load_nurbs_(false) {}
+		is_load_nurbs_(false),
+		is_load_embedded_texture_(false) {}
 	
 	/**
 	 * destructor
@@ -106,11 +115,14 @@ public:
 
 	void set_load_patch(bool val) { is_load_patch_ = val; }
 	bool is_load_patch() { return is_load_patch_; }
-	
+
+	void set_load_embedded_texture(bool val) { is_load_embedded_texture_ = val; }
+	bool is_load_embedded_texture() { return is_load_embedded_texture_; }
+
 	/**
 	 * create object from fbx's manager, scene, importer
 	 */
-	UMObjectPtr create_object(FbxScene* scene);
+	UMObjectPtr create_object(FbxScene* scene, const std::string& path);
 
 	/**
 	 * create animation from fbx's manager, scene, importer, and UMObject
@@ -217,14 +229,17 @@ protected:
 	FbxManager* manager() { return manager_; }
 	FbxImporter* importer() { return importer_; }
 	FbxScene* current_scene() { return current_scene_; }
+	const std::string& current_path() const { return current_path_; }
 
 	FbxManager* manager_;
 	FbxImporter* importer_;
 	FbxScene* current_scene_;
+	std::string current_path_;
 
 	bool is_triangulate_;
 	bool is_load_nurbs_;
 	bool is_load_patch_;
+	bool is_load_embedded_texture_;
 
 	std::map<FbxLayer*, int> uv_layer_to_index_map_;
 	std::map<FbxLayer*, int> normal_layer_to_index_map_;
@@ -513,6 +528,8 @@ void UMFbxLoadImpl::set_load_setting(FbxIOSettings& fbx_settings, const UMIOSett
 			set_load_nurbs(val);
 		else if (type == UMIOSetting::eUMImpPatch)
 			set_load_patch(val);
+		else if (type == UMIOSetting::eUMImpEmbedded)
+			set_load_embedded_texture(val);
 	}
 }
 
@@ -580,6 +597,18 @@ void UMFbxLoadImpl::set_system_unit_type(FbxScene* fbx_scene, const UMIOSetting&
 bool UMFbxLoadImpl::assign_textures(UMObjectPtr object, UMMaterial& material, FbxProperty& fbx_property)
 {
 	const int layered_texture_count = fbx_property.GetSrcObjectCount<FbxLayeredTexture>();
+
+	// base path
+	std::string base_dir;
+	size_t p = current_path_.rfind("\\");
+	if (p != std::string::npos) {
+		base_dir = current_path_.substr(0, p + 1);
+	}
+	p = current_path_.rfind("/");
+	if (p != std::string::npos) {
+		base_dir = current_path_.substr(0, p + 1);
+	}
+
 	if (layered_texture_count > 0)
 	{
 		printf("has layered texture");
@@ -636,6 +665,30 @@ bool UMFbxLoadImpl::assign_textures(UMObjectPtr object, UMMaterial& material, Fb
 			texture.set_name(std::string(fbx_texture->GetName()));
 			texture.set_relative_file_name(std::string(fbx_file_texture->GetRelativeFileName()));
 			texture.set_file_name(std::string(fbx_file_texture->GetFileName()));
+
+			if (is_load_embedded_texture()) {
+				std::string file_name;
+				std::string path = texture.file_name();
+				size_t p = path.rfind("\\");
+				if (p != std::string::npos) {
+					file_name = path.substr(p + 1, path.size() - p - 1);
+				}
+				p = path.rfind("/");
+				if (p != std::string::npos) {
+					file_name = path.substr(p + 1, path.size() - p - 1);
+				}
+				std::string file_path = base_dir + file_name;
+				if (object->embedded_file_map().find(file_name) == object->embedded_file_map().end())
+				{
+					std::ifstream ifs(file_path, std::ios::in | std::ios::binary);
+					if (ifs.good()) {
+						std::string str((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
+						object->mutable_embedded_file_map()[file_name].resize(str.size());
+						memcpy( &(*object->mutable_embedded_file_map()[file_name].begin()), str.c_str(), str.size());
+						printf("loading texture - %s %dbytes\n", file_name.c_str(), str.size());
+					}
+				}
+			}
 
 			material.mutable_texture_list().push_back(texture);
 		}
@@ -1850,7 +1903,7 @@ bool UMFbxLoadImpl::assing_all_poses(UMObjectPtr object)
 /**
  * create object from fbx's manager, scene, importer
  */
-UMObjectPtr UMFbxLoadImpl::create_object(FbxScene* scene)
+UMObjectPtr UMFbxLoadImpl::create_object(FbxScene* scene, const std::string& path)
 {
 	FbxManager* manager = this->manager();
 	FbxImporter* importer = this->importer();
@@ -1859,6 +1912,7 @@ UMObjectPtr UMFbxLoadImpl::create_object(FbxScene* scene)
 
 	if (!scene) return UMObjectPtr();
 	current_scene_ = scene;
+	current_path_ = path;
 	
 	// create object
 	UMObjectPtr object = UMObjectPtr(new UMObject);
@@ -2341,7 +2395,7 @@ UMObjectPtr UMFbxLoadImpl::load(std::string path, const UMIOSetting& setting)
 	
 	printf("import sccess!\n");
 
-	UMObjectPtr object = create_object(scene);
+	UMObjectPtr object = create_object(scene, path);
 
 	return object;
 }
