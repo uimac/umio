@@ -687,6 +687,16 @@ bool UMFbxLoadImpl::assign_textures(UMObjectPtr object, UMMaterial& material, Fb
 						memcpy( &(*object->mutable_embedded_file_map()[file_name].begin()), str.c_str(), str.size());
 						printf("loading texture - %s %dbytes\n", file_name.c_str(), str.size());
 					}
+					else
+					{
+						std::ifstream ifs(path, std::ios::in | std::ios::binary);
+						if (ifs.good()) {
+							std::string str((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
+							object->mutable_embedded_file_map()[file_name].resize(str.size());
+							memcpy(&(*object->mutable_embedded_file_map()[file_name].begin()), str.c_str(), str.size());
+							printf("loading texture - %s %dbytes\n", file_name.c_str(), str.size());
+						}
+					}
 				}
 			}
 
@@ -1258,10 +1268,10 @@ bool UMFbxLoadImpl::assign_uvs(
 		uv[0] = v[0];
 		uv[1] = v[1];
 
-		if (mesh.layered_uv_list().size() == 1 && mesh.uv_list().empty())
-		{
-			uv_layer_to_index_map_[layer] = 0;
-		}
+		//if (mesh.layered_uv_list().size() == 1 && mesh.uv_list().empty())
+		//{
+		//	uv_layer_to_index_map_[layer] = 0;
+		//}
 
 		if (uv_layer_to_index_map_.find(layer) == uv_layer_to_index_map_.end())
 		{
@@ -1271,7 +1281,10 @@ bool UMFbxLoadImpl::assign_uvs(
 		}
 		else
 		{
-			mesh.mutable_uv_list(uv_layer_to_index_map_[layer]).push_back(uv);
+			int layer_index = uv_layer_to_index_map_[layer];
+			if (layer_index >= 0 && layer_index < mesh.layered_uv_list().size()) {
+				mesh.mutable_uv_list(uv_layer_to_index_map_[layer]).push_back(uv);
+			}
 		}
 		return true;
 	}
