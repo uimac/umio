@@ -1,1 +1,0 @@
-node-gyp rebuild --arch=x64 --msvs_version=2015
