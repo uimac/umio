@@ -4,6 +4,3 @@
 [submodule "lib/msgpack"]
 	path = lib/msgpack
 	url = https://github.com/msgpack/msgpack-c.git
-[submodule "lib/v8pp"]
-	path = lib/v8pp
-	url = https://github.com/pmed/v8pp
