@@ -1191,14 +1191,7 @@ public:
 	typedef std::map<int, UMMesh> IDToMeshMap;
 	typedef std::vector<UMMesh> MeshList;
 
-	UMMesh() {
-		FloatListVec normal_list_;
-		FloatListVec uv_list_;
-		FloatListVec vertex_color_list_;
-		layered_uv_list_.push_back(uv_list_);
-		layered_normal_list_.push_back(normal_list_);
-		layered_vertex_color_list_.push_back(vertex_color_list_);
-	}
+	UMMesh() {}
 	virtual ~UMMesh() {}
 	
 	bool operator==(const UMMesh& mesh)

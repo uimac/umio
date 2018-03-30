@@ -1185,11 +1185,6 @@ bool UMFbxLoadImpl::assign_normals(
 		normal[0] = n[0];
 		normal[1] = n[1];
 		normal[2] = n[2];
-		
-		if (mesh.layered_normal_list().size() == 1 && mesh.normal_list().empty())
-		{
-			normal_layer_to_index_map_[layer] = 0;
-		}
 
 		if (normal_layer_to_index_map_.find(layer) == normal_layer_to_index_map_.end())
 		{
@@ -1199,7 +1194,10 @@ bool UMFbxLoadImpl::assign_normals(
 		}
 		else
 		{
-			mesh.mutable_normal_list(normal_layer_to_index_map_[layer]).push_back(normal);
+			int layer_index = normal_layer_to_index_map_[layer];
+			if (layer_index >= 0 && layer_index < mesh.layered_normal_list().size()) {
+				mesh.mutable_normal_list(normal_layer_to_index_map_[layer]).push_back(normal);
+			}
 		}
 		return true;
 	}
@@ -1258,20 +1256,18 @@ bool UMFbxLoadImpl::assign_uvs(
 		uv[0] = v[0];
 		uv[1] = v[1];
 
-		if (mesh.layered_uv_list().size() == 1 && mesh.uv_list().empty())
+		if (vertex_color_layer_to_index_map_.find(layer) == vertex_color_layer_to_index_map_.end())
 		{
-			uv_layer_to_index_map_[layer] = 0;
-		}
-
-		if (uv_layer_to_index_map_.find(layer) == uv_layer_to_index_map_.end())
-		{
-			int layer_index = mesh.add_uv_layer();
-			uv_layer_to_index_map_[layer] = layer_index;
-			mesh.mutable_uv_list(layer_index).push_back(uv);
+			int layer_index = mesh.add_vertex_color_layer();
+			vertex_color_layer_to_index_map_[layer] = layer_index;
+			mesh.mutable_vertex_color_list(layer_index).push_back(vertex_color);
 		}
 		else
 		{
-			mesh.mutable_uv_list(uv_layer_to_index_map_[layer]).push_back(uv);
+			int layer_index = vertex_color_layer_to_index_map_[layer];
+			if (layer_index >= 0 && layer_index < mesh.layered_vertex_color_list().size()) {
+				mesh.mutable_vertex_color_list(vertex_color_layer_to_index_map_[layer]).push_back(vertex_color);
+			}
 		}
 		return true;
 	}
