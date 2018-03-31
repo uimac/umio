@@ -218,10 +218,20 @@
 
 	function UMAnimationCurveStackMsg (data) {
 		var i;
+		this.link_node_name = data[0];
 		this.curve_map =  {}
-		for (i in data[0]) {
+		for (i in data[1]) {
 			this.curve_map[i] = new UMAnimationCurveMsg(data[0][i]);
 		}
+		this.global_transform_map = {};
+		for (i in data[2]) {
+			this.global_transform_map[i] = data[2][i];
+		}
+		this.local_transform_map = {};
+		for (i in data[3]) {
+			this.local_transform_map[i] = data[3][i];
+		}
+
 	}
 	
 	function UMAnimationLayerMsg (data) {
@@ -236,7 +246,7 @@
 		this.scale_accumulation_mode = data[7];
 		this.curve_stack_map =  {}
 		for (i in data[8]) {
-			this.curve_stack_map[i] = new UMAnimationCurveStack(data[8][i]);
+			this.curve_stack_map[i] = new UMAnimationCurveStackMsg(data[8][i]);
 		}
 	}
 	
@@ -361,5 +371,6 @@
 
 	window.bosloader = {};
 	window.bosloader.load = load;
+	window.bosloader.load_animation = load_animation;
 
 }());

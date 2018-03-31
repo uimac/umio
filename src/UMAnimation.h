@@ -244,20 +244,31 @@ private:
 class UMAnimationCurveStack {
 public:
 	typedef std::map<int, UMAnimationCurveStack> IDToCurveStackMap;
+	typedef std::map<UMTime, UMMat44d> TimeToLocalTransformMap;
+	typedef std::map<UMTime, UMMat44d> TimeToGlobalTransformMap;
 
 	UMAnimationCurveStack() {}
 	~UMAnimationCurveStack() {}
 
 	// getter
+	const std::string& link_node_name() const { return link_node_name_; }
 	const UMAnimationCurve::CurveMap& curve_map() const { return curve_map_; }
+	const TimeToGlobalTransformMap& global_transform_map() const  { return global_transform_map_; }
+	const TimeToLocalTransformMap& local_transform_map() const { return local_transform_map_; }
 
 	// setter
+	void set_link_node_name(const std::string& name) { link_node_name_ = name; }
 	UMAnimationCurve::CurveMap& mutable_curve_map() { return curve_map_; }
+	TimeToGlobalTransformMap& mutable_global_transform_map() { return global_transform_map_; }
+	TimeToLocalTransformMap& mutable_local_transform_map() { return local_transform_map_; }
 
 	// msgpack serialization
 	#include "msg/UMAnimationCurveStackMsg.h"
 private:
+	std::string link_node_name_;
 	UMAnimationCurve::CurveMap curve_map_;
+	TimeToGlobalTransformMap global_transform_map_;
+	TimeToLocalTransformMap local_transform_map_;
 };
 
 /*---------------------------------------------------------------------------*

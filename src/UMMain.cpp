@@ -49,7 +49,7 @@ int main(int argc, char **argv)
 	{
 		std::cout << "this is 3d data converter." << std::endl;
 #if defined(WITH_BOOST_SERIALIZATION) || defined(WITH_MSGPACK)
-		std::cout << "convert (.fbx) to (.bos) or (.bos) to (.fbx)." << std::endl;
+		std::cout << "convert (.fbx) to (.bos;.bosanim) or (.bos;.bosanim) to (.fbx)." << std::endl;
 #endif //WITH_BOOST_SERIALIZATION
 		std::cout << "usage: ./UM.app absolute_src_filepath absolute_dst_filepath absolute_iosetting_filepath" << std::endl;
 		std::cout << " " << std::endl;
@@ -117,7 +117,7 @@ int main(int argc, char **argv)
 		std::cout << "input file has not extension." << std::endl;
 		return 0;
 	}
-	if (srcpath_str.substr(ext_pos + 1) == "bos")
+	if (srcpath_str.substr(ext_pos + 1) == "bos" || srcpath_str.substr(ext_pos + 1) == "bosanim")
 	{
 		is_convert_bos_to_fbx = true;
 	}

@@ -119,14 +119,16 @@ public:
 		eUMImpTriangulate,
 		eUMImpNurbs,
 		eUMImpPatch,
-		eUMImpEmbedded
+		eUMImpEmbedded,
+		eUMImpAnimationCurve
 	};
 
 	// UM original
 	enum EUMExpSettingType {
 		eUMExpFBX, // using fbx sdk
 		eUMExpText,
-		eUMExpOldFBX
+		eUMExpOldFBX,
+		eUMExpAnimationCurve
 	};
 
 	// FbxAxisSetting
@@ -160,6 +162,7 @@ public:
 		bl_imp_prop_map_[eUMImpFBX]				= true;
 		bl_imp_prop_map_[eUMImpTriangulate]		= true;
 		bl_imp_prop_map_[eUMImpEmbedded]		= true;
+		bl_imp_prop_map_[eUMImpAnimationCurve] = false;
 		bl_exp_prop_map_[eUMExpFBX]				= true;
 
 		imp_prop_map_[eImpFbxMaterial]			= true;

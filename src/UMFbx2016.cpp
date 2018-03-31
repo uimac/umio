@@ -66,7 +66,8 @@ public:
 		is_triangulate_(false),
 		is_load_patch_(false), 
 		is_load_nurbs_(false),
-		is_load_embedded_texture_(false) {}
+		is_load_embedded_texture_(false),
+		is_load_animation_curve_(false) {}
 	
 	/**
 	 * destructor
@@ -123,6 +124,9 @@ public:
 
 	void set_load_embedded_texture(bool val) { is_load_embedded_texture_ = val; }
 	bool is_load_embedded_texture() { return is_load_embedded_texture_; }
+
+	void set_load_animation_curve(bool val) { is_load_animation_curve_ = val; }
+	bool is_load_animation_curve() { return is_load_animation_curve_; }
 
 	/**
 	 * create object from fbx's manager, scene, importer
@@ -245,6 +249,7 @@ protected:
 	bool is_load_nurbs_;
 	bool is_load_patch_;
 	bool is_load_embedded_texture_;
+	bool is_load_animation_curve_;
 
 	std::map<FbxLayer*, int> uv_layer_to_index_map_;
 	std::map<FbxLayer*, int> normal_layer_to_index_map_;
@@ -550,6 +555,8 @@ void UMFbxLoadImpl::set_load_setting(FbxIOSettings& fbx_settings, const UMIOSett
 			set_load_patch(val);
 		else if (type == UMIOSetting::eUMImpEmbedded)
 			set_load_embedded_texture(val);
+		else if (type == UMIOSetting::eUMImpAnimationCurve)
+			set_load_animation_curve(val);
 	}
 }
 
@@ -1987,6 +1994,18 @@ bool UMFbxLoadImpl::assign_animation_curve(UMAnimationPtr animation, UMAnimation
 	return true;
 }
 
+typedef std::map<UMTime, int> UniqueKeys;
+static void total_keys(UniqueKeys& total_unique_keys, const UMAnimationCurve& curve)
+{
+	for (UMAnimationCurveKey::KeyMap::const_iterator it = curve.key_map().begin();
+		it != curve.key_map().end();
+		++it)
+	{
+		const UMTime& time = it->first;
+		total_unique_keys[time] = 1;
+	}
+}
+
 /**
  * assign imported animation curve to UMAnimationCurveStack
  */
@@ -1996,117 +2015,136 @@ bool UMFbxLoadImpl::assign_animation_curves(
 	FbxAnimLayer* fbx_layer,
 	FbxNode* node)
 {
+	UniqueKeys total_unique_keys;
+
+	curve_stack.set_link_node_name(std::string(node->GetName()));
+
 	// local trans x
 	if (FbxAnimCurve* fbx_curve = node->LclTranslation.GetCurve(fbx_layer, FBXSDK_CURVENODE_COMPONENT_X))
 	{
 		UMAnimationCurve curve;
-		if (assign_animation_curve(animation, curve, fbx_curve))
+		if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 		{
 			curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eLocalTranslationX] = curve;
 		}
+		total_keys(total_unique_keys, curve);
 	}
 	// local trans y
 	if (FbxAnimCurve* fbx_curve = node->LclTranslation.GetCurve(fbx_layer, FBXSDK_CURVENODE_COMPONENT_Y))
 	{
 		UMAnimationCurve curve;
-		if (assign_animation_curve(animation, curve, fbx_curve))
+		if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 		{
 			curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eLocalTranslationY] = curve;
 		}
+		total_keys(total_unique_keys, curve);
 	}
 	// local trans z
 	if (FbxAnimCurve* fbx_curve = node->LclTranslation.GetCurve(fbx_layer, FBXSDK_CURVENODE_COMPONENT_Z))
 	{
 		UMAnimationCurve curve;
-		if (assign_animation_curve(animation, curve, fbx_curve))
+		if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 		{
 			curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eLocalTranslationZ] = curve;
 		}
+		total_keys(total_unique_keys, curve);
 	}
 	// local rot x
 	if (FbxAnimCurve* fbx_curve = node->LclRotation.GetCurve(fbx_layer, FBXSDK_CURVENODE_COMPONENT_X))
 	{
 		UMAnimationCurve curve;
-		if (assign_animation_curve(animation, curve, fbx_curve))
+		if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 		{
 			curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eLocalRotationX] = curve;
 		}
+		total_keys(total_unique_keys, curve);
 	}
 	// local rot y
 	if (FbxAnimCurve* fbx_curve = node->LclRotation.GetCurve(fbx_layer, FBXSDK_CURVENODE_COMPONENT_Y))
 	{
 		UMAnimationCurve curve;
-		if (assign_animation_curve(animation, curve, fbx_curve))
+		if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 		{
 			curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eLocalRotationY] = curve;
 		}
+		total_keys(total_unique_keys, curve);
 	}
 	// local rot z
 	if (FbxAnimCurve* fbx_curve = node->LclRotation.GetCurve(fbx_layer, FBXSDK_CURVENODE_COMPONENT_Z))
 	{
 		UMAnimationCurve curve;
-		if (assign_animation_curve(animation, curve, fbx_curve))
+		if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 		{
 			curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eLocalRotationZ] = curve;
 		}
+		total_keys(total_unique_keys, curve);
 	}
 	// local scale x
 	if (FbxAnimCurve* fbx_curve = node->LclScaling.GetCurve(fbx_layer, FBXSDK_CURVENODE_COMPONENT_X))
 	{
 		UMAnimationCurve curve;
-		if (assign_animation_curve(animation, curve, fbx_curve))
+		if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 		{
 			curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eLocalScalingX] = curve;
 		}
+		total_keys(total_unique_keys, curve);
 	}
 	// local scale y
 	if (FbxAnimCurve* fbx_curve = node->LclScaling.GetCurve(fbx_layer, FBXSDK_CURVENODE_COMPONENT_Y))
 	{
 		UMAnimationCurve curve;
-		if (assign_animation_curve(animation, curve, fbx_curve))
+		if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 		{
 			curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eLocalScalingY] = curve;
 		}
+		total_keys(total_unique_keys, curve);
 	}
 	// local scale z
 	if (FbxAnimCurve* fbx_curve = node->LclScaling.GetCurve(fbx_layer, FBXSDK_CURVENODE_COMPONENT_Z))
 	{
 		UMAnimationCurve curve;
-		if (assign_animation_curve(animation, curve, fbx_curve))
+		if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 		{
 			curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eLocalScalingZ] = curve;
 		}
+		total_keys(total_unique_keys, curve);
 	}
 	
 	if (FbxNodeAttribute* attribute = node->GetNodeAttribute())
 	{
-		// color red
-		if (FbxAnimCurve* fbx_curve = attribute->Color.GetCurve(fbx_layer, FBXSDK_CURVENODE_COLOR_RED))
-		{
-			UMAnimationCurve curve;
-			if (assign_animation_curve(animation, curve, fbx_curve))
-			{
-				curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eColorRed] = curve;
-			}
-		}
-		// color green
-		if (FbxAnimCurve* fbx_curve = attribute->Color.GetCurve(fbx_layer, FBXSDK_CURVENODE_COLOR_GREEN))
-		{
-			UMAnimationCurve curve;
-			if (assign_animation_curve(animation, curve, fbx_curve))
-			{
-				curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eColorGreen] = curve;
-			}
-		}
-		// color blue
-		if (FbxAnimCurve* fbx_curve = attribute->Color.GetCurve(fbx_layer, FBXSDK_CURVENODE_COLOR_BLUE))
-		{
-			UMAnimationCurve curve;
-			if (assign_animation_curve(animation, curve, fbx_curve))
-			{
-				curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eColorBlue] = curve;
-			}
-		}
+		//// color red
+		//if (FbxAnimCurve* fbx_curve = attribute->Color.GetCurve(fbx_layer, FBXSDK_CURVENODE_COLOR_RED))
+		//{
+		//	UMAnimationCurve curve;
+		//	if (assign_animation_curve(animation, curve, fbx_curve))
+		//	{
+		//		curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eColorRed] = curve;
+		//	}
+		//	total_span(total_time_span, fbx_curve);
+		//	total_keys(total_unique_keys, curve);
+		//}
+		//// color green
+		//if (FbxAnimCurve* fbx_curve = attribute->Color.GetCurve(fbx_layer, FBXSDK_CURVENODE_COLOR_GREEN))
+		//{
+		//	UMAnimationCurve curve;
+		//	if (assign_animation_curve(animation, curve, fbx_curve))
+		//	{
+		//		curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eColorGreen] = curve;
+		//	}
+		//	total_span(total_time_span, fbx_curve);
+		//	total_keys(total_unique_keys, curve);
+		//}
+		//// color blue
+		//if (FbxAnimCurve* fbx_curve = attribute->Color.GetCurve(fbx_layer, FBXSDK_CURVENODE_COLOR_BLUE))
+		//{
+		//	UMAnimationCurve curve;
+		//	if (assign_animation_curve(animation, curve, fbx_curve))
+		//	{
+		//		curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eColorBlue] = curve;
+		//	}
+		//	total_span(total_time_span, fbx_curve);
+		//	total_keys(total_unique_keys, curve);
+		//}
 
 		// light
 		if (FbxLight* light = node->GetLight())
@@ -2115,28 +2153,31 @@ bool UMFbxLoadImpl::assign_animation_curves(
 			if (FbxAnimCurve* fbx_curve = light->Intensity.GetCurve(fbx_layer))
 			{
 				UMAnimationCurve curve;
-				if (assign_animation_curve(animation, curve, fbx_curve))
+				if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 				{
 					curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eLightIntensity] = curve;
 				}
+				total_keys(total_unique_keys, curve);
 			}
 			// outer angle
 			if (FbxAnimCurve* fbx_curve = light->OuterAngle.GetCurve(fbx_layer))
 			{
 				UMAnimationCurve curve;
-				if (assign_animation_curve(animation, curve, fbx_curve))
+				if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 				{
 					curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eLightOuterAngle] = curve;
 				}
+				total_keys(total_unique_keys, curve);
 			}
 			// fog
 			if (FbxAnimCurve* fbx_curve = light->Fog.GetCurve(fbx_layer))
 			{
 				UMAnimationCurve curve;
-				if (assign_animation_curve(animation, curve, fbx_curve))
+				if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 				{
 					curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eLightFog] = curve;
 				}
+				total_keys(total_unique_keys, curve);
 			}
 		}
 		// camera
@@ -2146,55 +2187,61 @@ bool UMFbxLoadImpl::assign_animation_curves(
 			if (FbxAnimCurve* fbx_curve = camera->FieldOfView.GetCurve(fbx_layer))
 			{
 				UMAnimationCurve curve;
-				if (assign_animation_curve(animation, curve, fbx_curve))
+				if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 				{
 					curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eFieldOfView] = curve;
 				}
+				total_keys(total_unique_keys, curve);
 			}
 			// fov x
 			if (FbxAnimCurve* fbx_curve = camera->FieldOfViewX.GetCurve(fbx_layer))
 			{
 				UMAnimationCurve curve;
-				if (assign_animation_curve(animation, curve, fbx_curve))
+				if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 				{
 					curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eFieldOfViewX] = curve;
 				}
+				total_keys(total_unique_keys, curve);
 			}
 			// fov y
 			if (FbxAnimCurve* fbx_curve = camera->FieldOfViewY.GetCurve(fbx_layer))
 			{
 				UMAnimationCurve curve;
-				if (assign_animation_curve(animation, curve, fbx_curve))
+				if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 				{
 					curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eFieldOfViewY] = curve;
 				}
+				total_keys(total_unique_keys, curve);
 			}
 			// optical center x
 			if (FbxAnimCurve* fbx_curve = camera->OpticalCenterX.GetCurve(fbx_layer))
 			{
 				UMAnimationCurve curve;
-				if (assign_animation_curve(animation, curve, fbx_curve))
+				if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 				{
 					curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eOpticalCenterX] = curve;
 				}
+				total_keys(total_unique_keys, curve);
 			}
 			// optical center y
 			if (FbxAnimCurve* fbx_curve = camera->OpticalCenterY.GetCurve(fbx_layer))
 			{
 				UMAnimationCurve curve;
-				if (assign_animation_curve(animation, curve, fbx_curve))
+				if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 				{
 					curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eOpticalCenterY] = curve;
 				}
+				total_keys(total_unique_keys, curve);
 			}
 			// roll
 			if (FbxAnimCurve* fbx_curve = camera->Roll.GetCurve(fbx_layer))
 			{
 				UMAnimationCurve curve;
-				if (assign_animation_curve(animation, curve, fbx_curve))
+				if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 				{
 					curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eRoll] = curve;
 				}
+				total_keys(total_unique_keys, curve);
 			}
 		}
 		// shape
@@ -2219,10 +2266,11 @@ bool UMFbxLoadImpl::assign_animation_curves(
 								if (FbxAnimCurve* fbx_curve = geometry->GetShapeChannel(i, k, fbx_layer))
 								{
 									UMAnimationCurve curve;
-									if (assign_animation_curve(animation, curve, fbx_curve))
+									if (assign_animation_curve(animation, curve, fbx_curve) && is_load_animation_curve())
 									{
 										curve_stack.mutable_curve_map()[UMAnimationCurveKeyTypes::eBlendShapeValue] = curve;
 									}
+									total_keys(total_unique_keys, curve);
 								}
 							}
 						}
@@ -2230,6 +2278,29 @@ bool UMFbxLoadImpl::assign_animation_curves(
 				}
 			}
 		}
+	}
+
+	for (UniqueKeys::iterator it = total_unique_keys.begin();
+		it != total_unique_keys.end();
+		++it)
+	{
+		UMTime key = it->first;
+		FbxTime time;
+		time.SetMilliSeconds(key);
+
+		UMMat44d local;
+		UMMat44d global;
+
+		matrix_to_UMMat44d(
+			local,
+			node->EvaluateLocalTransform(time));
+
+		matrix_to_UMMat44d(
+			global,
+			node->EvaluateLocalTransform(time));
+
+		curve_stack.mutable_local_transform_map()[key] = local;
+		curve_stack.mutable_global_transform_map()[key] = global;
 	}
 
 	// TODO  curves specific to properties
@@ -2341,7 +2412,7 @@ UMAnimationPtr UMFbxLoadImpl::create_animation(FbxScene* scene)
 	// assign all animation stack
 	assign_all_animation_stacks(animation);
 	
-	return UMAnimationPtr(); 
+	return animation;
 }
 
 /**
