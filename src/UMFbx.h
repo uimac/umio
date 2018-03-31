@@ -36,6 +36,16 @@ public:
 	 * save fbx file
 	 */
 	bool save(std::string path, UMObjectPtr object, const UMIOSetting& setting);
+
+	/**
+	* load fbx file to UMAnimation
+	*/
+	UMAnimationPtr load_animation(std::string path, const UMIOSetting& setting);
+
+	/**
+	* save fbx file
+	*/
+	bool save_animation(std::string path, UMAnimationPtr animation, const UMIOSetting& setting);
 };
 
 

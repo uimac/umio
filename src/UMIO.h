@@ -12,6 +12,7 @@
 #pragma once
 
 #include "UMObject.h"
+#include "UMAnimation.h"
 #include "UMIOSetting.h"
 
 #include <string>
@@ -36,7 +37,7 @@ public:
 	 * save 3d file
 	 */
 	bool save(std::string path, UMObjectPtr object, const UMIOSetting& setting);
-	
+
 	/**
 	 * load bos from memory
 	 */
@@ -61,6 +62,19 @@ public:
 	 * create object
 	 */
 	UMObjectPtr create_object() { return UMObject::create_object(); }
+	
+	/// for animation ------------------------
+
+	/**
+	* load 3d animation to UMAnimation
+	*/
+	UMAnimationPtr load_animation(std::string path, const UMIOSetting& setting);
+
+	/**
+	* save 3d animation
+	*/
+	bool save_animation(std::string path, UMAnimationPtr object, const UMIOSetting& setting);
+
 };
 
 

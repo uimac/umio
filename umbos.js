@@ -185,14 +185,181 @@
 		for (i = 0; i < data[4].length; i = i + 1) {
 			this.pose_list[i] = new UMPoseMsg(data[4][i]);
 		}
+		this.embedded_file_map = {};
+		for (i in data[5]) {
+			if (i.toLowerCase().indexOf('.png') > 0) {
+				this.embedded_file_map[i] = new Blob([data[5][i]], { type : "image/png"});
+			} else if (i.toLowerCase().indexOf('.jpg') > 0 || i.toLowerCase().indexOf('.jpeg') > 0) {
+				this.embedded_file_map[i] = new Blob([data[5][i]], { type : "image/jpeg"});
+			}
+		}
 	}
 
-	function load(array) {
+	function UMAnimationCurveKeyMsg (data) {
+		this.time = data[0];
+		this.data_map = data[1];
+		this.value = data[2];
+		this.interpolation_type = data[3];
+		this.tangent_mode = data[4];
+		this.weighted_mode = data[5];
+		this.velocity_mode = data[6];
+		this.constant_mode = data[7];
+		this.tangent_visibility = data[8];
+		this.is_break = data[9];
+	}
+
+	function UMAnimationCurveMsg (data) {
+		var i;
+		this.key_map =  {}
+		for (i in data[0]) {
+			this.key_map[i] = new UMAnimationCurveKeyMsg(data[0][i]);
+		}
+	}
+
+	function UMAnimationCurveStackMsg (data) {
+		var i;
+		this.curve_map =  {}
+		for (i in data[0]) {
+			this.curve_map[i] = new UMAnimationCurveMsg(data[0][i]);
+		}
+	}
+	
+	function UMAnimationLayerMsg (data) {
+		var i;
+		this.weight = data[0];
+		this.mute = data[1];
+		this.solo = data[2];
+		this.lock = data[3];
+		this.color = data[4];
+		this.blend_mode = data[5];
+		this.rotation_accumulation_mode = data[6];
+		this.scale_accumulation_mode = data[7];
+		this.curve_stack_map =  {}
+		for (i in data[8]) {
+			this.curve_stack_map[i] = new UMAnimationCurveStack(data[8][i]);
+		}
+	}
+	
+	function UMAnimationStackMsg (data) {
+		this.name = data[0];
+		this.description = data[1];
+		this.local_start = data[2];
+		this.local_stop = data[3];
+		this.reference_start = data[4];
+		this.reference_stop = data[5];
+		this.layer_list = [];
+		for (i = 0; i < data[6].length; i = i + 1) {
+			this.layer_list[i] = new UMAnimationLayerMsg(data[6][i]);
+		}
+	}
+
+	function UMAnimationMsg (data) {
+		var i;
+		this.animation_stack_list = [];
+
+		for (i = 0; i < data[0].length; ++i) {
+			this.animation_stack_list[i] = new UMAnimationStackMsg(data[0][i]);
+		}
+	}
+
+	function sort_by_material(bosmesh) {
+		var i, k;
+		var n;
+		var index_size = bosmesh.material_index.length;
+		var index_pair_list = [];
+		var sorted_normal = [];
+		var normal_list = bosmesh.layered_normal_list[0];
+		if (index_size > 0) {
+			index_pair_list.length = index_size;
+			for (i = 0; i < index_size; i = i + 1) {
+				index_pair_list[i] = [bosmesh.material_index[i], i];
+			}
+			index_pair_list.sort(function (a, b) {
+				return a[0] - b[0];
+			});
+		}
+		else
+		{
+			index_size = bosmesh.vertex_index_list.length;
+			index_pair_list.length = index_size;
+			for (i = 0; i < index_size; i = i + 1) {
+				index_pair_list[i] = [0, i];
+			}
+		}
+
+		// normal, vertex index
+		var sorted_vertex_index = [],
+			sorted_material_index = [];
+		var is_vertex_sized_normal =  normal_list && (bosmesh.vertex_list.length == normal_list.length);
+		for (i = 0; i < index_size; ++i)
+		{
+			sorted_material_index[i] = index_pair_list[i][0]
+			sorted_vertex_index[i] = bosmesh.vertex_index_list[index_pair_list[i][1]];
+			if (!is_vertex_sized_normal && normal_list) {
+				for (k = 0; k < 3; ++k) {
+					sorted_normal[i * 3 + k] = normal_list[index_pair_list[i][1] * 3 + k];
+				}
+			}
+		}
+		if (!is_vertex_sized_normal) {
+			bosmesh.layered_normal_list[0] = sorted_normal;
+		}
+
+		// UV
+		for (n = 0; n < bosmesh.layered_uv_list.length; ++n) {
+			var uv_list = bosmesh.layered_uv_list[n];
+			var is_vetrtex_sized_uv = uv_list && (bosmesh.vertex_list.length == uv_list.length);
+			var sorted_uv = [];
+	
+			for (i = 0; i < index_size; ++i)
+			{
+				if (is_vetrtex_sized_uv) {
+					for (k = 0; k < 3; ++k) {
+						var h = sorted_vertex_index[i][k];
+						sorted_uv[i * 3 + k] = uv_list[sorted_vertex_index[i][k]];
+						sorted_uv[i * 3 + k][1] = sorted_uv[i * 3 + k][1];
+					}
+				}
+				else if (uv_list && uv_list.length > 0) {
+					for (k = 0; k < 3; ++k) {
+						sorted_uv[i * 3 + k] = uv_list[index_pair_list[i][1] * 3 + k];
+						sorted_uv[i * 3 + k][1] = sorted_uv[i * 3 + k][1];
+					}
+				}
+			}
+			bosmesh.vertex_index_list = sorted_vertex_index;
+			bosmesh.material_index = sorted_material_index;
+			if (!is_vetrtex_sized_uv) {
+				bosmesh.layered_uv_list[n] = sorted_uv;
+			}
+		}
+	}
+
+	function load(array, material_sort) {
+		if (array.length <= 0) {
+			return {}
+		}
 		var data = msgpack.decode(array);
-		return new UMObjectMsg(data);
+		var obj = new UMObjectMsg(data);
+		var i;
+		if (material_sort) {
+			for (i in obj.mesh_map) {
+				sort_by_material(obj.mesh_map[i]);
+			}
+		}
+		return obj;
 	}
 
-	window.umbos = {};
-	window.umbos.load = load;
+	function load_animation(array) {
+		if (array.length <= 0) {
+			return {}
+		}
+		var data = msgpack.decode(array);
+		var animation = new UMAnimationMsg(data);
+		return animation;
+	}
+
+	window.bosloader = {};
+	window.bosloader.load = load;
 
 }());

@@ -21,6 +21,10 @@ UMObjectPtr UMFbx::load(std::string path, const UMIOSetting& setting) { return U
 
 bool UMFbx::save(std::string path, UMObjectPtr object, const UMIOSetting& setting) { return false; }
 
+UMAnimationPtr UMFbx::load_animation(std::string path, const UMIOSetting& setting) { return UMAnimationPtr(); }
+
+bool UMFbx::save_animation(std::string path, UMAnimationPtr animation, const UMIOSetting& setting) { return false; }
+
 } // namespace umio
 
 #endif // !defined (WITH_FBX20**)

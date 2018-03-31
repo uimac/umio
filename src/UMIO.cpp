@@ -427,4 +427,156 @@ bool UMIO::save_setting(std::string path, const UMIOSetting& setting)
 	return false;
 }
 
+
+/**
+* load file
+*/
+UMAnimationPtr UMIO::load_animation(std::string path, const UMIOSetting& setting)
+{
+	bool is_fbx_load = false;
+	UMIOSetting::UMImpSettingMap::const_iterator bt = setting.bl_imp_prop_map().begin();
+	for (; bt != setting.bl_imp_prop_map().end(); ++bt)
+	{
+		UMIOSetting::EUMImpSettingType type = bt->first;
+		bool val = bt->second;
+
+		if (type == UMIOSetting::eUMImpFBX)
+		{
+			is_fbx_load = val;
+		}
+	}
+
+#ifdef WITH_FBX
+	// load by fbx sdk
+	if (is_fbx_load)
+	{
+		UMFbx fbx;
+		UMAnimationPtr anim = fbx.load_animation(path, setting);
+		if (anim)
+		{
+			return anim;
+		}
+	}
+#endif // WITH_FBX
+
+#ifdef WITH_BOOST_SERIALIZATION
+	// load bos
+	try {
+		// convert bos to fbx or other format 
+		std::ifstream file(path, std::ios::in | std::ios::binary);
+		boost::archive::binary_iarchive ia(file);
+
+		umio::UMAnimationPtr anim = umio::UMAnimation::create_animation();
+
+		ia >> (*anim);
+
+		file.close();
+
+		return anim;
+	}
+	catch (...) {
+		//std::cout << "unknown excaption" << std::endl;
+		return UMAnimationPtr();
+	}
+#endif // WITH_BOOST_SERIALIZATION
+
+
+#ifdef WITH_MSGPACK
+	// load msgpack msg
+	try {
+		// convert msg to fbx or other format 
+		std::ifstream file(path, std::ios::in | std::ios::binary);
+		std::istreambuf_iterator<char> first(file);
+		std::istreambuf_iterator<char> last;
+		const std::string data(first, last);
+
+		msgpack::object_handle msg_obj = msgpack::unpack(data.data(), data.size());
+
+		umio::UMAnimationPtr anim = umio::UMAnimation::create_animation();
+		msg_obj.get().convert(*anim);
+		return anim;
+	}
+	catch (msgpack::unpack_error&) {
+		//std::cout << "msg unpack failed" << std::endl;
+		return UMAnimationPtr();
+	}
+	catch (msgpack::type_error&) {
+		//std::cout << "msg type error" << std::endl;
+		return UMAnimationPtr();
+	}
+	catch (...) {
+		//std::cout << "unknown excaption" << std::endl;
+		return UMAnimationPtr();
+	}
+#endif // WITH_MSGPACK
+
+	return UMAnimationPtr();
+}
+
+/**
+* save file
+*/
+bool UMIO::save_animation(std::string path, UMAnimationPtr animation, const UMIOSetting& setting)
+{
+	bool is_fbx_save = false;
+	UMIOSetting::UMExpSettingMap::const_iterator bt = setting.bl_exp_prop_map().begin();
+	for (; bt != setting.bl_exp_prop_map().end(); ++bt)
+	{
+		UMIOSetting::EUMExpSettingType type = bt->first;
+		bool val = bt->second;
+
+		if (type == UMIOSetting::eUMExpFBX)
+		{
+			is_fbx_save = val;
+		}
+	}
+
+#ifdef WITH_FBX
+	// save by fbx sdk
+	if (is_fbx_save)
+	{
+		UMFbx fbx;
+		return fbx.save_animation(path, animation, setting);
+	}
+#endif
+
+#ifdef WITH_BOOST_SERIALIZATION
+	// save bos
+	try {
+		// convert fbx or other format to bos
+		std::ofstream file(path, std::ios::out | std::ios::binary | std::ios::trunc);
+		boost::archive::binary_oarchive oa(file);
+
+		oa << (*animation);
+
+		file.flush();
+		file.close();
+
+		return true;
+	}
+	catch (...) {
+		//std::cout << "unknown excaption" << std::endl;
+		return false;
+	}
+#endif // WITH_BOOST_SERIALIZATION
+
+#ifdef WITH_MSGPACK
+	// save msgpack msg
+	try {
+		// convert fbx or other format to msg
+		std::ofstream file(path, std::ios::out | std::ios::binary | std::ios::trunc);
+		msgpack::pack(&file, *animation);
+		if (animation) {
+			return true;
+		}
+	}
+	catch (...) {
+		//std::cout << "unknown excaption" << std::endl;
+		return false;
+	}
+#endif // WITH_MSGPACK
+
+	return false;
+}
+
 } // namespace umio

@@ -139,18 +139,46 @@ int main(int argc, char **argv)
 		setting.set_bl_exp_bool_prop(umio::UMIOSetting::eUMExpFBX, false);
 	}
 
+	bool is_animation_convert = false;
 	// if exists iosettingfile, use it
 	if (!iosettingpath_str.empty())
 	{
-		io.load_setting(iosettingpath_str, setting);
+		if (iosettingpath_str == "-a") {
+			is_animation_convert = true;
+		} else {
+			io.load_setting(iosettingpath_str, setting);
+		}
 	}
 	
 	// convert
-	if (umio::UMObjectPtr obj = io.load(srcpath_str, setting))
-	{
-		if (io.save(dstpath_str, obj, setting))
+	if (is_animation_convert) {
+		setting.set_imp_bool_prop(umio::UMIOSetting::eImpFbxPivot, false);
+		setting.set_imp_bool_prop(umio::UMIOSetting::eImpFbxCharacter, false);
+		setting.set_imp_bool_prop(umio::UMIOSetting::eImpFbxConstraint, false);
+		setting.set_imp_bool_prop(umio::UMIOSetting::eImpFbxMergeLayerAndTimewarp, true);
+		setting.set_imp_bool_prop(umio::UMIOSetting::eImpFbxGobo, false);
+		setting.set_imp_bool_prop(umio::UMIOSetting::eImpFbxShape, false);
+		setting.set_imp_bool_prop(umio::UMIOSetting::eImpFbxLink, false);
+		setting.set_imp_bool_prop(umio::UMIOSetting::eImpFbxMaterial, false);
+		setting.set_imp_bool_prop(umio::UMIOSetting::eImpFbxTexture, false);
+		setting.set_imp_bool_prop(umio::UMIOSetting::eImpFbxModel, false);
+		setting.set_exp_bool_prop(umio::UMIOSetting::eExpFbxAnimation, true);
+
+		if (umio::UMAnimationPtr anim = io.load_animation(srcpath_str, setting))
 		{
-			std::cout << "convert success" << std::endl;
+			if (io.save_animation(dstpath_str, anim, setting))
+			{
+				std::cout << "convert success" << std::endl;
+			}
+		}
+	}
+	else {
+		if (umio::UMObjectPtr obj = io.load(srcpath_str, setting))
+		{
+			if (io.save(dstpath_str, obj, setting))
+			{
+				std::cout << "convert success" << std::endl;
+			}
 		}
 	}
 

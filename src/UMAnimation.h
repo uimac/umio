@@ -11,6 +11,8 @@
  */
 #pragma once
 
+#include "UMListTypes.h"
+
 #include <map>
 #include <vector>
 #include <list>
@@ -162,6 +164,8 @@ public:
 	void set_tangent_visibility(int mode) { tangent_visibility_ = mode; }
 	void set_break(bool b) { is_break_ = b; }
 
+	// msgpack serialization
+	#include "msg/UMAnimationCurveKeyMsg.h"
 private:
 	UMTime time_;
 
@@ -214,6 +218,8 @@ public:
 	//static std::string CurveNodeColorGreen;
 	//static std::string CurveNodeColorBlue;
 
+	// msgpack serialization
+	#include "msg/UMAnimationCurveMsg.h"
 private:
 	UMAnimationCurveKey::KeyMap key_map_;
 
@@ -248,6 +254,8 @@ public:
 	// setter
 	UMAnimationCurve::CurveMap& mutable_curve_map() { return curve_map_; }
 
+	// msgpack serialization
+	#include "msg/UMAnimationCurveStackMsg.h"
 private:
 	UMAnimationCurve::CurveMap curve_map_;
 };
@@ -306,6 +314,8 @@ public:
 	void set_scale_accumulation_mode(int mode) { scale_accumulation_mode_ = mode; }
 	UMAnimationCurveStack::IDToCurveStackMap& mutable_curve_stack_map() { return curve_stack_map_; }
 
+	// msgpack serialization
+	#include "msg/UMAnimationLayerMsg.h"
 private:
 	double weight_;
 	bool mute_;
@@ -352,6 +362,8 @@ public:
 	void set_reference_stop(UMTime stop) { reference_stop_ = stop; }
 	UMAnimationLayer::LayerList& mutable_layer_list() { return layer_list_; }
 
+	// msgpack serialization
+	#include "msg/UMAnimationStackMsg.h"
 private:
 	std::string name_;
 	std::string description_;
@@ -370,13 +382,17 @@ public:
 
 	UMAnimation() {}
 	virtual ~UMAnimation() {}
-	
+
+	static UMAnimationPtr create_animation() { return UMAnimationPtr(new UMAnimation()); }
+
 	// getter
 	const UMAnimationStack::AnimationStackList& animation_stack_list() const { return animation_stack_list_; }
 
 	// setter
 	UMAnimationStack::AnimationStackList& mutable_animation_stack_list() { return animation_stack_list_; }
 
+	// msgpack serialization
+	#include "msg/UMAnimationMsg.h"
 private:
 	UMAnimationStack::AnimationStackList animation_stack_list_;
 };

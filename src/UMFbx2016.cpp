@@ -88,7 +88,12 @@ public:
 	 * load fbx file to UMObject
 	 */
 	UMObjectPtr load(std::string path, const UMIOSetting& setting);
-	
+
+	/**
+	* load fbx file to UMAnimation
+	*/
+	UMAnimationPtr load_animation(std::string path, const UMIOSetting& setting);
+
 	/**
 	 * load setting
 	 */
@@ -125,9 +130,9 @@ public:
 	UMObjectPtr create_object(FbxScene* scene, const std::string& path);
 
 	/**
-	 * create animation from fbx's manager, scene, importer, and UMObject
+	 * create animation from fbx's manager, scene, importer
 	 */
-	UMAnimationPtr create_animation(FbxScene* scene, UMObjectPtr object);
+	UMAnimationPtr create_animation(FbxScene* scene);
 	
 	/**
 	 * assign all animation stack to UMAnimation.
@@ -322,6 +327,11 @@ public:
 	bool save(std::string path, UMObjectPtr object, const UMIOSetting& setting);
 
 	/**
+	* save fbx file to UMAnimation
+	*/
+	bool save_animation(std::string path, UMAnimationPtr animation, const UMIOSetting& setting);
+
+	/**
 	 * save setting
 	 */
 	void set_save_setting(FbxIOSettings& fbx_settings, const UMIOSetting& setting);
@@ -349,6 +359,11 @@ public:
 	 * create scene from UMObject
 	 */
 	FbxScene* create_scene(UMObjectPtr object);
+
+	/**
+	* create scene from UMAnimation
+	*/
+	FbxScene* create_scene_from_animation(UMAnimationPtr animation);
 
 	/**
 	 * export skeleton to scene
@@ -384,6 +399,11 @@ public:
 	 * export mesh to scene
 	 */
 	bool export_mesh(FbxScene* scene, UMObjectPtr object);
+
+	/**
+	 * export animation to scene
+	 */
+	bool export_animation(FbxScene* scene, UMAnimationPtr object);
 	
 protected:
 	FbxManager* manager() { return manager_; }
@@ -2302,9 +2322,9 @@ bool UMFbxLoadImpl::assign_all_animation_stacks(UMAnimationPtr animation)
 }
 
 /**
- * create animation from fbx's manager, scene, importer, and UMObject
+ * create animation from fbx's manager, scene, importer
  */
-UMAnimationPtr UMFbxLoadImpl::create_animation(FbxScene* scene, UMObjectPtr object)
+UMAnimationPtr UMFbxLoadImpl::create_animation(FbxScene* scene)
 {
 	FbxManager* manager = this->manager();
 	FbxImporter* importer = this->importer();
@@ -2344,13 +2364,6 @@ UMObjectPtr UMFbxLoadImpl::load(std::string path, const UMIOSetting& setting)
 		int sdk_minor;
 		int sdk_revision;
 		FbxManager::GetFileFormatVersion(sdk_major, sdk_minor, sdk_revision);
-//#ifdef WITH_PYTHON
-//		boost::python::object UM = boost::python::import("UM").attr("__dict__");
-//		UM["sdk_major"] = sdk_major;
-//		UM["sdk_minor"] = sdk_minor;
-//		UM["sdk_revision"] = sdk_revision;
-//		printfm("FBX version number for this FBX SDK is ", UM.sdk_major, UM.sdk_minor, UM.sdk_revision);
-//#endif // WITH_PYTHON
 	}
 
 	FbxScene* scene = FbxScene::Create(manager,"");
@@ -2382,13 +2395,6 @@ UMObjectPtr UMFbxLoadImpl::load(std::string path, const UMIOSetting& setting)
 		int file_minor;
 		int file_revision;
 		importer->GetFileVersion(file_major, file_minor, file_revision);
-//#ifdef WITH_PYTHON
-//		boost::python::object UM = boost::python::import("UM").attr("__dict__");
-//		UM["file_major"] = file_major;
-//		UM["file_minor"] = file_minor;
-//		UM["file_revision"] = file_revision;
-//		printfm("FBX version number for file number is ", UM.file_major, UM.file_minor, UM.file_revision);
-//#endif // WITH_PYTHON
 	}
 
 	// Import the scene.
@@ -2402,6 +2408,73 @@ UMObjectPtr UMFbxLoadImpl::load(std::string path, const UMIOSetting& setting)
 	UMObjectPtr object = create_object(scene, path);
 
 	return object;
+}
+
+
+/**
+* load fbx file to UMAnimation
+*/
+UMAnimationPtr UMFbxLoadImpl::load_animation(std::string path, const UMIOSetting& setting)
+{
+	// Create a manager
+	manager_ = FbxManager::Create();
+	if (!manager_) return UMAnimationPtr();
+	FbxManager* manager = manager_;
+
+	// init manager
+	FbxIOSettings * ios = FbxIOSettings::Create(manager, IOSROOT);
+	manager->SetIOSettings(ios);
+
+	// fbx sdk version
+	{
+		int sdk_major;
+		int sdk_minor;
+		int sdk_revision;
+		FbxManager::GetFileFormatVersion(sdk_major, sdk_minor, sdk_revision);
+	}
+
+	FbxScene* scene = FbxScene::Create(manager, "");
+	if (!scene) {
+		return UMAnimationPtr();
+	}
+
+	// Create an importer.
+	importer_ = FbxImporter::Create(manager, "");
+	if (!importer_) {
+		return UMAnimationPtr();
+	}
+	FbxImporter* importer = importer_;
+
+	FbxIOSettings& fbx_settings = (*manager->GetIOSettings());
+	set_load_setting(fbx_settings, setting);
+	set_system_unit_type(scene, setting);
+	set_axis_type(scene, setting);
+
+	// init importer
+	if (!importer->Initialize(path.c_str(), -1, manager->GetIOSettings())) {
+		printf("Call to FbxImporter::Initialize() failed.\n");
+		return UMAnimationPtr();
+	}
+
+	// file version
+	{
+		int file_major;
+		int file_minor;
+		int file_revision;
+		importer->GetFileVersion(file_major, file_minor, file_revision);
+	}
+
+	// Import the scene.
+	if (!importer->Import(scene)) {
+		printf("import failed.\n");
+		return UMAnimationPtr();
+	}
+
+	printf("import sccess!\n");
+
+	UMAnimationPtr animation = create_animation(scene);
+
+	return animation;
 }
 
 /*---------------------------------------------------------------------------*
@@ -3341,6 +3414,15 @@ bool UMFbxSaveImpl::export_mesh(FbxScene* scene, UMObjectPtr object)
 }
 
 /**
+* export animation to scene
+*/
+bool UMFbxSaveImpl::export_animation(FbxScene* scene, UMAnimationPtr animation)
+{
+	if (!scene) return false;
+	if (!animation) return false;
+}
+
+/**
  * create scene from UMObject
  */
 FbxScene* UMFbxSaveImpl::create_scene(UMObjectPtr object)
@@ -3367,6 +3449,34 @@ FbxScene* UMFbxSaveImpl::create_scene(UMObjectPtr object)
 	if (!export_mesh(scene, object))
 	{
 		printf("export mesh failed");
+	}
+
+	return scene;
+}
+
+/**
+* create scene from UMObject
+*/
+FbxScene* UMFbxSaveImpl::create_scene_from_animation(UMAnimationPtr animation)
+{
+	FbxScene* scene = FbxScene::Create(manager(), "");
+	if (!scene) return NULL;
+
+	FbxDocumentInfo* document_info = FbxDocumentInfo::Create(manager(), "SceneInfo");
+	if (!document_info) return NULL;
+
+	// TODO
+	document_info->mTitle = "title";
+	document_info->mSubject = "subject";
+	document_info->mAuthor = "author";
+	document_info->mRevision = "revision";
+	document_info->mKeywords = "keyword";
+	document_info->mComment = "comment";
+	scene->SetSceneInfo(document_info);
+
+	if (!export_animation(scene, animation))
+	{
+		printf("export animation failed");
 	}
 
 	return scene;
@@ -3481,6 +3591,99 @@ bool UMFbxSaveImpl::save(std::string path, UMObjectPtr object, const UMIOSetting
 	return true;
 }
 
+/**
+* save fbx file to UMAnimation
+*/
+bool UMFbxSaveImpl::save_animation(std::string path, UMAnimationPtr animation, const UMIOSetting& setting)
+{
+	if (!animation) return false;
+
+	// Create a manager
+	manager_ = FbxManager::Create();
+	if (!manager_) return false;
+	FbxManager* manager = manager_;
+
+	// init manager
+	FbxIOSettings * ios = FbxIOSettings::Create(manager, IOSROOT);
+	manager->SetIOSettings(ios);
+
+	// fbx sdk version
+	{
+		int sdk_major;
+		int sdk_minor;
+		int sdk_revision;
+		FbxManager::GetFileFormatVersion(sdk_major, sdk_minor, sdk_revision);
+	}
+
+	// Create an exporter.
+	exporter_ = FbxExporter::Create(manager, "");
+	if (!exporter_) {
+		printf("FbxExporter::Create failed.\n");
+		return false;
+	}
+	FbxExporter* exporter = exporter_;
+
+	FbxIOSettings& fbx_settings = (*manager->GetIOSettings());
+	set_save_setting(fbx_settings, setting);
+
+	// init exporter
+	if (is_save_text())
+	{
+		if (is_old_fbx())
+		{
+			// old fbx, text
+			if (!exporter->Initialize(path.c_str(), 4, manager->GetIOSettings())) {
+				printf("Call to FbxExporter::Initialize() failed.\n");
+				return false;
+			}
+		}
+		else
+		{
+			// newest fbx, text
+			if (!exporter->Initialize(path.c_str(), 1, manager->GetIOSettings())) {
+				printf("Call to FbxExporter::Initialize() failed.\n");
+				return false;
+			}
+		}
+	}
+	else
+	{
+		if (is_old_fbx())
+		{
+			// old fbx, binary
+			if (!exporter->Initialize(path.c_str(), 3, manager->GetIOSettings())) {
+				printf("Call to FbxExporter::Initialize() failed.\n");
+				return false;
+			}
+		}
+		else
+		{
+			// newest fbx, binary
+			if (!exporter->Initialize(path.c_str(), 0, manager->GetIOSettings())) {
+				printf("Call to FbxExporter::Initialize() failed.\n");
+				return false;
+			}
+		}
+	}
+
+	FbxScene* scene = create_scene_from_animation(animation);
+	set_system_unit_type(scene, setting);
+	set_axis_type(scene, setting);
+	if (!scene) {
+		printf("create_scene failed.\n");
+		return false;
+	}
+
+	// Import the scene.
+	if (!exporter->Export(scene)) {
+		printf("export failed.\n");
+		return false;
+	}
+
+	printf("export success.\n");
+
+	return true;
+}
 
 /*---------------------------------------------------------------------------*
  * UMFbx
@@ -3504,6 +3707,23 @@ bool UMFbx::save(std::string path, UMObjectPtr object, const UMIOSetting& settin
 	}
 	UMFbxSaveImpl impl;
 	return impl.save(path, object, setting);
+}
+/**
+* load fbx file to UMAnimation
+*/
+UMAnimationPtr UMFbx::load_animation(std::string path, const UMIOSetting& setting) 
+{
+	UMFbxLoadImpl impl;
+	return impl.load_animation(path, setting);
+}
+
+/**
+* save fbx file
+*/
+bool UMFbx::save_animation(std::string path, UMAnimationPtr animation, const UMIOSetting& setting)
+{
+	UMFbxSaveImpl impl;
+	return impl.save_animation(path, animation, setting);
 }
 
 } // namespace umio
