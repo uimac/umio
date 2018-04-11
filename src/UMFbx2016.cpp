@@ -660,6 +660,7 @@ bool UMFbxLoadImpl::assign_textures(UMObjectPtr object, UMMaterial& material, Fb
 				texture.set_name(std::string(fbx_texture->GetName()));
 				texture.set_relative_file_name(std::string(fbx_file_texture->GetRelativeFileName()));
 				texture.set_file_name(std::string(fbx_file_texture->GetFileName()));
+				texture.set_property_name(std::string(fbx_property.GetName()));
 
 				FbxLayeredTexture::EBlendMode blend_mode;
 				if (fbx_layered_texture->GetTextureBlendMode(k, blend_mode))
@@ -692,6 +693,10 @@ bool UMFbxLoadImpl::assign_textures(UMObjectPtr object, UMMaterial& material, Fb
 			texture.set_name(std::string(fbx_texture->GetName()));
 			texture.set_relative_file_name(std::string(fbx_file_texture->GetRelativeFileName()));
 			texture.set_file_name(std::string(fbx_file_texture->GetFileName()));
+			texture.set_property_name(std::string(fbx_property.GetName()));
+			texture.set_blend_mode(static_cast<int>(fbx_file_texture->GetBlendMode()));
+
+			std::string fbx_property_name = fbx_property.GetName();
 
 			if (is_load_embedded_texture()) {
 				std::string file_name;

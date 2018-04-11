@@ -26,8 +26,9 @@
 		this.name = data[0];
 		this.file_name = data[1];
 		this.relative_file_name = data[2];
-		this.blend_mode = data[3];
-		this.alpha = data[4];
+		this.property_name = data[3];
+		this.blend_mode = data[4];
+		this.alpha = data[5];
 	}
 
 	function UMMaterialMsg(data) {

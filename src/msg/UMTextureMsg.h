@@ -14,6 +14,7 @@
 				name_,
 				file_name_,
 				relative_file_name_,
+				property_name_,
 				blend_mode_,
 				alpha_);
 #endif //WITH_MSGPACK

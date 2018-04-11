@@ -802,6 +802,7 @@ public:
 	const std::string& name() const { return name_; }
 	const std::string& file_name() const { return file_name_; }
 	const std::string& relative_file_name() const { return relative_file_name_; }
+	const std::string& property_name() const { return property_name_; }
 	const int blend_mode() const { return blend_mode_; }
 	const double alpha() const { return alpha_; }
 
@@ -811,6 +812,7 @@ public:
 	void set_relative_file_name(const std::string& relative_file_name) { relative_file_name_ = relative_file_name; }
 	void set_blend_mode(int blend_mode) { blend_mode_ = blend_mode; }
 	void set_alpha(double alpha) { alpha_ = alpha; }
+	void set_property_name(const std::string& property_name) { property_name_ = property_name; }
 
 	
 	// msgpack serialization
@@ -822,6 +824,7 @@ private:
 	std::string name_;
 	std::string file_name_;
 	std::string relative_file_name_;
+	std::string property_name_;
 
 	//	FbxLayeredTexture::EBlendMode or -1
 	int blend_mode_;
